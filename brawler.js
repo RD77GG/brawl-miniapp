@@ -16,31 +16,38 @@ fetch("data/brawlers.json")
 
     document.getElementById("brawler").innerHTML = `
 
-   <div class="info-card">
+    <div class="brawler-main">
 
-<h2>⭐ Информация</h2>
+        <img src="${brawler.image}" class="main-image">
 
-<p><strong>Редкость:</strong> <span class="rarity">${brawler.rarity}</span></p>
+        <div class="info-card">
 
-<p><strong>Класс:</strong> ${brawler.class}</p>
+            <h2>⭐ Информация</h2>
 
-</div>
+            <p>
+                <strong>Редкость:</strong>
+                <span class="rarity">${brawler.rarity}</span>
+            </p>
 
+            <p>
+                <strong>Класс:</strong>
+                ${brawler.class}
+            </p>
 
-<div class="titles-card">
+        </div>
 
-<h2>🏆 Титулы</h2>
+        <div class="titles-card">
 
-${brawler.titles.map(title => `
+            <h2>🏆 Титулы</h2>
 
-<p>
-<strong>${title.prime} Прайм:</strong>
-${title.name}
-</p>
+            ${brawler.titles.map(title => `
+                <p>
+                    <strong>${title.prime} Прайм:</strong>
+                    ${title.name}
+                </p>
+            `).join("")}
 
-`).join("")}
-
-</div>
+        </div>
 
         <h2>Скины (${brawler.skins.length})</h2>
 
@@ -50,12 +57,16 @@ ${title.name}
 
         ${brawler.skins.map(skin => `
             <div class="skin-card">
+
                 <img src="${skin.image}" alt="${skin.displayName}">
+
                 <h3>${skin.displayName}</h3>
+
             </div>
         `).join("")}
 
     </div>
 
     `;
+
 });
