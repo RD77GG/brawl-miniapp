@@ -125,16 +125,17 @@ h1{
     background:#6b6b78;
     color:white;
     border:none;
-    padding:14px 22px;
+    padding:14px 24px;
     border-radius:14px;
-    font-size:18px;
+    font-size:22px;
+    font-weight:bold;
     cursor:pointer;
 
     position:fixed;
     left:20px;
     top:20px;
 
-    z-index:10;
+    z-index:100;
     transition:.2s;
 }
 
