@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "name": "Shelly",
+    "image": "images/shelly.png",
+    "skins": [
+      {
+        "name": "Bandita Shelly",
+        "image": "images/bandita-shelly.png"
+      },
+      {
+        "name": "Star Shelly",
+        "image": "images/star-shelly.png"
+      }
+    ]
+  }
+]
