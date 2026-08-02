@@ -1,23 +1,20 @@
 [
  {
   "name":"Shelly",
-
   "rarity":"Начальный",
-
   "class":"Урон",
-
   "image":"images/IMG_5992.webp",
 
   "titles":[
    {
     "name":"Некогда объяснять!",
     "prime":"1",
-    "image":"images/title-gold.png"
+    "style":"gold"
    },
    {
     "name":"ФАНТАСТИКА",
     "prime":"3",
-    "image":"images/title-neon.png"
+    "style":"neon"
    }
   ],
 
