@@ -1,19 +1,24 @@
 fetch("data/brawlers.json")
-    .then(response => response.json())
-    .then(brawlers => {
-        const container = document.getElementById("fighters");
+  .then(response => response.json())
+  .then(brawlers => {
 
-        brawlers.forEach(brawler => {
-            const card = document.createElement("div");
+    const fighters = document.getElementById("fighters");
 
-            card.innerHTML = `
-                <h2>${brawler.name}</h2>
-                <p>Скинов: ${brawler.skins.length}</p>
-            `;
+    brawlers.forEach(brawler => {
 
-            container.appendChild(card);
-        });
-    })
-    .catch(error => {
-        console.log("Ошибка:", error);
+      const card = document.createElement("div");
+      card.className = "fighter-card";
+
+      card.innerHTML = `
+        <h2>${brawler.name}</h2>
+        <p>Скинов: ${brawler.skins.length}</p>
+      `;
+
+      fighters.appendChild(card);
+
     });
+
+  })
+  .catch(error => {
+    console.log("Ошибка загрузки данных:", error);
+  });
