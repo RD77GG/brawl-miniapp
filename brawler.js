@@ -33,7 +33,10 @@ fetch("data/brawlers.json")
 
             <p>
                 <strong>⚔️ Класс:</strong>
-                ${brawler.class}
+
+<span class="class-tag ${brawler.classClass}">
+    ${brawler.class}
+</span>
             </p>
 
         </div>
