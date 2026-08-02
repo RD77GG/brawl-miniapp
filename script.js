@@ -49,7 +49,7 @@ f.name.toLowerCase().includes(value)
 });
 
 
-function openBrawler(name){
+window.openBrawler = function(name){
 
 window.location.href = "brawler.html?name=" + name;
 
