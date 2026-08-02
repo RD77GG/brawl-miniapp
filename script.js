@@ -20,7 +20,7 @@ container.innerHTML="";
 list.forEach(f=>{
 
 container.innerHTML += `
-<div class="card" onclick="openBrawler('${f.name}')">
+<a href="brawler.html?name=${f.name}" class="card">
 
 <img src="${f.image}">
 
@@ -28,7 +28,7 @@ container.innerHTML += `
 
 <p>Скинов: ${f.skins.length}</p>
 
-</div>
+</a>
 `;
 
 });
@@ -49,8 +49,4 @@ f.name.toLowerCase().includes(value)
 });
 
 
-window.openBrawler = function(name){
 
-window.location.href = "brawler.html?name=" + name;
-
-}
