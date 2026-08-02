@@ -15,38 +15,35 @@ fetch("data/brawlers.json")
 
 function render(list){
 
-container.innerHTML="";
+    container.innerHTML = "";
 
-list.forEach(f=>{
+    list.forEach(f => {
 
-container.innerHTML += `
-<a href="brawler.html?name=${f.name}" class="card">
+        container.innerHTML += `
+        <a href="brawler.html?name=${encodeURIComponent(f.name)}" class="card">
 
-<img src="${f.image}">
+            <img src="${f.image}" alt="${f.displayName}">
 
-<h2>${f.name}</h2>
+            <h2>${f.displayName}</h2>
 
-<p>Скинов: ${f.skins.length}</p>
+            <p>Скинов: ${f.skins.length}</p>
 
-</a>
-`;
+        </a>
+        `;
 
-});
+    });
 
 }
 
 
-search.addEventListener("input",()=>{
+search.addEventListener("input", () => {
 
-const value = search.value.toLowerCase();
+    const value = search.value.toLowerCase();
 
-render(
-fighters.filter(f =>
-f.name.toLowerCase().includes(value)
-)
-);
+    render(
+        fighters.filter(f =>
+            f.displayName.toLowerCase().includes(value)
+        )
+    );
 
 });
-
-
-
