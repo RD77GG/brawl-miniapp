@@ -58,3 +58,14 @@ h1{
 .card h2{
     margin-top:12px;
 }
+.card {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.card h2,
+.card p {
+    text-decoration: none;
+    color: inherit;
+}
