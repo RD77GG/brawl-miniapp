@@ -20,8 +20,11 @@ document.getElementById("brawler").innerHTML = `
 ${brawler.skins.map(skin => `
 
 <div class="skin-card">
+
 <img src="${skin.image}">
+
 <h3>${skin.name}</h3>
+
 </div>
 
 `).join("")}
