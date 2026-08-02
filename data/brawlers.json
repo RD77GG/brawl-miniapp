@@ -1,11 +1,13 @@
 [
   {
     "name": "Shelly",
-    "displayName": "Шелли",
+    "displayName":"Шелли",
 
     "rarity":"Начальный",
     "rarityClass":"starter",
-    "class": "Урон",
+
+    "class":"Урон",
+    "classClass":"damage",
 
     "image": "images/IMG_5992.webp",
 
