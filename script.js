@@ -8,7 +8,6 @@ fetch("data/brawlers.json")
 .then(data => {
 
     fighters = data;
-
     render(fighters);
 
 });
@@ -24,6 +23,7 @@ container.innerHTML += `
 <div class="card">
 <img src="${f.image}">
 <h2>${f.name}</h2>
+<p>Скинов: ${f.skins.length}</p>
 </div>
 `;
 
