@@ -220,3 +220,27 @@ h1{
     border:2px solid #00eaff;
     color:#00eaff;
 }
+.info-card,
+.titles-card{
+    background:#2b2b45;
+    margin:20px;
+    padding:18px;
+    border-radius:18px;
+}
+
+.info-card h2,
+.titles-card h2{
+    margin-bottom:15px;
+}
+
+.info-card p,
+.titles-card p{
+    font-size:18px;
+    margin:10px 0;
+    line-height:1.5;
+}
+
+.rarity{
+    color:#6ec8ff;
+    font-weight:bold;
+}
