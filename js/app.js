@@ -1,7 +1,7 @@
 fetch("data/brawlers.json")
     .then(response => response.json())
     .then(brawlers => {
-        const container = document.getElementById("brawlers");
+        const container = document.getElementById("fighters");
 
         brawlers.forEach(brawler => {
             const card = document.createElement("div");
