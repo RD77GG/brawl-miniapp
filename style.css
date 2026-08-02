@@ -31,6 +31,7 @@ h1{
     outline:none;
 }
 
+
 #fighters{
     display:grid;
     grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
@@ -38,62 +39,74 @@ h1{
     padding:20px;
 }
 
+
 .card{
     background:#2b2b45;
     border-radius:18px;
     padding:18px;
     text-align:center;
     transition:.2s;
+    text-decoration:none;
+    color:white;
+    display:block;
+    cursor:pointer;
 }
+
 
 .card:hover{
     transform:scale(1.05);
 }
+
 
 .card img{
     width:100%;
     border-radius:12px;
 }
 
+
 .card h2{
     margin-top:12px;
 }
-.card {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-}
 
-.card h2,
-.card p {
-    text-decoration: none;
-    color: inherit;
-}
-.skins {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    padding: 15px;
+
+.card p{
+    margin-top:8px;
+    color:#ccc;
 }
 
 
-.skin-card {
-    background: #222;
-    border-radius: 15px;
-    padding: 10px;
-    text-align: center;
-    overflow: hidden;
+/* Скины */
+
+.skins{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    padding:20px;
 }
 
 
-.skin-card img {
-    width: 100%;
-    height: 160px;
-    object-fit: contain;
+.skin-card{
+    background:#2b2b45;
+    border-radius:18px;
+    padding:12px;
+    text-align:center;
+    transition:.2s;
 }
 
 
-.skin-card h3 {
-    color: white;
-    margin: 8px 0;
+.skin-card:hover{
+    transform:scale(1.05);
+}
+
+
+.skin-card img{
+    width:100%;
+    height:160px;
+    object-fit:contain;
+    border-radius:12px;
+}
+
+
+.skin-card h3{
+    margin-top:10px;
 }
