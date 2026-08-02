@@ -163,3 +163,8 @@ h1{
 .brawler-main h2{
     margin-top:20px;
 }
+.main-image{
+    width:260px;
+    height:260px;
+    object-fit:contain;
+}
