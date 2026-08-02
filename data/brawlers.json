@@ -1,8 +1,11 @@
 [
  {
-  "name":"Shelly",
+  "name":"Шелли",
+
   "rarity":"Начальный",
+
   "class":"Урон",
+
   "image":"images/IMG_5992.webp",
 
   "titles":[
@@ -20,11 +23,11 @@
 
   "skins":[
    {
-    "name":"Bandita Shelly",
+    "name":"Бандитка Шелли",
     "image":"images/IMG_5993.png"
    },
    {
-    "name":"Star Shelly",
+    "name":"Звёздная Шелли",
     "image":"images/IMG_5994.webp"
    }
   ]
