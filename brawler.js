@@ -7,13 +7,22 @@ fetch("data/brawlers.json")
 
 const brawler = brawlers.find(b => b.name === name);
 
+
 document.getElementById("name").innerHTML = brawler.name;
+
 
 document.getElementById("brawler").innerHTML = `
 
-<img src="${brawler.image}" class="brawler-image">
+<div class="brawler-main">
 
-<h2>Скины:</h2>
+<img src="${brawler.image}" class="main-image">
+
+<h2>
+Скины (${brawler.skins.length})
+</h2>
+
+</div>
+
 
 <div class="skins">
 
