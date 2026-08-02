@@ -16,25 +16,31 @@ fetch("data/brawlers.json")
 
     document.getElementById("brawler").innerHTML = `
 
-    <div class="brawler-main">
+   <div class="info-card">
 
-        <img src="${brawler.image}" class="main-image">
+<h2>⭐ Информация</h2>
 
-        <div class="info">
-            <p>⭐ <b>Редкость:</b> ${brawler.rarity}</p>
-            <p>⚔️ <b>Класс:</b> ${brawler.class}</p>
-        </div>
+<p><strong>Редкость:</strong> <span class="rarity">${brawler.rarity}</span></p>
 
-        <h2>Титулы</h2>
+<p><strong>Класс:</strong> ${brawler.class}</p>
 
-        <div class="titles">
-            ${brawler.titles.map(title => `
-                <div class="title-card ${title.style}">
-                    <span>${title.name}</span>
-                    <small>${title.prime} Прайм</small>
-                </div>
-            `).join("")}
-        </div>
+</div>
+
+
+<div class="titles-card">
+
+<h2>🏆 Титулы</h2>
+
+${brawler.titles.map(title => `
+
+<p>
+<strong>${title.prime} Прайм:</strong>
+${title.name}
+</p>
+
+`).join("")}
+
+</div>
 
         <h2>Скины (${brawler.skins.length})</h2>
 
