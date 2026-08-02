@@ -26,11 +26,13 @@ fetch("data/brawlers.json")
 
             <p>
                 <strong>Редкость:</strong>
-                <span class="rarity">${brawler.rarity}</span>
+                <span class="rarity ${brawler.rarityClass}">
+                    ${brawler.rarity}
+                </span>
             </p>
 
             <p>
-                <strong>Класс:</strong>
+                <strong>⚔️ Класс:</strong>
                 ${brawler.class}
             </p>
 
