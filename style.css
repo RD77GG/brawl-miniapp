@@ -240,7 +240,73 @@ h1{
     line-height:1.5;
 }
 
-1.5;
+.rarity,
+.class-tag{
+    display:inline-block;
+    padding:6px 14px;
+    border-radius:12px;
+    font-weight:bold;
+    color:white;
+    margin-left:8px;
+    font-size:16px;
+}
+
+/* ---------- Редкость ---------- */
+
+.starter{
+    background:#43b8ff;
+}
+
+.rare{
+    background:#2ecc71;
+}
+
+.superrare{
+    background:#1f6fff;
+}
+
+.epic{
+    background:#a84cff;
+}
+
+.mythic{
+    background:#ff4b4b;
+}
+
+.legendary{
+    background:#ffd43b;
+    color:#222;
+}
+
+.ultralegendary{
+    background:#111;
+    border:2px solid #666;
+}
+
+/* ---------- Классы ---------- */
+
+.damage{
+    background:#ff8c00;
+}
+
+.tank{
+    background:#e53935;
+}
+
+.assassin{
+    background:#8e24aa;
+}
+
+.controller{
+    background:#1e88e5;
+}
+
+.support{
+    background:#43a047;
+}
+
+.artillery{
+    background:#fb8c00;
 }
 
 
