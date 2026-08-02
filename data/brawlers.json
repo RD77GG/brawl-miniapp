@@ -1,7 +1,7 @@
 [
  {
   "name":"Shelly",
-  "image":"images/shelly.png",
+  "image":"images/shelly.png", 
   "skins":[
    {
     "name":"Bandita Shelly"
