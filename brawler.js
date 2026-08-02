@@ -15,7 +15,7 @@ if(!brawler){
 }
 
 
-document.getElementById("name").innerHTML = brawler.name;
+document.getElementById("name").innerHTML = brawler.displayName;
 
 
 document.getElementById("brawler").innerHTML = `
