@@ -1,13 +1,15 @@
 [
  {
   "name":"Shelly",
-  "image":"images/IMG_5992.webp", 
+  "image":"images/IMG_5992.webp",
   "skins":[
    {
-    "name":"Bandita Shelly"
+    "name":"Bandita Shelly",
+    "image":"images/bandita-shelly.webp"
    },
    {
-    "name":"Star Shelly"
+    "name":"Star Shelly",
+    "image":"images/star-shelly.webp"
    }
   ]
  }
