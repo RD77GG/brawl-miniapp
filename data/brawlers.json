@@ -1,10 +1,27 @@
 [
  {
- "name":"Shelly",
- "rarity":"Начальный",
- "class":"Урон",
- "image":"images/IMG_5992.webp",
- "skins":[
+  "name":"Shelly",
+
+  "rarity":"Начальный",
+
+  "class":"Урон",
+
+  "image":"images/IMG_5992.webp",
+
+  "titles":[
+   {
+    "name":"Некогда объяснять!",
+    "prime":"1",
+    "image":"images/title-gold.png"
+   },
+   {
+    "name":"ФАНТАСТИКА",
+    "prime":"3",
+    "image":"images/title-neon.png"
+   }
+  ],
+
+  "skins":[
    {
     "name":"Bandita Shelly",
     "image":"images/IMG_5993.png"
@@ -13,6 +30,6 @@
     "name":"Star Shelly",
     "image":"images/IMG_5994.webp"
    }
- ]
+  ]
  }
 ]
