@@ -22,8 +22,6 @@ fetch("data/brawlers.json")
 
             <div class="info-card">
 
-                <h2>⭐ Информация</h2>
-
                 <p>
                     <strong>Редкость:</strong>
                     <span class="rarity ${brawler.rarityClass}">
@@ -40,6 +38,29 @@ fetch("data/brawlers.json")
 
             </div>
 
+        </div>
+
+        <!-- Вкладка СКИНЫ -->
+        <div id="skinsContent">
+
+            <h2 style="text-align:center;">Скины (${brawler.skins.length})</h2>
+
+            <div class="skins">
+
+                ${brawler.skins.map(skin => `
+                    <div class="skin-card">
+                        <img src="${skin.image}" alt="${skin.displayName}">
+                        <h3>${skin.displayName}</h3>
+                    </div>
+                `).join("")}
+
+            </div>
+
+        </div>
+
+        <!-- Вкладка ИНФОРМАЦИЯ -->
+        <div id="infoContent" style="display:none;">
+
             <div class="titles-card">
 
                 <h2>🏆 Титулы</h2>
@@ -53,25 +74,45 @@ fetch("data/brawlers.json")
 
             </div>
 
-            <h2>Скины (${brawler.skins.length})</h2>
+            <div class="info-card">
 
-        </div>
+                <h2>⭐ Способности</h2>
 
-        <div class="skins">
+                <p>⭐ Звёздные силы — скоро</p>
+                <p>🔧 Гаджеты — скоро</p>
+                <p>⚡ Гиперзаряд — скоро</p>
 
-            ${brawler.skins.map(skin => `
-                <div class="skin-card">
-
-                    <img src="${skin.image}" alt="${skin.displayName}">
-
-                    <h3>${skin.displayName}</h3>
-
-                </div>
-            `).join("")}
+            </div>
 
         </div>
 
         `;
+
+        const skinsTab = document.getElementById("skinsTab");
+        const infoTab = document.getElementById("infoTab");
+
+        const skinsContent = document.getElementById("skinsContent");
+        const infoContent = document.getElementById("infoContent");
+
+        skinsTab.onclick = () => {
+
+            skinsContent.style.display = "block";
+            infoContent.style.display = "none";
+
+            skinsTab.classList.add("active");
+            infoTab.classList.remove("active");
+
+        };
+
+        infoTab.onclick = () => {
+
+            skinsContent.style.display = "none";
+            infoContent.style.display = "block";
+
+            infoTab.classList.add("active");
+            skinsTab.classList.remove("active");
+
+        };
 
     })
     .catch(error => {
