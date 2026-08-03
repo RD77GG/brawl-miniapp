@@ -1,1 +1,138 @@
+.brawler-main{
+    text-align:center;
+    padding:20px;
+}
 
+
+.main-image{
+    width:260px;
+    height:260px;
+    object-fit:contain;
+    background:#2b2b45;
+    border-radius:25px;
+    padding:15px;
+    border:3px solid #454565;
+}
+
+
+.info-card,
+.titles-card{
+    margin:20px;
+    padding:18px;
+}
+
+
+.info-card p,
+.titles-card p{
+    font-size:18px;
+    margin:10px 0;
+}
+
+
+.skins{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    padding:20px;
+}
+
+
+.skin-card{
+    padding:12px;
+    text-align:center;
+    cursor:pointer;
+    transition:.2s;
+}
+
+
+.skin-card:hover{
+    transform:scale(1.05);
+}
+
+
+.skin-card img{
+    width:100%;
+    height:160px;
+    object-fit:contain;
+}
+
+
+.rarity,
+.class-tag{
+    display:inline-block;
+    padding:6px 14px;
+    border-radius:12px;
+    font-weight:bold;
+    margin-left:8px;
+}
+
+
+.starter{
+    background:#43b8ff;
+}
+
+
+.ultralegendary{
+    background:#111;
+    border:2px solid #666;
+}
+
+
+/* Классы */
+
+.damage{
+    background:#ff8c00;
+}
+
+
+.tank{
+    background:#e53935;
+}
+
+
+.assassin{
+    background:#8e24aa;
+}
+
+
+/* Титулы */
+
+.gold{
+    background:#5c4a12;
+    border:2px solid gold;
+    color:#ffd700;
+}
+
+
+.neon{
+    background:#14204a;
+    border:2px solid #00eaff;
+    color:#00eaff;
+}
+
+
+/* Вкладки */
+
+.tabs{
+    display:flex;
+    margin:20px;
+    background:#2b2b45;
+    border-radius:18px;
+    overflow:hidden;
+}
+
+
+.tab{
+    flex:1;
+    padding:14px;
+    border:none;
+    background:transparent;
+    color:white;
+    font-size:18px;
+}
+
+
+.tab.active{
+    background:#43b8ff;
+    color:#111;
+}
