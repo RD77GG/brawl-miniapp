@@ -1,15 +1,15 @@
 [
   {
     "name": "Shelly",
-    "displayName":"Шелли",
+    "displayName": "Шелли",
 
-    "rarity":"Начальный",
-    "rarityClass":"starter", 
+    "rarity": "Начальный",
+    "rarityClass": "starter",
 
-    "class":"Урон",
-    "classClass":"damage",
+    "class": "Урон",
+    "classClass": "damage",
 
-    "image": "images/IMG_5992.webp",
+    "image": "images/brawlers/shelly/shelly.WEBP",
 
     "titles": [
       {
@@ -28,12 +28,12 @@
       {
         "name": "Bandita Shelly",
         "displayName": "Бандитка Шелли",
-        "image": "images/IMG_5996.png"
+        "image": "images/brawlers/shelly/bandita_shelly.PNG"
       },
       {
         "name": "Star Shelly",
         "displayName": "Звёздная Шелли",
-        "image": "images/IMG_5994.webp"
+        "image": "images/brawlers/shelly/star_shelly.PNG"
       }
     ]
   }
