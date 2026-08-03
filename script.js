@@ -15,7 +15,7 @@ fetch("data/brawlers.json")
 
 function render(list){
 
-    container.innerHTML = "";
+    container.innerHTML = ""; 
 
     list.forEach(f => {
 
