@@ -88,31 +88,7 @@ fetch("data/brawlers.json")
 
         `;
 
-        const skinsTab = document.getElementById("skinsTab");
-        const infoTab = document.getElementById("infoTab");
-
-        const skinsContent = document.getElementById("skinsContent");
-        const infoContent = document.getElementById("infoContent");
-
-        skinsTab.onclick = () => {
-
-            skinsContent.style.display = "block";
-            infoContent.style.display = "none";
-
-            skinsTab.classList.add("active");
-            infoTab.classList.remove("active");
-
-        };
-
-        infoTab.onclick = () => {
-
-            skinsContent.style.display = "none";
-            infoContent.style.display = "block";
-
-            infoTab.classList.add("active");
-            skinsTab.classList.remove("active");
-
-        };
+  
 
     })
     .catch(error => {
