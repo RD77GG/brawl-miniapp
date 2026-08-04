@@ -179,7 +179,7 @@
 
     min-height:23px;
     margin-bottom:7px;
-    gap:6px;
+    gap:4px;
 
     color:#c7c7d4;
 
@@ -286,7 +286,7 @@
     display:inline-flex;
     align-items:center;
 
-    gap:3px;
+    gap:2px;
 
     color:white;
 
@@ -299,8 +299,8 @@
 .currency-icon{
     display:block;
 
-    width:22px;
-    height:22px;
+    width:17px;
+    height:17px;
 
     object-fit:contain;
     flex-shrink:0;
@@ -314,7 +314,7 @@
     align-items:center;
 
     min-width:0;
-    gap:6px;
+    gap:5px;
 
     color:white;
 
@@ -326,8 +326,8 @@
 .source-icon{
     display:block;
 
-    width:25px;
-    height:25px;
+    width:23px;
+    height:23px;
 
     object-fit:contain;
     flex-shrink:0;
@@ -517,6 +517,8 @@
     .skin-collection{
         min-height:21px;
         margin-bottom:6px;
+        gap:3px;
+
         font-size:12px;
     }
 
@@ -540,8 +542,8 @@
     }
 
     .currency-icon{
-        width:19px;
-        height:19px;
+        width:15px;
+        height:15px;
     }
 
     .price-item{
@@ -555,8 +557,8 @@
     }
 
     .source-icon{
-        width:22px;
-        height:22px;
+        width:20px;
+        height:20px;
     }
 
     .skin-year{
