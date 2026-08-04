@@ -277,7 +277,10 @@
     align-items:center;
 
     gap:7px;
+
     white-space:nowrap;
+
+    transform:translateY(4px);
 }
 
 .price-item{
