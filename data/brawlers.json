@@ -25,6 +25,7 @@
     ],
 
     "skins": [
+
       {
         "name": "Bandita Shelly",
         "displayName": "Бандитка Шелли",
@@ -33,7 +34,7 @@
 
         "collection": {
           "name": "Разбойники",
-          "icon": "assets/collections/outlaws.WEBP"
+          "icon": "assets/collections/outlaws.HEIC"
         },
 
         "source": {
@@ -49,7 +50,7 @@
         },
 
         "releaseYear": 2019,
-        "releaseDate": "2019-09-21"
+        "releaseDate": "2019-09-18"
       },
 
       {
@@ -59,8 +60,8 @@
         "image": "images/brawlers/shelly/star_shelly.PNG",
 
         "collection": {
-          "name": "Бравлидейс",
-          "icon": ""
+          "name": "Юбилей",
+          "icon": "assets/collections/anniversary.PNG"
         },
 
         "source": {
@@ -74,8 +75,9 @@
         "price": {},
 
         "releaseYear": 2018,
-        "releaseDate": "2018-12-12"
+        "releaseDate": "2018-12-24"
       }
+
     ]
   }
 ]
