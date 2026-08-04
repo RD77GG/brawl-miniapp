@@ -7,7 +7,7 @@ fetch("data/brawlers.json")
 .then(brawlers => {
 
     const brawler = brawlers.find(b => b.name === name);
-
+    console.log("Боец:", brawler);
 
     if (!brawler) {
 
