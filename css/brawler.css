@@ -17,8 +17,8 @@
     object-fit:contain;
 
     background:#2b2b45;
-    border-radius:25px;
     border:3px solid #454565;
+    border-radius:25px;
 
     padding:15px;
     margin-bottom:4px;
@@ -40,11 +40,10 @@
 
 .info-card,
 .titles-card{
-    background:#2b2b45;
-
     margin:20px;
     padding:18px;
 
+    background:#2b2b45;
     border-radius:18px;
 }
 
@@ -100,13 +99,17 @@
     text-align:left;
     cursor:pointer;
 
+    box-shadow:0 4px 12px rgba(0,0,0,.22);
+
     transition:
         transform .2s,
+        box-shadow .2s,
         background .2s;
 }
 
 .skin-card:hover{
-    transform:scale(1.03);
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(0,0,0,.30);
 }
 
 .skin-card:active{
@@ -122,7 +125,13 @@
 
     padding:8px;
 
-    background:#24243b;
+    background:linear-gradient(
+        180deg,
+        #30304b 0%,
+        #24243b 100%
+    );
+
+    border-bottom:1px solid rgba(255,255,255,.05);
 }
 
 .skin-image{
@@ -141,8 +150,8 @@
 .skin-card-content{
     position:relative;
 
-    min-height:150px;
-    padding:11px 12px 10px;
+    min-height:132px;
+    padding:10px 12px 7px;
 
     display:flex;
     flex-direction:column;
@@ -190,8 +199,7 @@
 /* ---------- Редкость скина ---------- */
 
 .skin-rarity{
-    margin-top:0;
-    margin-bottom:6px;
+    margin:0 0 5px;
 
     font-size:14px;
     font-weight:bold;
@@ -227,12 +235,12 @@
 }
 
 
-/* ---------- Низ карточки ---------- */
+/* ---------- Нижняя часть карточки ---------- */
 
 .skin-card-footer{
     position:relative;
 
-    min-height:25px;
+    min-height:23px;
     margin-top:0;
     padding-right:36px;
 
@@ -252,7 +260,7 @@
     position:absolute;
 
     right:0;
-    bottom:2px;
+    bottom:3px;
 
     color:#9d9daf;
 
@@ -488,8 +496,8 @@
     }
 
     .skin-card-content{
-        min-height:145px;
-        padding:10px;
+        min-height:128px;
+        padding:9px 10px 7px;
     }
 
     .skin-name{
@@ -509,12 +517,12 @@
     }
 
     .skin-rarity{
-        margin-bottom:6px;
+        margin-bottom:5px;
         font-size:13px;
     }
 
     .skin-card-footer{
-        min-height:23px;
+        min-height:21px;
         padding-right:31px;
     }
 
@@ -544,6 +552,7 @@
 
     .skin-year{
         font-size:11px;
+        bottom:3px;
     }
 
 }
