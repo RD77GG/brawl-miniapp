@@ -151,7 +151,7 @@
     position:relative;
 
     min-height:132px;
-    padding:10px 12px 7px;
+    padding:10px 12px 6px;
 
     display:flex;
     flex-direction:column;
@@ -199,7 +199,7 @@
 /* ---------- Редкость скина ---------- */
 
 .skin-rarity{
-    margin:0 0 5px;
+    margin:0 0 7px;
 
     font-size:14px;
     font-weight:bold;
@@ -240,12 +240,12 @@
 .skin-card-footer{
     position:relative;
 
-    min-height:23px;
-    margin-top:3px;
+    min-height:22px;
+    margin-top:0;
     padding-right:36px;
 
     display:flex;
-    align-items:center;
+    align-items:flex-end;
 }
 
 .skin-source{
@@ -260,11 +260,12 @@
     position:absolute;
 
     right:0;
-    bottom:3px;
+    bottom:1px;
 
-    color:#9d9daf;
+    color:#b7b7c7;
 
-    font-size:12px;
+    font-size:13px;
+    font-weight:500;
     line-height:1;
 }
 
@@ -274,18 +275,15 @@
 .skin-price{
     display:flex;
     flex-wrap:nowrap;
-    align-items:center;
+    align-items:baseline;
 
     gap:7px;
-
     white-space:nowrap;
-
-    transform:translateY(4px);
 }
 
 .price-item{
     display:inline-flex;
-    align-items:center;
+    align-items:baseline;
 
     gap:3px;
 
@@ -293,10 +291,14 @@
 
     font-size:14px;
     font-weight:bold;
+    line-height:1;
     white-space:nowrap;
 }
 
 .currency-icon{
+    position:relative;
+    top:2px;
+
     width:22px;
     height:22px;
 
@@ -309,7 +311,7 @@
 
 .special-source{
     display:flex;
-    align-items:center;
+    align-items:baseline;
 
     min-width:0;
     gap:6px;
@@ -318,9 +320,13 @@
 
     font-size:13px;
     font-weight:bold;
+    line-height:1;
 }
 
 .source-icon{
+    position:relative;
+    top:2px;
+
     width:25px;
     height:25px;
 
@@ -333,6 +339,7 @@
 
     font-size:13px;
     font-weight:bold;
+    line-height:1;
 }
 
 
@@ -500,7 +507,7 @@
 
     .skin-card-content{
         min-height:128px;
-        padding:9px 10px 7px;
+        padding:9px 10px 6px;
     }
 
     .skin-name{
@@ -520,12 +527,12 @@
     }
 
     .skin-rarity{
-        margin-bottom:5px;
+        margin-bottom:7px;
         font-size:13px;
     }
 
     .skin-card-footer{
-        min-height:21px;
+        min-height:20px;
         padding-right:31px;
     }
 
@@ -534,6 +541,8 @@
     }
 
     .currency-icon{
+        top:2px;
+
         width:19px;
         height:19px;
     }
@@ -549,13 +558,15 @@
     }
 
     .source-icon{
+        top:2px;
+
         width:22px;
         height:22px;
     }
 
     .skin-year{
+        bottom:1px;
         font-size:11px;
-        bottom:3px;
     }
 
 }
