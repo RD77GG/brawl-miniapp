@@ -25,7 +25,6 @@
     ],
 
     "skins": [
-
       {
         "name": "Bandita Shelly",
         "displayName": "Бандитка Шелли",
@@ -60,12 +59,13 @@
         "image": "images/brawlers/shelly/star_shelly.PNG",
 
         "collection": {
-          "name": "Brawlidays",
-          "icon": "assets/collections/brawlidays.WEBP"
+          "name": "Бравлидейс",
+          "icon": ""
         },
 
         "source": {
-          "type": "free"
+          "type": "free",
+          "name": "Бесплатно"
         },
 
         "rarity": "Эксклюзивный",
@@ -74,9 +74,8 @@
         "price": {},
 
         "releaseYear": 2018,
-        "releaseDate": "2018-12-24"
+        "releaseDate": "2018-12-12"
       }
-
     ]
   }
 ]
