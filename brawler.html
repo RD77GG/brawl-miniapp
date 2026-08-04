@@ -2,44 +2,62 @@
 <html lang="ru">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Brawler</title>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Боец | Brawl Mini App</title>
 
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/brawler.css">
-</head>
 
+</head>
 
 <body>
 
+    <button
+        class="back"
+        onclick="goBack()">
 
-<button onclick="goBack()" class="back">
-    ← Назад
-</button>
+        ← Назад
 
-
-
-<main id="brawler">
-
-</main>
+    </button>
 
 
+    <main id="brawler">
 
-<script src="js/brawler.js"></script>
+        <div class="loading">
+
+            Загрузка...
+
+        </div>
+
+    </main>
 
 
-<script>
+    <!-- Здесь позже появится полноэкранная карточка скина -->
 
-function goBack(){
+    <div
+        id="skinViewer"
+        class="skin-viewer hidden">
 
-    window.location.href = "index.html";
+    </div>
 
-}
 
-</script>
+    <script src="js/brawler.js"></script>
 
+    <script>
+
+        function goBack(){
+
+            window.location.href = "index.html";
+
+        }
+
+    </script>
 
 </body>
 
