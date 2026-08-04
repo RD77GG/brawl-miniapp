@@ -3,7 +3,6 @@
     padding:20px;
 }
 
-
 .main-image{
     width:260px;
     height:260px;
@@ -12,22 +11,30 @@
     border-radius:25px;
     padding:15px;
     border:3px solid #454565;
+    margin-bottom:15px;
 }
-
 
 .info-card,
 .titles-card{
+    background:#2b2b45;
     margin:20px;
     padding:18px;
+    border-radius:18px;
 }
 
+.info-card h2,
+.titles-card h2{
+    margin-bottom:15px;
+}
 
 .info-card p,
 .titles-card p{
     font-size:18px;
     margin:10px 0;
+    line-height:1.5;
 }
 
+/* ---------- Скины ---------- */
 
 .skins{
     display:grid;
@@ -36,26 +43,31 @@
     padding:20px;
 }
 
-
 .skin-card{
+    background:#2b2b45;
+    border-radius:18px;
     padding:12px;
     text-align:center;
     cursor:pointer;
     transition:.2s;
 }
 
-
 .skin-card:hover{
     transform:scale(1.05);
 }
-
 
 .skin-card img{
     width:100%;
     height:160px;
     object-fit:contain;
+    border-radius:12px;
 }
 
+.skin-card h3{
+    margin-top:10px;
+}
+
+/* ---------- Редкость и класс ---------- */
 
 .rarity,
 .class-tag{
@@ -64,63 +76,86 @@
     border-radius:12px;
     font-weight:bold;
     margin-left:8px;
+    color:white;
 }
 
+/* ---------- Редкость ---------- */
 
 .starter{
     background:#43b8ff;
 }
 
+.rare{
+    background:#2ecc71;
+}
+
+.superrare{
+    background:#1f6fff;
+}
+
+.epic{
+    background:#a84cff;
+}
+
+.mythic{
+    background:#ff4b4b;
+}
+
+.legendary{
+    background:#ffd43b;
+    color:#222;
+}
 
 .ultralegendary{
     background:#111;
     border:2px solid #666;
 }
 
-
-/* Классы */
+/* ---------- Классы ---------- */
 
 .damage{
     background:#ff8c00;
 }
 
-
 .tank{
     background:#e53935;
 }
-
 
 .assassin{
     background:#8e24aa;
 }
 
+.controller{
+    background:#1e88e5;
+}
 
-/* Титулы */
+.support{
+    background:#43a047;
+}
+
+.artillery{
+    background:#fb8c00;
+}
+
+/* ---------- Титулы ---------- */
 
 .gold{
-    background:#5c4a12;
-    border:2px solid gold;
     color:#ffd700;
 }
 
-
 .neon{
-    background:#14204a;
-    border:2px solid #00eaff;
     color:#00eaff;
 }
 
-
-/* Вкладки */
+/* ---------- Вкладки ---------- */
 
 .tabs{
     display:flex;
-    margin:20px;
+    margin:25px 20px;
     background:#2b2b45;
     border-radius:18px;
     overflow:hidden;
 }
-
 
 .tab{
     flex:1;
@@ -128,11 +163,21 @@
     border:none;
     background:transparent;
     color:white;
-    font-size:18px;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.25s;
 }
 
+.tab:hover{
+    background:#3a3a60;
+}
 
 .tab.active{
     background:#43b8ff;
     color:#111;
+}
+
+.tab.active:hover{
+    background:#43b8ff;
 }
