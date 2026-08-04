@@ -25,16 +25,19 @@
     ],
 
     "skins": [
-
       {
+        "id": "bandita_shelly",
+
         "name": "Bandita Shelly",
         "displayName": "Бандитка Шелли",
 
-        "image": "images/brawlers/shelly/bandita_shelly.PNG",
+        "description": "",
+
+        "image": "images/brawlers/shelly/bandita_shelly.WEBP",
 
         "collection": {
           "name": "Разбойники",
-          "icon": "assets/collections/outlaws.HEIC"
+          "icon": "assets/collections/outlaws.WEBP"
         },
 
         "source": {
@@ -54,14 +57,18 @@
       },
 
       {
+        "id": "star_shelly",
+
         "name": "Star Shelly",
         "displayName": "Звёздная Шелли",
 
-        "image": "images/brawlers/shelly/star_shelly.PNG",
+        "description": "",
+
+        "image": "images/brawlers/shelly/star_shelly.WEBP",
 
         "collection": {
           "name": "Юбилей",
-          "icon": "assets/collections/anniversary.PNG"
+          "icon": "assets/collections/anniversary.WEBP"
         },
 
         "source": {
@@ -77,7 +84,6 @@
         "releaseYear": 2018,
         "releaseDate": "2018-12-24"
       }
-
     ]
   }
 ]
