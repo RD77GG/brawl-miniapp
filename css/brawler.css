@@ -3,6 +3,14 @@
     padding:20px;
 }
 
+.page-message{
+    padding:100px 20px 30px;
+    text-align:center;
+}
+
+
+/* ---------- Основная картинка бойца ---------- */
+
 .main-image{
     width:260px;
     height:260px;
@@ -14,7 +22,8 @@
     margin-bottom:4px;
 }
 
-/* Имя бойца */
+
+/* ---------- Имя бойца ---------- */
 
 .brawler-name{
     margin-top:6px;
@@ -24,7 +33,8 @@
     line-height:1.1;
 }
 
-/* ---------- Карточки ---------- */
+
+/* ---------- Карточки информации ---------- */
 
 .info-card,
 .titles-card{
@@ -46,40 +56,214 @@
     line-height:1.5;
 }
 
-/* ---------- Скины ---------- */
+
+/* ---------- Заголовки разделов ---------- */
+
+.section-title{
+    margin:22px 0 4px;
+}
+
+
+/* ---------- Сетка скинов ---------- */
 
 .skins{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:repeat(2, minmax(0, 1fr));
     gap:15px;
     padding:20px;
 }
 
+
+/* ---------- Карточка скина ---------- */
+
 .skin-card{
+    min-width:0;
     background:#2b2b45;
     border-radius:18px;
-    padding:12px;
-    text-align:center;
+    overflow:hidden;
+    text-align:left;
     cursor:pointer;
-    transition:.2s;
+    transition:
+        transform .2s,
+        background .2s;
 }
 
 .skin-card:hover{
-    transform:scale(1.05);
+    transform:scale(1.03);
 }
 
-.skin-card img{
+.skin-card:active{
+    transform:scale(.98);
+}
+
+
+/* ---------- Картинка скина ---------- */
+
+.skin-image-box{
     width:100%;
-    height:160px;
+    height:175px;
+    padding:10px;
+    background:#24243b;
+}
+
+.skin-image{
+    display:block;
+    width:100%;
+    height:100%;
     object-fit:contain;
     border-radius:12px;
 }
 
-.skin-card h3{
-    margin-top:10px;
+
+/* ---------- Информация внутри карточки ---------- */
+
+.skin-card-content{
+    position:relative;
+    min-height:185px;
+    padding:13px 13px 12px;
+    display:flex;
+    flex-direction:column;
 }
 
-/* ---------- Редкость и класс ---------- */
+.skin-name{
+    margin:0 0 8px;
+    font-size:18px;
+    line-height:1.2;
+    color:white;
+}
+
+
+/* ---------- Коллекция ---------- */
+
+.skin-collection{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    min-height:25px;
+    margin-bottom:10px;
+    color:#c7c7d4;
+    font-size:14px;
+}
+
+.collection-icon{
+    width:23px;
+    height:23px;
+    object-fit:contain;
+    flex-shrink:0;
+}
+
+
+/* ---------- Редкость скина ---------- */
+
+.skin-rarity{
+    margin-bottom:13px;
+    font-size:15px;
+    font-weight:bold;
+}
+
+.skin-rarity-rare{
+    color:#45d878;
+}
+
+.skin-rarity-superrare{
+    color:#47a7ff;
+}
+
+.skin-rarity-epic{
+    color:#c278ff;
+}
+
+.skin-rarity-mythic{
+    color:#ff6666;
+}
+
+.skin-rarity-legendary{
+    color:#ffd84d;
+}
+
+.skin-rarity-exclusive{
+    color:#ff9ed8;
+}
+
+.skin-rarity-unknown{
+    color:#b8b8c5;
+}
+
+
+/* ---------- Низ карточки ---------- */
+
+.skin-card-footer{
+    margin-top:auto;
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:8px;
+}
+
+.skin-source{
+    min-width:0;
+}
+
+.skin-year{
+    flex-shrink:0;
+    color:#9d9daf;
+    font-size:13px;
+    line-height:24px;
+}
+
+
+/* ---------- Цена ---------- */
+
+.skin-price{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    gap:10px;
+}
+
+.price-item{
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+    color:white;
+    font-size:15px;
+    font-weight:bold;
+}
+
+.currency-icon{
+    width:24px;
+    height:24px;
+    object-fit:contain;
+}
+
+
+/* ---------- Brawl Pass и Pro Pass ---------- */
+
+.special-source{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    min-width:0;
+    color:white;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.source-icon{
+    width:27px;
+    height:27px;
+    object-fit:contain;
+    flex-shrink:0;
+}
+
+.source-text{
+    color:#d5d5df;
+    font-size:14px;
+    font-weight:bold;
+}
+
+
+/* ---------- Редкость и класс бойца ---------- */
 
 .rarity,
 .class-tag{
@@ -91,7 +275,8 @@
     color:white;
 }
 
-/* ---------- Редкость ---------- */
+
+/* ---------- Редкость бойца ---------- */
 
 .starter{
     background:#43b8ff;
@@ -123,7 +308,8 @@
     border:2px solid #666;
 }
 
-/* ---------- Классы ---------- */
+
+/* ---------- Классы бойцов ---------- */
 
 .damage{
     background:#ff8c00;
@@ -149,6 +335,7 @@
     background:#fb8c00;
 }
 
+
 /* ---------- Титулы ---------- */
 
 .gold{
@@ -158,6 +345,7 @@
 .neon{
     color:#00eaff;
 }
+
 
 /* ---------- Вкладки ---------- */
 
@@ -192,4 +380,52 @@
 
 .tab.active:hover{
     background:#43b8ff;
+}
+
+
+/* ---------- Телефоны с узким экраном ---------- */
+
+@media (max-width:380px){
+
+    .brawler-main{
+        padding:14px;
+    }
+
+    .skins{
+        gap:10px;
+        padding:14px 6px;
+    }
+
+    .skin-image-box{
+        height:150px;
+    }
+
+    .skin-card-content{
+        min-height:180px;
+        padding:11px;
+    }
+
+    .skin-name{
+        font-size:16px;
+    }
+
+    .skin-collection,
+    .source-text,
+    .special-source{
+        font-size:12px;
+    }
+
+    .currency-icon{
+        width:21px;
+        height:21px;
+    }
+
+    .price-item{
+        font-size:13px;
+    }
+
+    .skin-year{
+        font-size:12px;
+    }
+
 }
