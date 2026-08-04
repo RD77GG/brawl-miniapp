@@ -11,8 +11,18 @@
     border-radius:25px;
     padding:15px;
     border:3px solid #454565;
-    margin-bottom:15px;
+    margin-bottom:12px;
 }
+
+/* Имя бойца */
+
+.brawler-name{
+    margin:0 0 20px;
+    font-size:34px;
+    font-weight:700;
+}
+
+/* ---------- Карточки ---------- */
 
 .info-card,
 .titles-card{
@@ -151,22 +161,22 @@
 
 .tabs{
     display:flex;
-    margin:25px 20px;
+    margin:18px 20px;
     background:#2b2b45;
-    border-radius:18px;
+    border-radius:16px;
     overflow:hidden;
 }
 
 .tab{
     flex:1;
-    padding:14px;
+    padding:9px 14px;
     border:none;
     background:transparent;
     color:white;
-    font-size:17px;
+    font-size:16px;
     font-weight:bold;
     cursor:pointer;
-    transition:0.25s;
+    transition:.2s;
 }
 
 .tab:hover{
