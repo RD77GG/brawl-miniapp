@@ -38,7 +38,7 @@
 
 /* ---------- Карточки информации ---------- */
 
-.info-card, 
+.info-card,
 .titles-card{
     margin:20px;
     padding:18px;
@@ -245,7 +245,7 @@
     padding-right:36px;
 
     display:flex;
-    align-items:flex-end;
+    align-items:center;
 }
 
 .skin-source{
@@ -260,7 +260,8 @@
     position:absolute;
 
     right:0;
-    bottom:1px;
+    top:50%;
+    transform:translateY(-50%);
 
     color:#b7b7c7;
 
@@ -275,7 +276,7 @@
 .skin-price{
     display:flex;
     flex-wrap:nowrap;
-    align-items:baseline;
+    align-items:center;
 
     gap:7px;
     white-space:nowrap;
@@ -283,7 +284,7 @@
 
 .price-item{
     display:inline-flex;
-    align-items:baseline;
+    align-items:center;
 
     gap:3px;
 
@@ -296,8 +297,7 @@
 }
 
 .currency-icon{
-    position:relative;
-    top:2px;
+    display:block;
 
     width:22px;
     height:22px;
@@ -311,7 +311,7 @@
 
 .special-source{
     display:flex;
-    align-items:baseline;
+    align-items:center;
 
     min-width:0;
     gap:6px;
@@ -324,8 +324,7 @@
 }
 
 .source-icon{
-    position:relative;
-    top:2px;
+    display:block;
 
     width:25px;
     height:25px;
@@ -541,8 +540,6 @@
     }
 
     .currency-icon{
-        top:2px;
-
         width:19px;
         height:19px;
     }
@@ -558,14 +555,11 @@
     }
 
     .source-icon{
-        top:2px;
-
         width:22px;
         height:22px;
     }
 
     .skin-year{
-        bottom:1px;
         font-size:11px;
     }
 
