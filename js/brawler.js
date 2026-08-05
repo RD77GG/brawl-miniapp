@@ -9,6 +9,8 @@ const skinViewerClose = document.getElementById("skinViewerClose");
 const skinViewerOverlay = document.getElementById("skinViewerOverlay");
 
 let currentBrawler = null;
+let lastFocusedSkinCard = null;
+let savedScrollPosition = 0;
 
 
 fetch("data/brawlers.json")
@@ -176,10 +178,13 @@ fetch("data/brawlers.json")
 
         console.error(error);
 
-        brawlerContainer.innerHTML =
-            `<h2 class="page-message">
+        brawlerContainer.innerHTML = `
+
+            <h2 class="page-message">
                 Ошибка загрузки данных
-            </h2>`;
+            </h2>
+
+        `;
 
     });
 
@@ -285,6 +290,14 @@ function createSourceMarkup(skin, viewer = false) {
         ? "viewer-currency-icon"
         : "currency-icon";
 
+    const priceItemClass = viewer
+        ? "viewer-price-item"
+        : "price-item";
+
+    const priceContainerClass = viewer
+        ? "viewer-price"
+        : "skin-price";
+
 
     if (source.type === "brawl_pass") {
 
@@ -330,7 +343,7 @@ function createSourceMarkup(skin, viewer = false) {
 
             prices.push(`
 
-                <span class="${viewer ? "viewer-price-item" : "price-item"}">
+                <span class="${priceItemClass}">
 
                     <img
                         src="assets/currencies/gems.WEBP"
@@ -350,7 +363,7 @@ function createSourceMarkup(skin, viewer = false) {
 
             prices.push(`
 
-                <span class="${viewer ? "viewer-price-item" : "price-item"}">
+                <span class="${priceItemClass}">
 
                     <img
                         src="assets/currencies/blings.WEBP"
@@ -370,7 +383,7 @@ function createSourceMarkup(skin, viewer = false) {
 
             prices.push(`
 
-                <span class="${viewer ? "viewer-price-item" : "price-item"}">
+                <span class="${priceItemClass}">
 
                     <img
                         src="assets/currencies/coins.WEBP"
@@ -401,7 +414,7 @@ function createSourceMarkup(skin, viewer = false) {
 
         return `
 
-            <div class="${viewer ? "viewer-price" : "skin-price"}">
+            <div class="${priceContainerClass}">
                 ${prices.join("")}
             </div>
 
@@ -448,6 +461,11 @@ function setupTabs() {
     const infoContent = document.getElementById("infoContent");
 
 
+    if (!skinsTab || !infoTab || !skinsContent || !infoContent) {
+        return;
+    }
+
+
     skinsTab.addEventListener("click", () => {
 
         skinsContent.hidden = false;
@@ -482,7 +500,10 @@ function setupSkinCards() {
 
 
             card.addEventListener("click", () => {
+
+                lastFocusedSkinCard = card;
                 openSkinViewer(index);
+
             });
 
 
@@ -491,6 +512,8 @@ function setupSkinCards() {
                 if (event.key === "Enter" || event.key === " ") {
 
                     event.preventDefault();
+
+                    lastFocusedSkinCard = card;
                     openSkinViewer(index);
 
                 }
@@ -504,17 +527,22 @@ function setupSkinCards() {
 
 function openSkinViewer(index) {
 
-    if (!currentBrawler) {
+    if (!currentBrawler || !skinViewer || !skinViewerContent) {
         return;
     }
 
-    const skin = currentBrawler.skins[index];
+    const skins = Array.isArray(currentBrawler.skins)
+        ? currentBrawler.skins
+        : [];
+
+    const skin = skins[index];
 
     if (!skin) {
         return;
     }
 
     const collection = skin.collection || {};
+
 
     skinViewerContent.innerHTML = `
 
@@ -591,12 +619,41 @@ function openSkinViewer(index) {
     `;
 
 
+    savedScrollPosition =
+        window.scrollY ||
+        document.documentElement.scrollTop ||
+        0;
+
+
+    document.documentElement.classList.add("viewer-open");
+    document.body.classList.add("viewer-open");
+
+
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${savedScrollPosition}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+
+
     skinViewer.classList.add("open");
     skinViewer.setAttribute("aria-hidden", "false");
 
-    document.body.classList.add("viewer-open");
 
-    skinViewerClose.focus();
+    const viewerCard =
+        skinViewer.querySelector(".skin-viewer-card");
+
+    if (viewerCard) {
+        viewerCard.scrollTop = 0;
+    }
+
+
+    hideBrokenOptionalIcons();
+
+
+    if (skinViewerClose) {
+        skinViewerClose.focus();
+    }
 
 }
 
@@ -634,14 +691,35 @@ function createViewerCollectionMarkup(collection) {
 
 function closeSkinViewer() {
 
-    if (!skinViewer.classList.contains("open")) {
+    if (
+        !skinViewer ||
+        !skinViewer.classList.contains("open")
+    ) {
         return;
     }
+
 
     skinViewer.classList.remove("open");
     skinViewer.setAttribute("aria-hidden", "true");
 
+
+    document.documentElement.classList.remove("viewer-open");
     document.body.classList.remove("viewer-open");
+
+
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.left = "";
+    document.body.style.right = "";
+    document.body.style.width = "";
+
+
+    window.scrollTo(0, savedScrollPosition);
+
+
+    if (lastFocusedSkinCard) {
+        lastFocusedSkinCard.focus();
+    }
 
 }
 
@@ -683,32 +761,80 @@ function hideBrokenOptionalIcons() {
         .querySelectorAll(".optional-icon")
         .forEach(icon => {
 
+            if (icon.dataset.errorHandlerAdded === "true") {
+                return;
+            }
+
+            icon.dataset.errorHandlerAdded = "true";
+
+
             icon.addEventListener("error", () => {
                 icon.style.display = "none";
             });
+
+
+            if (icon.complete && icon.naturalWidth === 0) {
+                icon.style.display = "none";
+            }
 
         });
 
 }
 
 
-skinViewerClose.addEventListener("click", closeSkinViewer);
-skinViewerOverlay.addEventListener("click", closeSkinViewer);
+if (skinViewerClose) {
+
+    skinViewerClose.addEventListener(
+        "click",
+        closeSkinViewer
+    );
+
+}
+
+
+if (skinViewerOverlay) {
+
+    skinViewerOverlay.addEventListener(
+        "click",
+        closeSkinViewer
+    );
+
+}
 
 
 document.addEventListener("keydown", event => {
 
-    if (event.key === "Escape") {
+    if (
+        event.key === "Escape" &&
+        skinViewer &&
+        skinViewer.classList.contains("open")
+    ) {
         closeSkinViewer();
     }
 
 });
 
 
-window.addEventListener("popstate", () => {
+document.addEventListener(
+    "touchmove",
+    event => {
 
-    if (skinViewer.classList.contains("open")) {
-        closeSkinViewer();
+        if (
+            !skinViewer ||
+            !skinViewer.classList.contains("open")
+        ) {
+            return;
+        }
+
+        const viewerCard =
+            event.target.closest(".skin-viewer-card");
+
+        if (!viewerCard) {
+            event.preventDefault();
+        }
+
+    },
+    {
+        passive: false
     }
-
-});
+);
