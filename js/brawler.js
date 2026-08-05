@@ -212,17 +212,6 @@ function createSkinCard(skin, index) {
     const collection = skin.collection || {};
     const releaseYear = skin.releaseYear || "—";
 
-    /*
-       В маленькой карточке дополнительная редкость
-       имеет приоритет.
-
-       Например:
-       основная — Редкий,
-       дополнительная — Эксклюзивный.
-
-       В списке будет показано: Эксклюзивный.
-    */
-
     const cardRarity = skin.secondaryRarity
         ? {
             name:
@@ -308,7 +297,7 @@ function createSkinCard(skin, index) {
 
 
 /* ==================================================
-   Основная коллекция в маленькой карточке
+   Коллекция в маленькой карточке
    ================================================== */
 
 function createCollectionMarkup(collection) {
@@ -561,7 +550,7 @@ function createSpecialSourceMarkup(
 
 
 /* ==================================================
-   Настройка вкладок
+   Вкладки
    ================================================== */
 
 function setupTabs() {
@@ -611,7 +600,7 @@ function setupTabs() {
 
 
 /* ==================================================
-   Нажатие на маленькие карточки
+   Нажатие на карточки
    ================================================== */
 
 function setupSkinCards() {
@@ -735,7 +724,7 @@ function openSkinViewer(index) {
 
 
 /* ==================================================
-   Отрисовка выбранного скина в просмотрщике
+   Полноэкранная карточка
    ================================================== */
 
 function renderViewerSkin(index, direction = "") {
@@ -772,7 +761,6 @@ function renderViewerSkin(index, direction = "") {
 
     const nextDisabled =
         index === skins.length - 1;
-
 
     const animationClass = direction
         ? `viewer-swipe-${direction}`
@@ -850,78 +838,110 @@ function renderViewerSkin(index, direction = "") {
                 </div>
 
 
-                <div class="viewer-collections">
+                <section class="viewer-section">
 
-                    ${createViewerCollectionMarkup(
-                        collection
-                    )}
+                    <div class="viewer-section-title">
+                        <span>Коллекции</span>
+                    </div>
 
-                    ${createViewerCollectionMarkup(
-                        secondaryCollection,
-                        true
-                    )}
+                    <div class="viewer-collections">
 
-                </div>
+                        ${createViewerCollectionMarkup(
+                            collection
+                        )}
 
-
-                <div class="viewer-rarities">
-
-                    <div class="
-                        viewer-rarity
-                        skin-rarity-${skin.rarityClass || "unknown"}
-                    ">
-
-                        ${skin.rarity || "Редкость неизвестна"}
+                        ${createViewerCollectionMarkup(
+                            secondaryCollection,
+                            true
+                        )}
 
                     </div>
 
-
-                    ${createSecondaryRarityMarkup(
-                        secondaryRarity
-                    )}
-
-                </div>
+                </section>
 
 
-                <div class="viewer-source">
+                <section class="viewer-section">
 
-                    ${createSourceMarkup(
-                        skin,
-                        true
-                    )}
+                    <div class="viewer-section-title">
+                        <span>Редкость</span>
+                    </div>
 
-                </div>
+                    <div class="viewer-rarities">
+
+                        <div class="
+                            viewer-rarity
+                            skin-rarity-${skin.rarityClass || "unknown"}
+                        ">
+
+                            ${skin.rarity || "Редкость неизвестна"}
+
+                        </div>
 
 
-                <div class="viewer-release-date">
-
-                    <span class="viewer-label">
-                        Дата выхода
-                    </span>
-
-                    <strong>
-                        ${formatReleaseDate(
-                            skin.releaseDate
+                        ${createSecondaryRarityMarkup(
+                            secondaryRarity
                         )}
-                    </strong>
 
-                </div>
+                    </div>
+
+                </section>
+
+
+                <section class="viewer-section">
+
+                    <div class="viewer-section-title">
+                        <span>Получение</span>
+                    </div>
+
+                    <div class="viewer-source">
+
+                        ${createSourceMarkup(
+                            skin,
+                            true
+                        )}
+
+                    </div>
+
+                </section>
+
+
+                <section class="viewer-section">
+
+                    <div class="viewer-section-title">
+                        <span>Дата выхода</span>
+                    </div>
+
+                    <div class="viewer-release-date">
+
+                        <strong>
+                            ${formatReleaseDate(
+                                skin.releaseDate
+                            )}
+                        </strong>
+
+                    </div>
+
+                </section>
 
 
                 ${skin.description
                     ? `
 
-                        <div class="viewer-description">
+                        <section class="viewer-section">
 
-                            <span class="viewer-label">
-                                Описание
-                            </span>
+                            <div class="viewer-section-title">
+                                <span>Описание</span>
+                            </div>
 
-                            <p>
-                                ${skin.description}
-                            </p>
+                            <div class="viewer-description">
 
-                        </div>
+                                <p>
+                                    ${skin.description}
+                                </p>
+
+                            </div>
+
+                        </section>
 
                     `
                     : ""}
@@ -939,7 +959,7 @@ function renderViewerSkin(index, direction = "") {
 
 
 /* ==================================================
-   Основная и дополнительная коллекции
+   Коллекции в просмотрщике
    ================================================== */
 
 function createViewerCollectionMarkup(
@@ -1071,7 +1091,7 @@ function changeViewerSkin(step) {
 
 
 /* ==================================================
-   Обработка свайпа
+   Свайп
    ================================================== */
 
 function handleViewerSwipe() {
@@ -1099,12 +1119,10 @@ function handleViewerSwipe() {
 
     if (differenceX < 0) {
 
-        // Свайп влево — следующий скин
         changeViewerSkin(1);
 
     } else {
 
-        // Свайп вправо — предыдущий скин
         changeViewerSkin(-1);
 
     }
@@ -1164,7 +1182,7 @@ function closeSkinViewer() {
 
 
 /* ==================================================
-   Форматирование даты
+   Дата
    ================================================== */
 
 function formatReleaseDate(dateString) {
@@ -1215,7 +1233,7 @@ function formatReleaseDate(dateString) {
 
 
 /* ==================================================
-   Скрытие сломанных необязательных иконок
+   Необязательные изображения
    ================================================== */
 
 function hideBrokenOptionalIcons() {
@@ -1261,7 +1279,7 @@ function hideBrokenOptionalIcons() {
 
 
 /* ==================================================
-   Кнопки внутри просмотрщика
+   Кнопки стрелок
    ================================================== */
 
 if (skinViewerContent) {
@@ -1362,7 +1380,6 @@ if (skinViewerContent) {
 
             handleViewerSwipe();
 
-
             touchStartX = 0;
             touchStartY = 0;
 
@@ -1376,7 +1393,7 @@ if (skinViewerContent) {
 
 
 /* ==================================================
-   Закрытие по кнопке и затемнённому фону
+   Закрытие
    ================================================== */
 
 if (skinViewerClose) {
@@ -1400,7 +1417,7 @@ if (skinViewerOverlay) {
 
 
 /* ==================================================
-   Управление клавиатурой
+   Клавиатура
    ================================================== */
 
 document.addEventListener(
@@ -1442,7 +1459,7 @@ document.addEventListener(
 
 
 /* ==================================================
-   Запрет прокрутки вне открытой карточки
+   Запрет прокрутки фона
    ================================================== */
 
 document.addEventListener(
