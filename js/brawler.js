@@ -13,6 +13,10 @@ let lastFocusedSkinCard = null;
 let savedScrollPosition = 0;
 
 
+/* ==================================================
+   Загрузка данных
+   ================================================== */
+
 fetch("data/brawlers.json")
     .then(response => {
 
@@ -29,8 +33,11 @@ fetch("data/brawlers.json")
 
         if (!brawler) {
 
-            brawlerContainer.innerHTML =
-                `<h2 class="page-message">Боец не найден</h2>`;
+            brawlerContainer.innerHTML = `
+                <h2 class="page-message">
+                    Боец не найден
+                </h2>
+            `;
 
             return;
         }
@@ -189,6 +196,10 @@ fetch("data/brawlers.json")
     });
 
 
+/* ==================================================
+   Карточка скина в общем списке
+   ================================================== */
+
 function createSkinCard(skin, index) {
 
     const collection = skin.collection || {};
@@ -250,6 +261,10 @@ function createSkinCard(skin, index) {
 }
 
 
+/* ==================================================
+   Основная коллекция в маленькой карточке
+   ================================================== */
+
 function createCollectionMarkup(collection) {
 
     if (!collection.name) {
@@ -258,13 +273,11 @@ function createCollectionMarkup(collection) {
 
     const icon = collection.icon
         ? `
-
             <img
                 src="${collection.icon}"
                 class="collection-icon optional-icon"
                 alt="">
-
-          `
+        `
         : "";
 
     return `
@@ -273,13 +286,19 @@ function createCollectionMarkup(collection) {
 
             ${icon}
 
-            <span>${collection.name}</span>
+            <span>
+                ${collection.name}
+            </span>
 
         </div>
 
     `;
 }
 
+
+/* ==================================================
+   Стоимость и способ получения
+   ================================================== */
 
 function createSourceMarkup(skin, viewer = false) {
 
@@ -325,8 +344,12 @@ function createSourceMarkup(skin, viewer = false) {
 
         return `
 
-            <span class="${viewer ? "viewer-source-text" : "source-text"}">
+            <span class="${viewer
+                ? "viewer-source-text"
+                : "source-text"}">
+
                 ${source.name || "Бесплатно"}
+
             </span>
 
         `;
@@ -339,7 +362,10 @@ function createSourceMarkup(skin, viewer = false) {
         const prices = [];
 
 
-        if (price.gems !== undefined && price.gems !== null) {
+        if (
+            price.gems !== undefined &&
+            price.gems !== null
+        ) {
 
             prices.push(`
 
@@ -350,7 +376,9 @@ function createSourceMarkup(skin, viewer = false) {
                         class="${iconClass}"
                         alt="Гемы">
 
-                    <span>${price.gems}</span>
+                    <span>
+                        ${price.gems}
+                    </span>
 
                 </span>
 
@@ -359,7 +387,10 @@ function createSourceMarkup(skin, viewer = false) {
         }
 
 
-        if (price.blings !== undefined && price.blings !== null) {
+        if (
+            price.blings !== undefined &&
+            price.blings !== null
+        ) {
 
             prices.push(`
 
@@ -370,7 +401,9 @@ function createSourceMarkup(skin, viewer = false) {
                         class="${iconClass}"
                         alt="Блинги">
 
-                    <span>${price.blings}</span>
+                    <span>
+                        ${price.blings}
+                    </span>
 
                 </span>
 
@@ -379,7 +412,10 @@ function createSourceMarkup(skin, viewer = false) {
         }
 
 
-        if (price.coins !== undefined && price.coins !== null) {
+        if (
+            price.coins !== undefined &&
+            price.coins !== null
+        ) {
 
             prices.push(`
 
@@ -390,7 +426,9 @@ function createSourceMarkup(skin, viewer = false) {
                         class="${iconClass}"
                         alt="Монеты">
 
-                    <span>${price.coins}</span>
+                    <span>
+                        ${price.coins}
+                    </span>
 
                 </span>
 
@@ -403,8 +441,12 @@ function createSourceMarkup(skin, viewer = false) {
 
             return `
 
-                <span class="${viewer ? "viewer-source-text" : "source-text"}">
+                <span class="${viewer
+                    ? "viewer-source-text"
+                    : "source-text"}">
+
                     Цена неизвестна
+
                 </span>
 
             `;
@@ -425,26 +467,44 @@ function createSourceMarkup(skin, viewer = false) {
 
     return `
 
-        <span class="${viewer ? "viewer-source-text" : "source-text"}">
+        <span class="${viewer
+            ? "viewer-source-text"
+            : "source-text"}">
+
             Способ получения неизвестен
+
         </span>
 
     `;
 }
 
 
-function createSpecialSourceMarkup(icon, sourceName, viewer = false) {
+/* ==================================================
+   Brawl Pass и Pro Pass
+   ================================================== */
+
+function createSpecialSourceMarkup(
+    icon,
+    sourceName,
+    viewer = false
+) {
 
     return `
 
-        <div class="${viewer ? "viewer-special-source" : "special-source"}">
+        <div class="${viewer
+            ? "viewer-special-source"
+            : "special-source"}">
 
             <img
                 src="${icon}"
-                class="${viewer ? "viewer-source-icon" : "source-icon"}"
+                class="${viewer
+                    ? "viewer-source-icon"
+                    : "source-icon"}"
                 alt="">
 
-            <span>${sourceName}</span>
+            <span>
+                ${sourceName}
+            </span>
 
         </div>
 
@@ -452,16 +512,28 @@ function createSpecialSourceMarkup(icon, sourceName, viewer = false) {
 }
 
 
+/* ==================================================
+   Вкладки
+   ================================================== */
+
 function setupTabs() {
 
     const skinsTab = document.getElementById("skinsTab");
     const infoTab = document.getElementById("infoTab");
 
-    const skinsContent = document.getElementById("skinsContent");
-    const infoContent = document.getElementById("infoContent");
+    const skinsContent =
+        document.getElementById("skinsContent");
+
+    const infoContent =
+        document.getElementById("infoContent");
 
 
-    if (!skinsTab || !infoTab || !skinsContent || !infoContent) {
+    if (
+        !skinsTab ||
+        !infoTab ||
+        !skinsContent ||
+        !infoContent
+    ) {
         return;
     }
 
@@ -490,13 +562,19 @@ function setupTabs() {
 }
 
 
+/* ==================================================
+   Нажатие на карточки скинов
+   ================================================== */
+
 function setupSkinCards() {
 
     document
         .querySelectorAll(".skin-card")
         .forEach(card => {
 
-            const index = Number(card.dataset.skinIndex);
+            const index = Number(
+                card.dataset.skinIndex
+            );
 
 
             card.addEventListener("click", () => {
@@ -507,27 +585,41 @@ function setupSkinCards() {
             });
 
 
-            card.addEventListener("keydown", event => {
+            card.addEventListener(
+                "keydown",
+                event => {
 
-                if (event.key === "Enter" || event.key === " ") {
+                    if (
+                        event.key === "Enter" ||
+                        event.key === " "
+                    ) {
 
-                    event.preventDefault();
+                        event.preventDefault();
 
-                    lastFocusedSkinCard = card;
-                    openSkinViewer(index);
+                        lastFocusedSkinCard = card;
+                        openSkinViewer(index);
+
+                    }
 
                 }
-
-            });
+            );
 
         });
 
 }
 
 
+/* ==================================================
+   Открытие полноэкранного просмотрщика
+   ================================================== */
+
 function openSkinViewer(index) {
 
-    if (!currentBrawler || !skinViewer || !skinViewerContent) {
+    if (
+        !currentBrawler ||
+        !skinViewer ||
+        !skinViewerContent
+    ) {
         return;
     }
 
@@ -542,6 +634,12 @@ function openSkinViewer(index) {
     }
 
     const collection = skin.collection || {};
+
+    const secondaryCollection =
+        skin.secondaryCollection || null;
+
+    const secondaryRarity =
+        skin.secondaryRarity || null;
 
 
     skinViewerContent.innerHTML = `
@@ -567,21 +665,43 @@ function openSkinViewer(index) {
             </h2>
 
 
-            ${createViewerCollectionMarkup(collection)}
+            <div class="viewer-collections">
+
+                ${createViewerCollectionMarkup(
+                    collection
+                )}
+
+                ${createViewerCollectionMarkup(
+                    secondaryCollection,
+                    true
+                )}
+
+            </div>
 
 
-            <div class="
-                viewer-rarity
-                skin-rarity-${skin.rarityClass || "unknown"}
-            ">
+            <div class="viewer-rarities">
 
-                ${skin.rarity || "Редкость неизвестна"}
+                <div class="
+                    viewer-rarity
+                    skin-rarity-${skin.rarityClass || "unknown"}
+                ">
+
+                    ${skin.rarity || "Редкость неизвестна"}
+
+                </div>
+
+
+                ${createSecondaryRarityMarkup(
+                    secondaryRarity
+                )}
 
             </div>
 
 
             <div class="viewer-source">
+
                 ${createSourceMarkup(skin, true)}
+
             </div>
 
 
@@ -592,7 +712,9 @@ function openSkinViewer(index) {
                 </span>
 
                 <strong>
-                    ${formatReleaseDate(skin.releaseDate)}
+                    ${formatReleaseDate(
+                        skin.releaseDate
+                    )}
                 </strong>
 
             </div>
@@ -607,11 +729,13 @@ function openSkinViewer(index) {
                             Описание
                         </span>
 
-                        <p>${skin.description}</p>
+                        <p>
+                            ${skin.description}
+                        </p>
 
                     </div>
 
-                  `
+                `
                 : ""}
 
         </div>
@@ -625,23 +749,36 @@ function openSkinViewer(index) {
         0;
 
 
-    document.documentElement.classList.add("viewer-open");
-    document.body.classList.add("viewer-open");
+    document.documentElement.classList.add(
+        "viewer-open"
+    );
+
+    document.body.classList.add(
+        "viewer-open"
+    );
 
 
     document.body.style.position = "fixed";
-    document.body.style.top = `-${savedScrollPosition}px`;
+    document.body.style.top =
+        `-${savedScrollPosition}px`;
+
     document.body.style.left = "0";
     document.body.style.right = "0";
     document.body.style.width = "100%";
 
 
     skinViewer.classList.add("open");
-    skinViewer.setAttribute("aria-hidden", "false");
+
+    skinViewer.setAttribute(
+        "aria-hidden",
+        "false"
+    );
 
 
     const viewerCard =
-        skinViewer.querySelector(".skin-viewer-card");
+        skinViewer.querySelector(
+            ".skin-viewer-card"
+        );
 
     if (viewerCard) {
         viewerCard.scrollTop = 0;
@@ -658,36 +795,86 @@ function openSkinViewer(index) {
 }
 
 
-function createViewerCollectionMarkup(collection) {
+/* ==================================================
+   Коллекции в полноэкранном просмотре
+   ================================================== */
 
-    if (!collection.name) {
+function createViewerCollectionMarkup(
+    collection,
+    secondary = false
+) {
+
+    if (!collection || !collection.name) {
         return "";
     }
 
     const icon = collection.icon
         ? `
-
             <img
                 src="${collection.icon}"
                 class="viewer-collection-icon optional-icon"
                 alt="">
-
-          `
+        `
         : "";
 
     return `
 
-        <div class="viewer-collection">
+        <div class="
+            viewer-collection
+            ${secondary
+                ? "viewer-secondary-collection"
+                : ""}
+        ">
 
             ${icon}
 
-            <span>${collection.name}</span>
+            <span>
+                ${collection.name}
+            </span>
 
         </div>
 
     `;
 }
 
+
+/* ==================================================
+   Дополнительная редкость
+   ================================================== */
+
+function createSecondaryRarityMarkup(
+    secondaryRarity
+) {
+
+    if (
+        !secondaryRarity ||
+        !secondaryRarity.name
+    ) {
+        return "";
+    }
+
+    const rarityClass =
+        secondaryRarity.class || "unknown";
+
+    return `
+
+        <div class="
+            viewer-rarity
+            viewer-secondary-rarity
+            skin-rarity-${rarityClass}
+        ">
+
+            ${secondaryRarity.name}
+
+        </div>
+
+    `;
+}
+
+
+/* ==================================================
+   Закрытие просмотрщика
+   ================================================== */
 
 function closeSkinViewer() {
 
@@ -700,11 +887,20 @@ function closeSkinViewer() {
 
 
     skinViewer.classList.remove("open");
-    skinViewer.setAttribute("aria-hidden", "true");
+
+    skinViewer.setAttribute(
+        "aria-hidden",
+        "true"
+    );
 
 
-    document.documentElement.classList.remove("viewer-open");
-    document.body.classList.remove("viewer-open");
+    document.documentElement.classList.remove(
+        "viewer-open"
+    );
+
+    document.body.classList.remove(
+        "viewer-open"
+    );
 
 
     document.body.style.position = "";
@@ -714,7 +910,10 @@ function closeSkinViewer() {
     document.body.style.width = "";
 
 
-    window.scrollTo(0, savedScrollPosition);
+    window.scrollTo(
+        0,
+        savedScrollPosition
+    );
 
 
     if (lastFocusedSkinCard) {
@@ -723,6 +922,10 @@ function closeSkinViewer() {
 
 }
 
+
+/* ==================================================
+   Форматирование даты
+   ================================================== */
 
 function formatReleaseDate(dateString) {
 
@@ -740,20 +943,31 @@ function formatReleaseDate(dateString) {
     const month = Number(parts[1]) - 1;
     const day = Number(parts[2]);
 
-    const date = new Date(year, month, day);
+    const date = new Date(
+        year,
+        month,
+        day
+    );
 
     if (Number.isNaN(date.getTime())) {
         return dateString;
     }
 
-    return new Intl.DateTimeFormat("ru-RU", {
-        day: "numeric",
-        month: "long",
-        year: "numeric"
-    }).format(date);
+    return new Intl.DateTimeFormat(
+        "ru-RU",
+        {
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+        }
+    ).format(date);
 
 }
 
+
+/* ==================================================
+   Скрытие сломанных необязательных иконок
+   ================================================== */
 
 function hideBrokenOptionalIcons() {
 
@@ -761,26 +975,44 @@ function hideBrokenOptionalIcons() {
         .querySelectorAll(".optional-icon")
         .forEach(icon => {
 
-            if (icon.dataset.errorHandlerAdded === "true") {
+            if (
+                icon.dataset.errorHandlerAdded ===
+                "true"
+            ) {
                 return;
             }
 
-            icon.dataset.errorHandlerAdded = "true";
+            icon.dataset.errorHandlerAdded =
+                "true";
 
 
-            icon.addEventListener("error", () => {
+            icon.addEventListener(
+                "error",
+                () => {
+
+                    icon.style.display = "none";
+
+                }
+            );
+
+
+            if (
+                icon.complete &&
+                icon.naturalWidth === 0
+            ) {
+
                 icon.style.display = "none";
-            });
 
-
-            if (icon.complete && icon.naturalWidth === 0) {
-                icon.style.display = "none";
             }
 
         });
 
 }
 
+
+/* ==================================================
+   События закрытия просмотрщика
+   ================================================== */
 
 if (skinViewerClose) {
 
@@ -802,18 +1034,27 @@ if (skinViewerOverlay) {
 }
 
 
-document.addEventListener("keydown", event => {
+document.addEventListener(
+    "keydown",
+    event => {
 
-    if (
-        event.key === "Escape" &&
-        skinViewer &&
-        skinViewer.classList.contains("open")
-    ) {
-        closeSkinViewer();
+        if (
+            event.key === "Escape" &&
+            skinViewer &&
+            skinViewer.classList.contains("open")
+        ) {
+
+            closeSkinViewer();
+
+        }
+
     }
+);
 
-});
 
+/* ==================================================
+   Блокировка прокрутки за просмотрщиком
+   ================================================== */
 
 document.addEventListener(
     "touchmove",
@@ -827,7 +1068,9 @@ document.addEventListener(
         }
 
         const viewerCard =
-            event.target.closest(".skin-viewer-card");
+            event.target.closest(
+                ".skin-viewer-card"
+            );
 
         if (!viewerCard) {
             event.preventDefault();
