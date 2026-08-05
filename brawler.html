@@ -2,7 +2,6 @@
 <html lang="ru">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta
@@ -13,12 +12,12 @@
 
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/brawler.css">
-
 </head>
 
 <body>
 
     <button
+        type="button"
         class="back"
         onclick="goBack()">
 
@@ -30,19 +29,45 @@
     <main id="brawler">
 
         <div class="loading">
-
             Загрузка...
-
         </div>
 
     </main>
 
 
-    <!-- Здесь позже появится полноэкранная карточка скина -->
+    <!-- Полноэкранный просмотр скина -->
 
     <div
         id="skinViewer"
-        class="skin-viewer hidden">
+        class="skin-viewer"
+        aria-hidden="true">
+
+        <div
+            class="skin-viewer-overlay"
+            id="skinViewerOverlay">
+        </div>
+
+
+        <section
+            class="skin-viewer-card"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="viewerSkinName">
+
+            <button
+                type="button"
+                class="skin-viewer-close"
+                id="skinViewerClose"
+                aria-label="Закрыть">
+
+                ×
+
+            </button>
+
+
+            <div id="skinViewerContent"></div>
+
+        </section>
 
     </div>
 
