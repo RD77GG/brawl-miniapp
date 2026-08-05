@@ -479,8 +479,16 @@
    Полноэкранный просмотр скина
    ================================================== */
 
+
+/* ---------- Блокировка страницы ---------- */
+
+html.viewer-open,
 body.viewer-open{
+    width:100%;
+    height:100%;
+
     overflow:hidden;
+    overscroll-behavior:none;
 }
 
 
@@ -488,13 +496,21 @@ body.viewer-open{
 
 .skin-viewer{
     position:fixed;
+
     inset:0;
+    width:100%;
+    height:100vh;
+    height:100dvh;
 
     z-index:1000;
 
     display:none;
     align-items:center;
     justify-content:center;
+
+    overflow:hidden;
+    overscroll-behavior:none;
+    touch-action:none;
 
     padding:
         max(16px, env(safe-area-inset-top))
@@ -513,10 +529,16 @@ body.viewer-open{
     position:absolute;
     inset:0;
 
+    width:100%;
+    height:100%;
+
     background:rgba(8,8,18,.82);
 
     backdrop-filter:blur(5px);
     -webkit-backdrop-filter:blur(5px);
+
+    overscroll-behavior:none;
+    touch-action:none;
 }
 
 
@@ -528,9 +550,14 @@ body.viewer-open{
 
     width:min(92vw, 460px);
     max-height:90vh;
+    max-height:90dvh;
 
+    overflow-x:hidden;
     overflow-y:auto;
+
     overscroll-behavior:contain;
+    touch-action:pan-y;
+    -webkit-overflow-scrolling:touch;
 
     background:linear-gradient(
         180deg,
@@ -941,7 +968,9 @@ body.viewer-open{
 
     .skin-viewer-card{
         width:96vw;
+
         max-height:92vh;
+        max-height:92dvh;
 
         border-radius:22px;
     }
