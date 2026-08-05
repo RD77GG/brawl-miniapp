@@ -88,7 +88,7 @@
 }
 
 
-/* ---------- Маленькая карточка ---------- */
+/* ---------- Маленькая карточка скина ---------- */
 
 .skin-card{
     min-width:0;
@@ -318,7 +318,6 @@
     align-items:center;
 
     min-width:0;
-
     gap:5px;
 
     color:white;
@@ -492,7 +491,7 @@ body.viewer-open{
 }
 
 
-/* ---------- Общий контейнер ---------- */
+/* ---------- Контейнер просмотрщика ---------- */
 
 .skin-viewer{
     position:fixed;
@@ -543,7 +542,7 @@ body.viewer-open{
 }
 
 
-/* ---------- Окно ---------- */
+/* ---------- Окно просмотра ---------- */
 
 .skin-viewer-card{
     position:relative;
@@ -733,24 +732,32 @@ body.viewer-open{
 
 
 /* ==================================================
-   Простые группы информации
+   Коллекции, редкость и получение — без линий
    ================================================== */
 
 .viewer-info-group{
-    margin-top:16px;
+    margin-top:20px;
 }
 
-.viewer-info-label{
-    margin-bottom:8px;
+.viewer-title-row + .viewer-info-group{
+    margin-top:14px;
+}
+
+
+/* Такой же шрифт и цвет, как у даты и описания */
+
+.viewer-info-label,
+.viewer-detail-label{
+    margin:0 0 9px;
 
     color:#9999ad;
 
-    font-size:12px;
-    font-weight:700;
+    font-size:13px;
+    font-weight:600;
     line-height:1;
 
-    letter-spacing:.05em;
     text-transform:uppercase;
+    letter-spacing:.04em;
 }
 
 
@@ -895,31 +902,27 @@ body.viewer-open{
 
 
 /* ==================================================
-   Дата и описание с линией
+   Дата и описание — исходное оформление с линиями
    ================================================== */
 
 .viewer-detail-section{
     margin-top:18px;
     padding-top:14px;
 
-    border-top:1px solid rgba(255,255,255,.09);
+    border-top:1px solid rgba(255,255,255,.08);
 }
 
-.viewer-detail-label{
-    margin-bottom:7px;
 
-    color:#9999ad;
-
-    font-size:12px;
-    font-weight:700;
-    line-height:1;
-
-    letter-spacing:.05em;
-    text-transform:uppercase;
-}
+/* ---------- Дата выхода ---------- */
 
 .viewer-release-date{
+    display:flex;
+    flex-direction:column;
+
+    gap:5px;
+    margin:0;
     padding:0;
+
     border:none;
 }
 
@@ -929,6 +932,9 @@ body.viewer-open{
     font-size:17px;
     line-height:1.35;
 }
+
+
+/* ---------- Описание ---------- */
 
 .viewer-description{
     margin:0;
@@ -1198,21 +1204,34 @@ body.viewer-open{
     }
 
 
-    /* ---------- Группы ---------- */
+    /* ---------- Группы без линий ---------- */
 
     .viewer-info-group{
-        margin-top:14px;
+        margin-top:17px;
+    }
+
+    .viewer-title-row + .viewer-info-group{
+        margin-top:12px;
     }
 
     .viewer-info-label,
     .viewer-detail-label{
-        font-size:11px;
+        margin-bottom:8px;
+
+        font-size:12px;
+        font-weight:600;
     }
+
+
+    /* ---------- Дата и описание с линиями ---------- */
 
     .viewer-detail-section{
         margin-top:16px;
         padding-top:12px;
     }
+
+
+    /* ---------- Содержимое ---------- */
 
     .viewer-collection{
         font-size:14px;
