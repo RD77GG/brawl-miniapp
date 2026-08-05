@@ -9,8 +9,17 @@ const skinViewerClose = document.getElementById("skinViewerClose");
 const skinViewerOverlay = document.getElementById("skinViewerOverlay");
 
 let currentBrawler = null;
+let currentSkinIndex = 0;
+
 let lastFocusedSkinCard = null;
 let savedScrollPosition = 0;
+
+let touchStartX = 0;
+let touchStartY = 0;
+let touchEndX = 0;
+let touchEndY = 0;
+
+const swipeDistance = 45;
 
 
 /* ==================================================
@@ -186,33 +195,54 @@ fetch("data/brawlers.json")
         console.error(error);
 
         brawlerContainer.innerHTML = `
-
             <h2 class="page-message">
                 Ошибка загрузки данных
             </h2>
-
         `;
 
     });
 
 
 /* ==================================================
-   Карточка скина в общем списке
+   Маленькая карточка скина
    ================================================== */
 
 function createSkinCard(skin, index) {
 
     const collection = skin.collection || {};
-    const cardRarity = skin.secondaryRarity
-    ? {
-        name: skin.secondaryRarity.name,
-        class: skin.secondaryRarity.class || "unknown"
-      }
-    : {
-        name: skin.rarity || "Редкость неизвестна",
-        class: skin.rarityClass || "unknown"
-      };
     const releaseYear = skin.releaseYear || "—";
+
+    /*
+       В маленькой карточке дополнительная редкость
+       имеет приоритет.
+
+       Например:
+       основная — Редкий,
+       дополнительная — Эксклюзивный.
+
+       В списке будет показано: Эксклюзивный.
+    */
+
+    const cardRarity = skin.secondaryRarity
+        ? {
+            name:
+                skin.secondaryRarity.name ||
+                "Редкость неизвестна",
+
+            class:
+                skin.secondaryRarity.class ||
+                "unknown"
+        }
+        : {
+            name:
+                skin.rarity ||
+                "Редкость неизвестна",
+
+            class:
+                skin.rarityClass ||
+                "unknown"
+        };
+
 
     return `
 
@@ -229,7 +259,8 @@ function createSkinCard(skin, index) {
                     src="${skin.image}"
                     class="skin-image"
                     alt="${skin.displayName}"
-                    loading="lazy">
+                    loading="lazy"
+                    draggable="false">
 
             </div>
 
@@ -244,15 +275,22 @@ function createSkinCard(skin, index) {
                 ${createCollectionMarkup(collection)}
 
 
-                <div class="skin-rarity skin-rarity-${cardRarity.class}">
+                <div class="
+                    skin-rarity
+                    skin-rarity-${cardRarity.class}
+                ">
+
                     ${cardRarity.name}
+
                 </div>
 
 
                 <div class="skin-card-footer">
 
                     <div class="skin-source">
+
                         ${createSourceMarkup(skin)}
+
                     </div>
 
                     <span class="skin-year">
@@ -275,7 +313,7 @@ function createSkinCard(skin, index) {
 
 function createCollectionMarkup(collection) {
 
-    if (!collection.name) {
+    if (!collection || !collection.name) {
         return "";
     }
 
@@ -287,6 +325,7 @@ function createCollectionMarkup(collection) {
                 alt="">
         `
         : "";
+
 
     return `
 
@@ -305,7 +344,7 @@ function createCollectionMarkup(collection) {
 
 
 /* ==================================================
-   Стоимость и способ получения
+   Цена и способ получения
    ================================================== */
 
 function createSourceMarkup(skin, viewer = false) {
@@ -325,12 +364,20 @@ function createSourceMarkup(skin, viewer = false) {
         ? "viewer-price"
         : "skin-price";
 
+    const sourceTextClass = viewer
+        ? "viewer-source-text"
+        : "source-text";
+
 
     if (source.type === "brawl_pass") {
 
         return createSpecialSourceMarkup(
-            source.icon || "assets/collections/brawl_pass.WEBP",
-            source.name || "Brawl Pass",
+            source.icon ||
+                "assets/collections/brawl_pass.WEBP",
+
+            source.name ||
+                "Brawl Pass",
+
             viewer
         );
 
@@ -340,8 +387,12 @@ function createSourceMarkup(skin, viewer = false) {
     if (source.type === "pro_pass") {
 
         return createSpecialSourceMarkup(
-            source.icon || "assets/collections/pro_pass.WEBP",
-            source.name || "Pro Pass",
+            source.icon ||
+                "assets/collections/pro_pass.WEBP",
+
+            source.name ||
+                "Pro Pass",
+
             viewer
         );
 
@@ -351,15 +402,9 @@ function createSourceMarkup(skin, viewer = false) {
     if (source.type === "free") {
 
         return `
-
-            <span class="${viewer
-                ? "viewer-source-text"
-                : "source-text"}">
-
+            <span class="${sourceTextClass}">
                 ${source.name || "Бесплатно"}
-
             </span>
-
         `;
 
     }
@@ -448,15 +493,9 @@ function createSourceMarkup(skin, viewer = false) {
         if (!prices.length) {
 
             return `
-
-                <span class="${viewer
-                    ? "viewer-source-text"
-                    : "source-text"}">
-
+                <span class="${sourceTextClass}">
                     Цена неизвестна
-
                 </span>
-
             `;
 
         }
@@ -474,16 +513,11 @@ function createSourceMarkup(skin, viewer = false) {
 
 
     return `
-
-        <span class="${viewer
-            ? "viewer-source-text"
-            : "source-text"}">
-
+        <span class="${sourceTextClass}">
             Способ получения неизвестен
-
         </span>
-
     `;
+
 }
 
 
@@ -497,17 +531,22 @@ function createSpecialSourceMarkup(
     viewer = false
 ) {
 
+    const containerClass = viewer
+        ? "viewer-special-source"
+        : "special-source";
+
+    const iconClass = viewer
+        ? "viewer-source-icon"
+        : "source-icon";
+
+
     return `
 
-        <div class="${viewer
-            ? "viewer-special-source"
-            : "special-source"}">
+        <div class="${containerClass}">
 
             <img
                 src="${icon}"
-                class="${viewer
-                    ? "viewer-source-icon"
-                    : "source-icon"}"
+                class="${iconClass} optional-icon"
                 alt="">
 
             <span>
@@ -517,11 +556,12 @@ function createSpecialSourceMarkup(
         </div>
 
     `;
+
 }
 
 
 /* ==================================================
-   Вкладки
+   Настройка вкладок
    ================================================== */
 
 function setupTabs() {
@@ -571,7 +611,7 @@ function setupTabs() {
 
 
 /* ==================================================
-   Нажатие на карточки скинов
+   Нажатие на маленькие карточки
    ================================================== */
 
 function setupSkinCards() {
@@ -618,7 +658,7 @@ function setupSkinCards() {
 
 
 /* ==================================================
-   Открытие полноэкранного просмотрщика
+   Открытие просмотрщика
    ================================================== */
 
 function openSkinViewer(index) {
@@ -635,120 +675,14 @@ function openSkinViewer(index) {
         ? currentBrawler.skins
         : [];
 
-    const skin = skins[index];
-
-    if (!skin) {
+    if (!skins[index]) {
         return;
     }
 
-    const collection = skin.collection || {};
 
-    const secondaryCollection =
-        skin.secondaryCollection || null;
+    currentSkinIndex = index;
 
-    const secondaryRarity =
-        skin.secondaryRarity || null;
-
-
-    skinViewerContent.innerHTML = `
-
-        <div class="viewer-image-box">
-
-            <img
-                src="${skin.image}"
-                class="viewer-skin-image"
-                alt="${skin.displayName}">
-
-        </div>
-
-
-        <div class="viewer-information">
-
-            <h2
-                class="viewer-skin-name"
-                id="viewerSkinName">
-
-                ${skin.displayName}
-
-            </h2>
-
-
-            <div class="viewer-collections">
-
-                ${createViewerCollectionMarkup(
-                    collection
-                )}
-
-                ${createViewerCollectionMarkup(
-                    secondaryCollection,
-                    true
-                )}
-
-            </div>
-
-
-            <div class="viewer-rarities">
-
-                <div class="
-                    viewer-rarity
-                    skin-rarity-${skin.rarityClass || "unknown"}
-                ">
-
-                    ${skin.rarity || "Редкость неизвестна"}
-
-                </div>
-
-
-                ${createSecondaryRarityMarkup(
-                    secondaryRarity
-                )}
-
-            </div>
-
-
-            <div class="viewer-source">
-
-                ${createSourceMarkup(skin, true)}
-
-            </div>
-
-
-            <div class="viewer-release-date">
-
-                <span class="viewer-label">
-                    Дата выхода
-                </span>
-
-                <strong>
-                    ${formatReleaseDate(
-                        skin.releaseDate
-                    )}
-                </strong>
-
-            </div>
-
-
-            ${skin.description
-                ? `
-
-                    <div class="viewer-description">
-
-                        <span class="viewer-label">
-                            Описание
-                        </span>
-
-                        <p>
-                            ${skin.description}
-                        </p>
-
-                    </div>
-
-                `
-                : ""}
-
-        </div>
-
-    `;
+    renderViewerSkin(currentSkinIndex);
 
 
     savedScrollPosition =
@@ -793,9 +727,6 @@ function openSkinViewer(index) {
     }
 
 
-    hideBrokenOptionalIcons();
-
-
     if (skinViewerClose) {
         skinViewerClose.focus();
     }
@@ -804,7 +735,211 @@ function openSkinViewer(index) {
 
 
 /* ==================================================
-   Коллекции в полноэкранном просмотре
+   Отрисовка выбранного скина в просмотрщике
+   ================================================== */
+
+function renderViewerSkin(index, direction = "") {
+
+    if (
+        !currentBrawler ||
+        !skinViewerContent
+    ) {
+        return;
+    }
+
+    const skins = Array.isArray(currentBrawler.skins)
+        ? currentBrawler.skins
+        : [];
+
+    const skin = skins[index];
+
+    if (!skin) {
+        return;
+    }
+
+
+    const collection =
+        skin.collection || null;
+
+    const secondaryCollection =
+        skin.secondaryCollection || null;
+
+    const secondaryRarity =
+        skin.secondaryRarity || null;
+
+    const previousDisabled =
+        index === 0;
+
+    const nextDisabled =
+        index === skins.length - 1;
+
+
+    const animationClass = direction
+        ? `viewer-swipe-${direction}`
+        : "";
+
+
+    skinViewerContent.innerHTML = `
+
+        <div class="
+            viewer-swipe-content
+            ${animationClass}
+        ">
+
+            <div class="viewer-image-box">
+
+
+                <button
+                    type="button"
+                    class="
+                        viewer-navigation
+                        viewer-navigation-left
+                    "
+                    data-viewer-action="previous"
+                    aria-label="Предыдущий скин"
+                    ${previousDisabled ? "disabled" : ""}>
+
+                    ‹
+
+                </button>
+
+
+                <img
+                    src="${skin.image}"
+                    class="viewer-skin-image"
+                    alt="${skin.displayName}"
+                    draggable="false">
+
+
+                <button
+                    type="button"
+                    class="
+                        viewer-navigation
+                        viewer-navigation-right
+                    "
+                    data-viewer-action="next"
+                    aria-label="Следующий скин"
+                    ${nextDisabled ? "disabled" : ""}>
+
+                    ›
+
+                </button>
+
+
+            </div>
+
+
+            <div class="viewer-information">
+
+
+                <div class="viewer-title-row">
+
+                    <h2
+                        class="viewer-skin-name"
+                        id="viewerSkinName">
+
+                        ${skin.displayName}
+
+                    </h2>
+
+
+                    <span class="viewer-skin-counter">
+                        ${index + 1} / ${skins.length}
+                    </span>
+
+                </div>
+
+
+                <div class="viewer-collections">
+
+                    ${createViewerCollectionMarkup(
+                        collection
+                    )}
+
+                    ${createViewerCollectionMarkup(
+                        secondaryCollection,
+                        true
+                    )}
+
+                </div>
+
+
+                <div class="viewer-rarities">
+
+                    <div class="
+                        viewer-rarity
+                        skin-rarity-${skin.rarityClass || "unknown"}
+                    ">
+
+                        ${skin.rarity || "Редкость неизвестна"}
+
+                    </div>
+
+
+                    ${createSecondaryRarityMarkup(
+                        secondaryRarity
+                    )}
+
+                </div>
+
+
+                <div class="viewer-source">
+
+                    ${createSourceMarkup(
+                        skin,
+                        true
+                    )}
+
+                </div>
+
+
+                <div class="viewer-release-date">
+
+                    <span class="viewer-label">
+                        Дата выхода
+                    </span>
+
+                    <strong>
+                        ${formatReleaseDate(
+                            skin.releaseDate
+                        )}
+                    </strong>
+
+                </div>
+
+
+                ${skin.description
+                    ? `
+
+                        <div class="viewer-description">
+
+                            <span class="viewer-label">
+                                Описание
+                            </span>
+
+                            <p>
+                                ${skin.description}
+                            </p>
+
+                        </div>
+
+                    `
+                    : ""}
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    hideBrokenOptionalIcons();
+
+}
+
+
+/* ==================================================
+   Основная и дополнительная коллекции
    ================================================== */
 
 function createViewerCollectionMarkup(
@@ -820,10 +955,14 @@ function createViewerCollectionMarkup(
         ? `
             <img
                 src="${collection.icon}"
-                class="viewer-collection-icon optional-icon"
+                class="
+                    viewer-collection-icon
+                    optional-icon
+                "
                 alt="">
         `
         : "";
+
 
     return `
 
@@ -843,6 +982,7 @@ function createViewerCollectionMarkup(
         </div>
 
     `;
+
 }
 
 
@@ -862,7 +1002,9 @@ function createSecondaryRarityMarkup(
     }
 
     const rarityClass =
-        secondaryRarity.class || "unknown";
+        secondaryRarity.class ||
+        "unknown";
+
 
     return `
 
@@ -877,6 +1019,96 @@ function createSecondaryRarityMarkup(
         </div>
 
     `;
+
+}
+
+
+/* ==================================================
+   Переключение скинов
+   ================================================== */
+
+function changeViewerSkin(step) {
+
+    if (!currentBrawler) {
+        return;
+    }
+
+    const skins = Array.isArray(currentBrawler.skins)
+        ? currentBrawler.skins
+        : [];
+
+    const newIndex =
+        currentSkinIndex + step;
+
+
+    if (
+        newIndex < 0 ||
+        newIndex >= skins.length
+    ) {
+        return;
+    }
+
+
+    currentSkinIndex = newIndex;
+
+
+    renderViewerSkin(
+        currentSkinIndex,
+        step > 0 ? "right" : "left"
+    );
+
+
+    const viewerCard =
+        skinViewer.querySelector(
+            ".skin-viewer-card"
+        );
+
+    if (viewerCard) {
+        viewerCard.scrollTop = 0;
+    }
+
+}
+
+
+/* ==================================================
+   Обработка свайпа
+   ================================================== */
+
+function handleViewerSwipe() {
+
+    const differenceX =
+        touchEndX - touchStartX;
+
+    const differenceY =
+        touchEndY - touchStartY;
+
+    const horizontalDistance =
+        Math.abs(differenceX);
+
+    const verticalDistance =
+        Math.abs(differenceY);
+
+
+    if (
+        horizontalDistance < swipeDistance ||
+        horizontalDistance <= verticalDistance
+    ) {
+        return;
+    }
+
+
+    if (differenceX < 0) {
+
+        // Свайп влево — следующий скин
+        changeViewerSkin(1);
+
+    } else {
+
+        // Свайп вправо — предыдущий скин
+        changeViewerSkin(-1);
+
+    }
+
 }
 
 
@@ -941,15 +1173,22 @@ function formatReleaseDate(dateString) {
         return "Дата неизвестна";
     }
 
-    const parts = dateString.split("-");
+    const parts =
+        dateString.split("-");
 
     if (parts.length !== 3) {
         return dateString;
     }
 
-    const year = Number(parts[0]);
-    const month = Number(parts[1]) - 1;
-    const day = Number(parts[2]);
+    const year =
+        Number(parts[0]);
+
+    const month =
+        Number(parts[1]) - 1;
+
+    const day =
+        Number(parts[2]);
+
 
     const date = new Date(
         year,
@@ -957,9 +1196,11 @@ function formatReleaseDate(dateString) {
         day
     );
 
+
     if (Number.isNaN(date.getTime())) {
         return dateString;
     }
+
 
     return new Intl.DateTimeFormat(
         "ru-RU",
@@ -990,6 +1231,7 @@ function hideBrokenOptionalIcons() {
                 return;
             }
 
+
             icon.dataset.errorHandlerAdded =
                 "true";
 
@@ -1019,7 +1261,122 @@ function hideBrokenOptionalIcons() {
 
 
 /* ==================================================
-   События закрытия просмотрщика
+   Кнопки внутри просмотрщика
+   ================================================== */
+
+if (skinViewerContent) {
+
+    skinViewerContent.addEventListener(
+        "click",
+        event => {
+
+            const navigationButton =
+                event.target.closest(
+                    "[data-viewer-action]"
+                );
+
+
+            if (!navigationButton) {
+                return;
+            }
+
+
+            const action =
+                navigationButton.dataset.viewerAction;
+
+
+            if (action === "previous") {
+                changeViewerSkin(-1);
+            }
+
+
+            if (action === "next") {
+                changeViewerSkin(1);
+            }
+
+        }
+    );
+
+}
+
+
+/* ==================================================
+   Свайпы
+   ================================================== */
+
+if (skinViewerContent) {
+
+    skinViewerContent.addEventListener(
+        "touchstart",
+        event => {
+
+            if (event.touches.length !== 1) {
+                return;
+            }
+
+
+            touchStartX =
+                event.touches[0].clientX;
+
+            touchStartY =
+                event.touches[0].clientY;
+
+            touchEndX =
+                touchStartX;
+
+            touchEndY =
+                touchStartY;
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    skinViewerContent.addEventListener(
+        "touchmove",
+        event => {
+
+            if (event.touches.length !== 1) {
+                return;
+            }
+
+
+            touchEndX =
+                event.touches[0].clientX;
+
+            touchEndY =
+                event.touches[0].clientY;
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    skinViewerContent.addEventListener(
+        "touchend",
+        () => {
+
+            handleViewerSwipe();
+
+
+            touchStartX = 0;
+            touchStartY = 0;
+
+            touchEndX = 0;
+            touchEndY = 0;
+
+        }
+    );
+
+}
+
+
+/* ==================================================
+   Закрытие по кнопке и затемнённому фону
    ================================================== */
 
 if (skinViewerClose) {
@@ -1042,17 +1399,41 @@ if (skinViewerOverlay) {
 }
 
 
+/* ==================================================
+   Управление клавиатурой
+   ================================================== */
+
 document.addEventListener(
     "keydown",
     event => {
 
         if (
-            event.key === "Escape" &&
-            skinViewer &&
-            skinViewer.classList.contains("open")
+            !skinViewer ||
+            !skinViewer.classList.contains("open")
         ) {
+            return;
+        }
+
+
+        if (event.key === "Escape") {
 
             closeSkinViewer();
+
+        }
+
+
+        if (event.key === "ArrowLeft") {
+
+            event.preventDefault();
+            changeViewerSkin(-1);
+
+        }
+
+
+        if (event.key === "ArrowRight") {
+
+            event.preventDefault();
+            changeViewerSkin(1);
 
         }
 
@@ -1061,7 +1442,7 @@ document.addEventListener(
 
 
 /* ==================================================
-   Блокировка прокрутки за просмотрщиком
+   Запрет прокрутки вне открытой карточки
    ================================================== */
 
 document.addEventListener(
@@ -1075,10 +1456,12 @@ document.addEventListener(
             return;
         }
 
+
         const viewerCard =
             event.target.closest(
                 ".skin-viewer-card"
             );
+
 
         if (!viewerCard) {
             event.preventDefault();
