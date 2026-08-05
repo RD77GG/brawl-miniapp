@@ -88,7 +88,7 @@
 }
 
 
-/* ---------- Маленькая карточка скина ---------- */
+/* ---------- Маленькая карточка ---------- */
 
 .skin-card{
     min-width:0;
@@ -105,8 +105,7 @@
 
     transition:
         transform .2s,
-        box-shadow .2s,
-        background .2s;
+        box-shadow .2s;
 }
 
 .skin-card:hover{
@@ -119,7 +118,7 @@
 }
 
 
-/* ---------- Изображение скина ---------- */
+/* ---------- Изображение ---------- */
 
 .skin-image-box{
     width:100%;
@@ -158,9 +157,6 @@
     display:flex;
     flex-direction:column;
 }
-
-
-/* ---------- Название скина ---------- */
 
 .skin-name{
     margin:0 0 6px;
@@ -201,7 +197,7 @@
 }
 
 
-/* ---------- Редкость скина ---------- */
+/* ---------- Редкость ---------- */
 
 .skin-rarity{
     margin:0 0 7px;
@@ -240,13 +236,12 @@
 }
 
 
-/* ---------- Нижняя часть карточки ---------- */
+/* ---------- Низ карточки ---------- */
 
 .skin-card-footer{
     position:relative;
 
     min-height:22px;
-    margin-top:0;
     padding-right:36px;
 
     display:flex;
@@ -257,9 +252,6 @@
     width:100%;
     min-width:0;
 }
-
-
-/* ---------- Год выхода ---------- */
 
 .skin-year{
     position:absolute;
@@ -285,7 +277,6 @@
     align-items:center;
 
     gap:7px;
-
     white-space:nowrap;
 }
 
@@ -314,7 +305,7 @@
 }
 
 
-/* ---------- Brawl Pass и Pro Pass ---------- */
+/* ---------- Особые источники ---------- */
 
 .special-source{
     display:flex;
@@ -350,7 +341,7 @@
 }
 
 
-/* ---------- Редкость и класс бойца ---------- */
+/* ---------- Редкость бойца и класс ---------- */
 
 .rarity,
 .class-tag{
@@ -364,9 +355,6 @@
     color:white;
     font-weight:bold;
 }
-
-
-/* ---------- Редкости бойцов ---------- */
 
 .starter{
     background:#43b8ff;
@@ -398,9 +386,6 @@
     border:2px solid #666;
 }
 
-
-/* ---------- Классы бойцов ---------- */
-
 .damage{
     background:#ff8c00;
 }
@@ -424,9 +409,6 @@
 .artillery{
     background:#fb8c00;
 }
-
-
-/* ---------- Титулы ---------- */
 
 .gold{
     color:#ffd700;
@@ -482,11 +464,8 @@
 
 
 /* ==================================================
-   Полноэкранный просмотр скина
+   Полноэкранный просмотр
    ================================================== */
-
-
-/* ---------- Блокировка страницы ---------- */
 
 html.viewer-open,
 body.viewer-open{
@@ -496,9 +475,6 @@ body.viewer-open{
     overflow:hidden;
     overscroll-behavior:none;
 }
-
-
-/* ---------- Общий контейнер ---------- */
 
 .skin-viewer{
     position:fixed;
@@ -529,9 +505,6 @@ body.viewer-open{
     display:flex;
 }
 
-
-/* ---------- Затемнённый фон ---------- */
-
 .skin-viewer-overlay{
     position:absolute;
     inset:0;
@@ -547,9 +520,6 @@ body.viewer-open{
     overscroll-behavior:none;
     touch-action:none;
 }
-
-
-/* ---------- Окно просмотра ---------- */
 
 .skin-viewer-card{
     position:relative;
@@ -597,7 +567,7 @@ body.viewer-open{
 }
 
 
-/* ---------- Кнопка закрытия ---------- */
+/* ---------- Закрытие ---------- */
 
 .skin-viewer-close{
     position:absolute;
@@ -623,29 +593,19 @@ body.viewer-open{
     color:white;
 
     font-size:29px;
-    font-weight:300;
     line-height:1;
 
     cursor:pointer;
 
     box-shadow:0 3px 10px rgba(0,0,0,.25);
-
-    transition:
-        background .2s,
-        transform .2s;
 }
 
 .skin-viewer-close:hover{
     background:rgba(60,60,90,.95);
-    transform:scale(1.06);
-}
-
-.skin-viewer-close:active{
-    transform:scale(.94);
 }
 
 
-/* ---------- Большое изображение скина ---------- */
+/* ---------- Большое изображение ---------- */
 
 .viewer-image-box{
     position:relative;
@@ -685,7 +645,6 @@ body.viewer-open{
     object-fit:contain;
 
     pointer-events:none;
-
     user-select:none;
     -webkit-user-select:none;
 
@@ -695,15 +654,12 @@ body.viewer-open{
 }
 
 
-/* ---------- Информация о скине ---------- */
+/* ---------- Информация ---------- */
 
 .viewer-information{
     padding:8px 22px 24px;
     text-align:left;
 }
-
-
-/* ---------- Название и счётчик ---------- */
 
 .viewer-title-row{
     display:flex;
@@ -716,7 +672,7 @@ body.viewer-open{
 .viewer-skin-name{
     flex:1;
 
-    margin:0 0 12px;
+    margin:0 0 10px;
 
     color:white;
 
@@ -738,15 +694,56 @@ body.viewer-open{
 }
 
 
-/* ---------- Несколько коллекций ---------- */
+/* ==================================================
+   Разделы с названием между линиями
+   ================================================== */
+
+.viewer-section{
+    margin-top:18px;
+}
+
+.viewer-section-title{
+    width:100%;
+
+    display:flex;
+    align-items:center;
+
+    gap:10px;
+    margin:0 0 12px;
+
+    color:#a7a7b9;
+
+    font-size:13px;
+    font-weight:700;
+    line-height:1;
+    letter-spacing:.04em;
+}
+
+.viewer-section-title::before,
+.viewer-section-title::after{
+    content:"";
+
+    flex:1;
+    min-width:15px;
+    height:1px;
+
+    background:rgba(255,255,255,.14);
+}
+
+.viewer-section-title span{
+    flex-shrink:0;
+    white-space:nowrap;
+}
+
+
+/* ---------- Коллекции ---------- */
 
 .viewer-collections{
     display:flex;
     flex-direction:column;
     align-items:flex-start;
 
-    gap:5px;
-    margin-bottom:12px;
+    gap:6px;
 }
 
 .viewer-collection{
@@ -754,7 +751,6 @@ body.viewer-open{
     align-items:center;
 
     gap:4px;
-    margin:0;
 
     color:#cacada;
 
@@ -780,15 +776,14 @@ body.viewer-open{
 }
 
 
-/* ---------- Несколько редкостей ---------- */
+/* ---------- Редкости ---------- */
 
 .viewer-rarities{
     display:flex;
     flex-direction:column;
     align-items:flex-start;
 
-    gap:5px;
-    margin-bottom:14px;
+    gap:6px;
 }
 
 .viewer-rarity{
@@ -804,11 +799,10 @@ body.viewer-open{
 }
 
 
-/* ---------- Стоимость в просмотрщике ---------- */
+/* ---------- Получение ---------- */
 
 .viewer-source{
     min-height:30px;
-    margin-bottom:18px;
 
     display:flex;
     align-items:center;
@@ -841,15 +835,9 @@ body.viewer-open{
     width:21px;
     height:21px;
 
-    max-width:21px;
-    max-height:21px;
-
     object-fit:contain;
     flex-shrink:0;
 }
-
-
-/* ---------- Brawl Pass и Pro Pass в просмотрщике ---------- */
 
 .viewer-special-source{
     display:flex;
@@ -869,9 +857,6 @@ body.viewer-open{
     width:28px;
     height:28px;
 
-    max-width:28px;
-    max-height:28px;
-
     object-fit:contain;
     flex-shrink:0;
 }
@@ -884,45 +869,34 @@ body.viewer-open{
 }
 
 
-/* ---------- Дата выхода ---------- */
+/* ---------- Дата ---------- */
 
 .viewer-release-date{
-    display:flex;
-    flex-direction:column;
+    display:block;
 
-    gap:5px;
-    padding-top:14px;
-
-    border-top:1px solid rgba(255,255,255,.08);
-}
-
-.viewer-label{
-    color:#9999ad;
-
-    font-size:13px;
-    font-weight:600;
-
-    text-transform:uppercase;
-    letter-spacing:.04em;
+    padding:0;
+    border:none;
 }
 
 .viewer-release-date strong{
     color:white;
+
     font-size:17px;
+    line-height:1.35;
 }
 
 
 /* ---------- Описание ---------- */
 
 .viewer-description{
-    margin-top:16px;
-    padding-top:14px;
+    margin:0;
+    padding:0;
 
-    border-top:1px solid rgba(255,255,255,.08);
+    border:none;
 }
 
 .viewer-description p{
-    margin:7px 0 0;
+    margin:0;
 
     color:#d4d4df;
 
@@ -931,9 +905,7 @@ body.viewer-open{
 }
 
 
-/* ==================================================
-   Стрелки переключения
-   ================================================== */
+/* ---------- Стрелки ---------- */
 
 .viewer-navigation{
     position:absolute;
@@ -957,17 +929,11 @@ body.viewer-open{
     color:white;
 
     font-size:36px;
-    font-weight:300;
     line-height:1;
 
     cursor:pointer;
 
     transform:translateY(-50%);
-
-    transition:
-        background .2s,
-        opacity .2s,
-        transform .2s;
 }
 
 .viewer-navigation-left{
@@ -992,9 +958,7 @@ body.viewer-open{
 }
 
 
-/* ==================================================
-   Анимация смены скина
-   ================================================== */
+/* ---------- Анимация свайпа ---------- */
 
 .viewer-swipe-content{
     animation-duration:.22s;
@@ -1039,7 +1003,7 @@ body.viewer-open{
 
 
 /* ==================================================
-   Телефоны с узким экраном
+   Узкие телефоны
    ================================================== */
 
 @media (max-width:380px){
@@ -1116,7 +1080,6 @@ body.viewer-open{
     }
 
     .price-item{
-        gap:2px;
         font-size:12px;
     }
 
@@ -1134,8 +1097,6 @@ body.viewer-open{
         font-size:11px;
     }
 
-
-    /* ---------- Просмотрщик ---------- */
 
     .skin-viewer{
         padding:
@@ -1185,6 +1146,21 @@ body.viewer-open{
         font-size:12px;
     }
 
+    .viewer-section{
+        margin-top:16px;
+    }
+
+    .viewer-section-title{
+        gap:8px;
+
+        font-size:12px;
+    }
+
+    .viewer-section-title::before,
+    .viewer-section-title::after{
+        min-width:10px;
+    }
+
     .viewer-collection{
         font-size:14px;
     }
@@ -1192,9 +1168,6 @@ body.viewer-open{
     .viewer-collection-icon{
         width:23px;
         height:23px;
-
-        max-width:23px;
-        max-height:23px;
     }
 
     .viewer-rarity{
@@ -1212,17 +1185,11 @@ body.viewer-open{
     .viewer-currency-icon{
         width:19px;
         height:19px;
-
-        max-width:19px;
-        max-height:19px;
     }
 
     .viewer-release-date strong{
         font-size:15px;
     }
-
-
-    /* ---------- Стрелки ---------- */
 
     .viewer-navigation{
         width:35px;
