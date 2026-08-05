@@ -81,6 +81,7 @@
 
         "source": {
           "type": "free",
+          "shortName": "Бесплатно",
           "name": "Бесплатно"
         },
 
@@ -118,6 +119,7 @@
 
         "source": {
           "type": "brawl_pass",
+          "shortName": "Brawl Pass",
           "name": "Brawl Pass · 8-й сезон",
           "icon": "assets/collections/brawl_pass.WEBP"
         },
