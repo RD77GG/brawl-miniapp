@@ -4,7 +4,7 @@
     "displayName": "Шелли",
 
     "rarity": "Начальный",
-    "rarityClass": "starter", 
+    "rarityClass": "starter",
 
     "class": "Урон",
     "classClass": "damage",
@@ -25,16 +25,15 @@
     ],
 
     "skins": [
-
       {
         "id": "bandita_shelly",
 
         "name": "Bandita Shelly",
         "displayName": "Бандитка Шелли",
 
-        "description": "Классический скин Шелли из коллекции Разбойники.",
+        "description": "Классический скин Шелли из коллекции «Разбойники».",
 
-        "image": "images/brawlers/shelly/bandita_shelly.WEBP",
+        "image": "images/brawlers/shelly/bandita_shelly.PNG",
 
         "collection": {
           "name": "Разбойники",
@@ -53,11 +52,9 @@
           "blings": 1000
         },
 
-        "releaseYear": 2019,
-        "releaseDate": "2019-09-18"
+        "releaseYear": 2018,
+        "releaseDate": "2018-12-12"
       },
-
-
 
       {
         "id": "star_shelly",
@@ -65,9 +62,9 @@
         "name": "Star Shelly",
         "displayName": "Звёздная Шелли",
 
-        "description": "Эксклюзивный подарок первым игрокам Brawl Stars.",
+        "description": "Памятный скин, подаренный первым игрокам Brawl Stars.",
 
-        "image": "images/brawlers/shelly/star_shelly.WEBP",
+        "image": "images/brawlers/shelly/star_shelly.PNG",
 
         "collection": {
           "name": "Юбилей",
@@ -88,9 +85,46 @@
         },
 
         "releaseYear": 2018,
-        "releaseDate": "2018-12-24"
-      }
+        "releaseDate": "2018-12-12"
+      },
 
+      {
+        "id": "princess_shelly",
+
+        "name": "Princess Shelly",
+        "displayName": "Принцесса Шелли",
+
+        "description": "Скин, который можно было получить в Brawl Pass сезона «Давным-Давно».",
+
+        "image": "images/brawlers/shelly/princess_shelly.WEBP",
+
+        "collection": {
+          "name": "Давным-Давно",
+          "icon": "assets/collections/once_upon_a_time.WEBP"
+        },
+
+        "secondaryCollection": {
+          "name": "Brawl Pass",
+          "icon": "assets/collections/brawl_pass.WEBP"
+        },
+
+        "rarity": "Эпический",
+        "rarityClass": "epic",
+
+        "secondaryRarity": {
+          "name": "Эксклюзивный",
+          "class": "exclusive"
+        },
+
+        "source": {
+          "type": "brawl_pass",
+          "name": "Brawl Pass",
+          "icon": "assets/collections/brawl_pass.WEBP"
+        },
+
+        "releaseYear": 2021,
+        "releaseDate": "2021-08-30"
+      }
     ]
   }
 ]
