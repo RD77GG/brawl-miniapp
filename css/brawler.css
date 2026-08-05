@@ -1027,3 +1027,170 @@ body.viewer-open{
     }
 
 }
+/* ==================================================
+   Переключение скинов
+   ================================================== */
+
+.viewer-image-box{
+    position:relative;
+    user-select:none;
+    -webkit-user-select:none;
+}
+
+.viewer-skin-image{
+    pointer-events:none;
+    user-select:none;
+    -webkit-user-select:none;
+}
+
+
+/* ---------- Стрелки ---------- */
+
+.viewer-navigation{
+    position:absolute;
+    top:50%;
+    z-index:4;
+
+    width:42px;
+    height:54px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:0;
+
+    border:none;
+    border-radius:15px;
+
+    background:rgba(15,15,28,.58);
+    color:white;
+
+    font-size:40px;
+    font-weight:300;
+    line-height:1;
+
+    cursor:pointer;
+
+    transform:translateY(-50%);
+
+    transition:
+        background .2s,
+        opacity .2s,
+        transform .2s;
+}
+
+.viewer-navigation-left{
+    left:10px;
+}
+
+.viewer-navigation-right{
+    right:10px;
+}
+
+.viewer-navigation:hover{
+    background:rgba(55,55,85,.9);
+}
+
+.viewer-navigation:active{
+    transform:translateY(-50%) scale(.92);
+}
+
+.viewer-navigation:disabled{
+    opacity:.16;
+    pointer-events:none;
+}
+
+
+/* ---------- Название и счётчик ---------- */
+
+.viewer-title-row{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:12px;
+}
+
+.viewer-title-row .viewer-skin-name{
+    flex:1;
+    margin-right:0;
+}
+
+.viewer-skin-counter{
+    flex-shrink:0;
+
+    color:#9999ad;
+
+    font-size:13px;
+    font-weight:700;
+    line-height:1.2;
+}
+
+
+/* ---------- Анимация смены ---------- */
+
+.viewer-swipe-content{
+    animation-duration:.22s;
+    animation-timing-function:ease;
+}
+
+.viewer-swipe-right{
+    animation-name:viewerSwipeRight;
+}
+
+.viewer-swipe-left{
+    animation-name:viewerSwipeLeft;
+}
+
+@keyframes viewerSwipeRight{
+
+    from{
+        opacity:0;
+        transform:translateX(35px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+
+}
+
+@keyframes viewerSwipeLeft{
+
+    from{
+        opacity:0;
+        transform:translateX(-35px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+
+}
+
+
+@media (max-width:380px){
+
+    .viewer-navigation{
+        width:35px;
+        height:48px;
+
+        border-radius:13px;
+        font-size:34px;
+    }
+
+    .viewer-navigation-left{
+        left:6px;
+    }
+
+    .viewer-navigation-right{
+        right:6px;
+    }
+
+    .viewer-skin-counter{
+        font-size:12px;
+    }
+
+}
