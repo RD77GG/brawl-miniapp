@@ -53,7 +53,7 @@
         },
 
         "releaseYear": 2018,
-        "releaseDate": "2018-12-05"
+        "releaseDate": "2018-12-12"
       },
 
       {
@@ -62,7 +62,7 @@
         "name": "Star Shelly",
         "displayName": "Звёздная Шелли",
 
-        "description": "Памятный эксклюзивный скин, который бесплатно выдавался первым игрокам Brawl Stars.",
+        "description": "Памятный скин, подаренный первым игрокам Brawl Stars.",
 
         "image": "images/brawlers/shelly/star_shelly.WEBP",
 
@@ -118,7 +118,7 @@
 
         "source": {
           "type": "brawl_pass",
-          "name": "Brawl Pass",
+          "name": "Brawl Pass · 8-й сезон",
           "icon": "assets/collections/brawl_pass.WEBP"
         },
 
