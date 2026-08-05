@@ -1,10 +1,10 @@
 [
   {
-    "name": "Shelly", 
+    "name": "Shelly",
     "displayName": "Шелли",
 
     "rarity": "Начальный",
-    "rarityClass": "starter", 
+    "rarityClass": "starter",
 
     "class": "Урон",
     "classClass": "damage",
@@ -25,13 +25,14 @@
     ],
 
     "skins": [
+
       {
         "id": "bandita_shelly",
 
         "name": "Bandita Shelly",
         "displayName": "Бандитка Шелли",
 
-        "description": "",
+        "description": "Классический скин Шелли из коллекции Разбойники.",
 
         "image": "images/brawlers/shelly/bandita_shelly.WEBP",
 
@@ -40,12 +41,12 @@
           "icon": "assets/collections/outlaws.WEBP"
         },
 
+        "rarity": "Редкий",
+        "rarityClass": "rare",
+
         "source": {
           "type": "shop"
         },
-
-        "rarity": "Редкий",
-        "rarityClass": "rare",
 
         "price": {
           "gems": 29,
@@ -56,13 +57,15 @@
         "releaseDate": "2019-09-18"
       },
 
+
+
       {
         "id": "star_shelly",
 
         "name": "Star Shelly",
         "displayName": "Звёздная Шелли",
 
-        "description": "",
+        "description": "Эксклюзивный подарок первым игрокам Brawl Stars.",
 
         "image": "images/brawlers/shelly/star_shelly.WEBP",
 
@@ -71,19 +74,23 @@
           "icon": "assets/collections/anniversary.WEBP"
         },
 
+        "rarity": "Редкий",
+        "rarityClass": "rare",
+
+        "secondaryRarity": {
+          "name": "Эксклюзивный",
+          "class": "exclusive"
+        },
+
         "source": {
           "type": "free",
           "name": "Бесплатно"
         },
 
-        "rarity": "Эксклюзивный",
-        "rarityClass": "exclusive",
-
-        "price": {},
-
         "releaseYear": 2018,
         "releaseDate": "2018-12-24"
       }
+
     ]
   }
 ]
