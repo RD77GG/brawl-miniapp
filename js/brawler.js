@@ -214,15 +214,6 @@ function createSkinCard(skin, index) {
     const collection = skin.collection || {};
     const releaseYear = skin.releaseYear || "—";
 
-    /*
-       Если есть дополнительная редкость,
-       она показывается в маленькой карточке.
-
-       Например:
-       Редкий + Эксклюзивный
-       В маленькой карточке: Эксклюзивный
-    */
-
     const cardRarity = skin.secondaryRarity
         ? {
             name:
@@ -289,7 +280,7 @@ function createSkinCard(skin, index) {
 
                     <div class="skin-source">
 
-                        ${createSourceMarkup(skin)}
+                        ${createSourceMarkup(skin, false)}
 
                     </div>
 
@@ -370,13 +361,27 @@ function createSourceMarkup(skin, viewer = false) {
         : "source-text";
 
 
+    /*
+       В маленькой карточке используется shortName.
+
+       В полном просмотре используется name.
+
+       Если shortName не указан, будет использовано
+       обычное поле name.
+    */
+
+    const displayedSourceName = viewer
+        ? source.name
+        : source.shortName || source.name;
+
+
     if (source.type === "brawl_pass") {
 
         return createSpecialSourceMarkup(
             source.icon ||
                 "assets/collections/brawl_pass.WEBP",
 
-            source.name ||
+            displayedSourceName ||
                 "Brawl Pass",
 
             viewer
@@ -391,7 +396,7 @@ function createSourceMarkup(skin, viewer = false) {
             source.icon ||
                 "assets/collections/pro_pass.WEBP",
 
-            source.name ||
+            displayedSourceName ||
                 "Pro Pass",
 
             viewer
@@ -404,7 +409,7 @@ function createSourceMarkup(skin, viewer = false) {
 
         return `
             <span class="${sourceTextClass}">
-                ${source.name || "Бесплатно"}
+                ${displayedSourceName || "Бесплатно"}
             </span>
         `;
 
