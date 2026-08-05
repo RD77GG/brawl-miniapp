@@ -3,6 +3,13 @@ const name = params.get("name");
 
 const brawlerContainer = document.getElementById("brawler");
 
+const skinViewer = document.getElementById("skinViewer");
+const skinViewerContent = document.getElementById("skinViewerContent");
+const skinViewerClose = document.getElementById("skinViewerClose");
+const skinViewerOverlay = document.getElementById("skinViewerOverlay");
+
+let currentBrawler = null;
+
 
 fetch("data/brawlers.json")
     .then(response => {
@@ -19,10 +26,14 @@ fetch("data/brawlers.json")
         const brawler = brawlers.find(item => item.name === name);
 
         if (!brawler) {
+
             brawlerContainer.innerHTML =
-                "<h2 class=\"page-message\">Боец не найден</h2>";
+                `<h2 class="page-message">Боец не найден</h2>`;
+
             return;
         }
+
+        currentBrawler = brawler;
 
         const skins = Array.isArray(brawler.skins)
             ? brawler.skins
@@ -32,114 +43,132 @@ fetch("data/brawlers.json")
             ? brawler.titles
             : [];
 
+
         brawlerContainer.innerHTML = `
 
-        <div class="brawler-main">
+            <div class="brawler-main">
 
-            <img
-                src="${brawler.image}"
-                class="main-image"
-                alt="${brawler.displayName}">
+                <img
+                    src="${brawler.image}"
+                    class="main-image"
+                    alt="${brawler.displayName}">
 
-            <h1 class="brawler-name">
-                ${brawler.displayName}
-            </h1>
-
-
-            <div class="info-card">
-
-                <p>
-                    <strong>⭐ Редкость:</strong>
-
-                    <span class="rarity ${brawler.rarityClass}">
-                        ${brawler.rarity}
-                    </span>
-                </p>
-
-                <p>
-                    <strong>⚔️ Класс:</strong>
-
-                    <span class="class-tag ${brawler.classClass}">
-                        ${brawler.class}
-                    </span>
-                </p>
-
-            </div>
-
-
-            <div class="tabs">
-
-                <button
-                    type="button"
-                    class="tab active"
-                    id="skinsTab">
-
-                    🎨 Скины
-
-                </button>
-
-                <button
-                    type="button"
-                    class="tab"
-                    id="infoTab">
-
-                    📖 Информация
-
-                </button>
-
-            </div>
-
-
-            <div id="skinsContent">
-
-                <h2 class="section-title">
-                    Скины (${skins.length})
-                </h2>
-
-                <div class="skins">
-
-                    ${skins.map(skin => createSkinCard(skin)).join("")}
-
-                </div>
-
-            </div>
-
-
-            <div id="infoContent" hidden>
-
-                <div class="titles-card">
-
-                    <h2>🏆 Титулы</h2>
-
-                    ${titles.map(title => `
-                        <p>
-                            <strong>${title.prime} Прайм:</strong>
-                            ${title.name}
-                        </p>
-                    `).join("")}
-
-                </div>
+                <h1 class="brawler-name">
+                    ${brawler.displayName}
+                </h1>
 
 
                 <div class="info-card">
 
-                    <h2>⭐ Способности</h2>
+                    <p>
 
-                    <p>⭐ Звёздные силы — скоро</p>
-                    <p>🔧 Гаджеты — скоро</p>
-                    <p>⚡ Гиперзаряд — скоро</p>
+                        <strong>⭐ Редкость:</strong>
+
+                        <span class="rarity ${brawler.rarityClass}">
+                            ${brawler.rarity}
+                        </span>
+
+                    </p>
+
+                    <p>
+
+                        <strong>⚔️ Класс:</strong>
+
+                        <span class="class-tag ${brawler.classClass}">
+                            ${brawler.class}
+                        </span>
+
+                    </p>
+
+                </div>
+
+
+                <div class="tabs">
+
+                    <button
+                        type="button"
+                        class="tab active"
+                        id="skinsTab">
+
+                        🎨 Скины
+
+                    </button>
+
+                    <button
+                        type="button"
+                        class="tab"
+                        id="infoTab">
+
+                        📖 Информация
+
+                    </button>
+
+                </div>
+
+
+                <div id="skinsContent">
+
+                    <h2 class="section-title">
+                        Скины (${skins.length})
+                    </h2>
+
+                    <div class="skins">
+
+                        ${skins
+                            .map((skin, index) =>
+                                createSkinCard(skin, index)
+                            )
+                            .join("")}
+
+                    </div>
+
+                </div>
+
+
+                <div id="infoContent" hidden>
+
+                    <div class="titles-card">
+
+                        <h2>🏆 Титулы</h2>
+
+                        ${titles
+                            .map(title => `
+
+                                <p class="${title.style || ""}">
+
+                                    <strong>
+                                        ${title.prime} Прайм:
+                                    </strong>
+
+                                    ${title.name}
+
+                                </p>
+
+                            `)
+                            .join("")}
+
+                    </div>
+
+
+                    <div class="info-card">
+
+                        <h2>⭐ Способности</h2>
+
+                        <p>⭐ Звёздные силы — скоро</p>
+                        <p>🔧 Гаджеты — скоро</p>
+                        <p>⚡ Гиперзаряд — скоро</p>
+
+                    </div>
 
                 </div>
 
             </div>
-
-        </div>
 
         `;
 
 
         setupTabs();
-
+        setupSkinCards();
         hideBrokenOptionalIcons();
 
     })
@@ -148,28 +177,35 @@ fetch("data/brawlers.json")
         console.error(error);
 
         brawlerContainer.innerHTML =
-            "<h2 class=\"page-message\">Ошибка загрузки данных</h2>";
+            `<h2 class="page-message">
+                Ошибка загрузки данных
+            </h2>`;
 
     });
 
 
-function createSkinCard(skin) {
+function createSkinCard(skin, index) {
 
     const collection = skin.collection || {};
     const rarityClass = skin.rarityClass || "unknown";
-    const source = skin.source || {};
     const releaseYear = skin.releaseYear || "—";
 
     return `
 
-        <article class="skin-card">
+        <article
+            class="skin-card"
+            data-skin-index="${index}"
+            tabindex="0"
+            role="button"
+            aria-label="Открыть ${skin.displayName}">
 
             <div class="skin-image-box">
 
                 <img
                     src="${skin.image}"
                     class="skin-image"
-                    alt="${skin.displayName}">
+                    alt="${skin.displayName}"
+                    loading="lazy">
 
             </div>
 
@@ -217,10 +253,12 @@ function createCollectionMarkup(collection) {
 
     const icon = collection.icon
         ? `
+
             <img
                 src="${collection.icon}"
                 class="collection-icon optional-icon"
                 alt="">
+
           `
         : "";
 
@@ -238,17 +276,22 @@ function createCollectionMarkup(collection) {
 }
 
 
-function createSourceMarkup(skin) {
+function createSourceMarkup(skin, viewer = false) {
 
     const source = skin.source || {};
     const price = skin.price || {};
+
+    const iconClass = viewer
+        ? "viewer-currency-icon"
+        : "currency-icon";
 
 
     if (source.type === "brawl_pass") {
 
         return createSpecialSourceMarkup(
             source.icon || "assets/collections/brawl_pass.WEBP",
-            source.name || "Brawl Pass"
+            source.name || "Brawl Pass",
+            viewer
         );
 
     }
@@ -258,7 +301,8 @@ function createSourceMarkup(skin) {
 
         return createSpecialSourceMarkup(
             source.icon || "assets/collections/pro_pass.WEBP",
-            source.name || "Pro Pass"
+            source.name || "Pro Pass",
+            viewer
         );
 
     }
@@ -268,7 +312,7 @@ function createSourceMarkup(skin) {
 
         return `
 
-            <span class="source-text">
+            <span class="${viewer ? "viewer-source-text" : "source-text"}">
                 ${source.name || "Бесплатно"}
             </span>
 
@@ -286,11 +330,11 @@ function createSourceMarkup(skin) {
 
             prices.push(`
 
-                <span class="price-item">
+                <span class="${viewer ? "viewer-price-item" : "price-item"}">
 
                     <img
                         src="assets/currencies/gems.WEBP"
-                        class="currency-icon"
+                        class="${iconClass}"
                         alt="Гемы">
 
                     <span>${price.gems}</span>
@@ -306,11 +350,11 @@ function createSourceMarkup(skin) {
 
             prices.push(`
 
-                <span class="price-item">
+                <span class="${viewer ? "viewer-price-item" : "price-item"}">
 
                     <img
                         src="assets/currencies/blings.WEBP"
-                        class="currency-icon"
+                        class="${iconClass}"
                         alt="Блинги">
 
                     <span>${price.blings}</span>
@@ -326,11 +370,11 @@ function createSourceMarkup(skin) {
 
             prices.push(`
 
-                <span class="price-item">
+                <span class="${viewer ? "viewer-price-item" : "price-item"}">
 
                     <img
                         src="assets/currencies/coins.WEBP"
-                        class="currency-icon"
+                        class="${iconClass}"
                         alt="Монеты">
 
                     <span>${price.coins}</span>
@@ -342,29 +386,52 @@ function createSourceMarkup(skin) {
         }
 
 
-        return prices.length
-            ? `<div class="skin-price">${prices.join("")}</div>`
-            : `<span class="source-text">Цена неизвестна</span>`;
+        if (!prices.length) {
+
+            return `
+
+                <span class="${viewer ? "viewer-source-text" : "source-text"}">
+                    Цена неизвестна
+                </span>
+
+            `;
+
+        }
+
+
+        return `
+
+            <div class="${viewer ? "viewer-price" : "skin-price"}">
+                ${prices.join("")}
+            </div>
+
+        `;
 
     }
 
 
-    return `<span class="source-text">Способ получения неизвестен</span>`;
+    return `
+
+        <span class="${viewer ? "viewer-source-text" : "source-text"}">
+            Способ получения неизвестен
+        </span>
+
+    `;
 }
 
 
-function createSpecialSourceMarkup(icon, name) {
+function createSpecialSourceMarkup(icon, sourceName, viewer = false) {
 
     return `
 
-        <div class="special-source">
+        <div class="${viewer ? "viewer-special-source" : "special-source"}">
 
             <img
                 src="${icon}"
-                class="source-icon"
+                class="${viewer ? "viewer-source-icon" : "source-icon"}"
                 alt="">
 
-            <span>${name}</span>
+            <span>${sourceName}</span>
 
         </div>
 
@@ -405,14 +472,243 @@ function setupTabs() {
 }
 
 
-function hideBrokenOptionalIcons() {
+function setupSkinCards() {
 
-    document.querySelectorAll(".optional-icon").forEach(icon => {
+    document
+        .querySelectorAll(".skin-card")
+        .forEach(card => {
 
-        icon.addEventListener("error", () => {
-            icon.style.display = "none";
+            const index = Number(card.dataset.skinIndex);
+
+
+            card.addEventListener("click", () => {
+                openSkinViewer(index);
+            });
+
+
+            card.addEventListener("keydown", event => {
+
+                if (event.key === "Enter" || event.key === " ") {
+
+                    event.preventDefault();
+                    openSkinViewer(index);
+
+                }
+
+            });
+
         });
 
-    });
+}
+
+
+function openSkinViewer(index) {
+
+    if (!currentBrawler) {
+        return;
+    }
+
+    const skin = currentBrawler.skins[index];
+
+    if (!skin) {
+        return;
+    }
+
+    const collection = skin.collection || {};
+
+    skinViewerContent.innerHTML = `
+
+        <div class="viewer-image-box">
+
+            <img
+                src="${skin.image}"
+                class="viewer-skin-image"
+                alt="${skin.displayName}">
+
+        </div>
+
+
+        <div class="viewer-information">
+
+            <h2
+                class="viewer-skin-name"
+                id="viewerSkinName">
+
+                ${skin.displayName}
+
+            </h2>
+
+
+            ${createViewerCollectionMarkup(collection)}
+
+
+            <div class="
+                viewer-rarity
+                skin-rarity-${skin.rarityClass || "unknown"}
+            ">
+
+                ${skin.rarity || "Редкость неизвестна"}
+
+            </div>
+
+
+            <div class="viewer-source">
+                ${createSourceMarkup(skin, true)}
+            </div>
+
+
+            <div class="viewer-release-date">
+
+                <span class="viewer-label">
+                    Дата выхода
+                </span>
+
+                <strong>
+                    ${formatReleaseDate(skin.releaseDate)}
+                </strong>
+
+            </div>
+
+
+            ${skin.description
+                ? `
+
+                    <div class="viewer-description">
+
+                        <span class="viewer-label">
+                            Описание
+                        </span>
+
+                        <p>${skin.description}</p>
+
+                    </div>
+
+                  `
+                : ""}
+
+        </div>
+
+    `;
+
+
+    skinViewer.classList.add("open");
+    skinViewer.setAttribute("aria-hidden", "false");
+
+    document.body.classList.add("viewer-open");
+
+    skinViewerClose.focus();
 
 }
+
+
+function createViewerCollectionMarkup(collection) {
+
+    if (!collection.name) {
+        return "";
+    }
+
+    const icon = collection.icon
+        ? `
+
+            <img
+                src="${collection.icon}"
+                class="viewer-collection-icon optional-icon"
+                alt="">
+
+          `
+        : "";
+
+    return `
+
+        <div class="viewer-collection">
+
+            ${icon}
+
+            <span>${collection.name}</span>
+
+        </div>
+
+    `;
+}
+
+
+function closeSkinViewer() {
+
+    if (!skinViewer.classList.contains("open")) {
+        return;
+    }
+
+    skinViewer.classList.remove("open");
+    skinViewer.setAttribute("aria-hidden", "true");
+
+    document.body.classList.remove("viewer-open");
+
+}
+
+
+function formatReleaseDate(dateString) {
+
+    if (!dateString) {
+        return "Дата неизвестна";
+    }
+
+    const parts = dateString.split("-");
+
+    if (parts.length !== 3) {
+        return dateString;
+    }
+
+    const year = Number(parts[0]);
+    const month = Number(parts[1]) - 1;
+    const day = Number(parts[2]);
+
+    const date = new Date(year, month, day);
+
+    if (Number.isNaN(date.getTime())) {
+        return dateString;
+    }
+
+    return new Intl.DateTimeFormat("ru-RU", {
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+    }).format(date);
+
+}
+
+
+function hideBrokenOptionalIcons() {
+
+    document
+        .querySelectorAll(".optional-icon")
+        .forEach(icon => {
+
+            icon.addEventListener("error", () => {
+                icon.style.display = "none";
+            });
+
+        });
+
+}
+
+
+skinViewerClose.addEventListener("click", closeSkinViewer);
+skinViewerOverlay.addEventListener("click", closeSkinViewer);
+
+
+document.addEventListener("keydown", event => {
+
+    if (event.key === "Escape") {
+        closeSkinViewer();
+    }
+
+});
+
+
+window.addEventListener("popstate", () => {
+
+    if (skinViewer.classList.contains("open")) {
+        closeSkinViewer();
+    }
+
+});
