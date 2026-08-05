@@ -109,8 +109,8 @@
           "icon": "assets/collections/brawl_pass.WEBP"
         },
 
-        "rarity": "Эпический",
-        "rarityClass": "epic",
+        "rarity": "Сверхредкий",
+        "rarityClass": "superrare",
 
         "secondaryRarity": {
           "name": "Эксклюзивный",
