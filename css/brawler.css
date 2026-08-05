@@ -118,7 +118,7 @@
 }
 
 
-/* ---------- Изображение ---------- */
+/* ---------- Изображение скина ---------- */
 
 .skin-image-box{
     width:100%;
@@ -157,6 +157,9 @@
     display:flex;
     flex-direction:column;
 }
+
+
+/* ---------- Название скина ---------- */
 
 .skin-name{
     margin:0 0 6px;
@@ -197,7 +200,7 @@
 }
 
 
-/* ---------- Редкость ---------- */
+/* ---------- Редкость скина ---------- */
 
 .skin-rarity{
     margin:0 0 7px;
@@ -253,6 +256,9 @@
     min-width:0;
 }
 
+
+/* ---------- Год ---------- */
+
 .skin-year{
     position:absolute;
 
@@ -305,7 +311,7 @@
 }
 
 
-/* ---------- Особые источники ---------- */
+/* ---------- Brawl Pass и Pro Pass ---------- */
 
 .special-source{
     display:flex;
@@ -341,7 +347,7 @@
 }
 
 
-/* ---------- Редкость бойца и класс ---------- */
+/* ---------- Редкость и класс бойца ---------- */
 
 .rarity,
 .class-tag{
@@ -355,6 +361,9 @@
     color:white;
     font-weight:bold;
 }
+
+
+/* ---------- Редкости бойцов ---------- */
 
 .starter{
     background:#43b8ff;
@@ -386,6 +395,9 @@
     border:2px solid #666;
 }
 
+
+/* ---------- Классы бойцов ---------- */
+
 .damage{
     background:#ff8c00;
 }
@@ -409,6 +421,9 @@
 .artillery{
     background:#fb8c00;
 }
+
+
+/* ---------- Титулы ---------- */
 
 .gold{
     color:#ffd700;
@@ -476,6 +491,9 @@ body.viewer-open{
     overscroll-behavior:none;
 }
 
+
+/* ---------- Общий контейнер ---------- */
+
 .skin-viewer{
     position:fixed;
     inset:0;
@@ -505,6 +523,9 @@ body.viewer-open{
     display:flex;
 }
 
+
+/* ---------- Затемнённый фон ---------- */
+
 .skin-viewer-overlay{
     position:absolute;
     inset:0;
@@ -520,6 +541,9 @@ body.viewer-open{
     overscroll-behavior:none;
     touch-action:none;
 }
+
+
+/* ---------- Окно ---------- */
 
 .skin-viewer-card{
     position:relative;
@@ -567,7 +591,7 @@ body.viewer-open{
 }
 
 
-/* ---------- Закрытие ---------- */
+/* ---------- Кнопка закрытия ---------- */
 
 .skin-viewer-close{
     position:absolute;
@@ -593,19 +617,29 @@ body.viewer-open{
     color:white;
 
     font-size:29px;
+    font-weight:300;
     line-height:1;
 
     cursor:pointer;
 
     box-shadow:0 3px 10px rgba(0,0,0,.25);
+
+    transition:
+        background .2s,
+        transform .2s;
 }
 
 .skin-viewer-close:hover{
     background:rgba(60,60,90,.95);
+    transform:scale(1.06);
+}
+
+.skin-viewer-close:active{
+    transform:scale(.94);
 }
 
 
-/* ---------- Большое изображение ---------- */
+/* ---------- Большая картинка ---------- */
 
 .viewer-image-box{
     position:relative;
@@ -645,6 +679,7 @@ body.viewer-open{
     object-fit:contain;
 
     pointer-events:none;
+
     user-select:none;
     -webkit-user-select:none;
 
@@ -660,6 +695,9 @@ body.viewer-open{
     padding:8px 22px 24px;
     text-align:left;
 }
+
+
+/* ---------- Название и счётчик ---------- */
 
 .viewer-title-row{
     display:flex;
@@ -695,44 +733,24 @@ body.viewer-open{
 
 
 /* ==================================================
-   Разделы с названием между линиями
+   Простые группы информации
    ================================================== */
 
-.viewer-section{
-    margin-top:18px;
+.viewer-info-group{
+    margin-top:16px;
 }
 
-.viewer-section-title{
-    width:100%;
+.viewer-info-label{
+    margin-bottom:8px;
 
-    display:flex;
-    align-items:center;
+    color:#9999ad;
 
-    gap:10px;
-    margin:0 0 12px;
-
-    color:#a7a7b9;
-
-    font-size:13px;
+    font-size:12px;
     font-weight:700;
     line-height:1;
-    letter-spacing:.04em;
-}
 
-.viewer-section-title::before,
-.viewer-section-title::after{
-    content:"";
-
-    flex:1;
-    min-width:15px;
-    height:1px;
-
-    background:rgba(255,255,255,.14);
-}
-
-.viewer-section-title span{
-    flex-shrink:0;
-    white-space:nowrap;
+    letter-spacing:.05em;
+    text-transform:uppercase;
 }
 
 
@@ -743,7 +761,7 @@ body.viewer-open{
     flex-direction:column;
     align-items:flex-start;
 
-    gap:6px;
+    gap:5px;
 }
 
 .viewer-collection{
@@ -756,6 +774,7 @@ body.viewer-open{
 
     font-size:15px;
     font-weight:600;
+    line-height:1.2;
 }
 
 .viewer-secondary-collection{
@@ -783,7 +802,7 @@ body.viewer-open{
     flex-direction:column;
     align-items:flex-start;
 
-    gap:6px;
+    gap:4px;
 }
 
 .viewer-rarity{
@@ -802,7 +821,7 @@ body.viewer-open{
 /* ---------- Получение ---------- */
 
 .viewer-source{
-    min-height:30px;
+    min-height:28px;
 
     display:flex;
     align-items:center;
@@ -835,6 +854,9 @@ body.viewer-open{
     width:21px;
     height:21px;
 
+    max-width:21px;
+    max-height:21px;
+
     object-fit:contain;
     flex-shrink:0;
 }
@@ -857,6 +879,9 @@ body.viewer-open{
     width:28px;
     height:28px;
 
+    max-width:28px;
+    max-height:28px;
+
     object-fit:contain;
     flex-shrink:0;
 }
@@ -869,11 +894,31 @@ body.viewer-open{
 }
 
 
-/* ---------- Дата ---------- */
+/* ==================================================
+   Дата и описание с линией
+   ================================================== */
+
+.viewer-detail-section{
+    margin-top:18px;
+    padding-top:14px;
+
+    border-top:1px solid rgba(255,255,255,.09);
+}
+
+.viewer-detail-label{
+    margin-bottom:7px;
+
+    color:#9999ad;
+
+    font-size:12px;
+    font-weight:700;
+    line-height:1;
+
+    letter-spacing:.05em;
+    text-transform:uppercase;
+}
 
 .viewer-release-date{
-    display:block;
-
     padding:0;
     border:none;
 }
@@ -884,9 +929,6 @@ body.viewer-open{
     font-size:17px;
     line-height:1.35;
 }
-
-
-/* ---------- Описание ---------- */
 
 .viewer-description{
     margin:0;
@@ -929,11 +971,17 @@ body.viewer-open{
     color:white;
 
     font-size:36px;
+    font-weight:300;
     line-height:1;
 
     cursor:pointer;
 
     transform:translateY(-50%);
+
+    transition:
+        background .2s,
+        opacity .2s,
+        transform .2s;
 }
 
 .viewer-navigation-left{
@@ -1080,6 +1128,7 @@ body.viewer-open{
     }
 
     .price-item{
+        gap:2px;
         font-size:12px;
     }
 
@@ -1097,6 +1146,8 @@ body.viewer-open{
         font-size:11px;
     }
 
+
+    /* ---------- Просмотрщик ---------- */
 
     .skin-viewer{
         padding:
@@ -1146,19 +1197,21 @@ body.viewer-open{
         font-size:12px;
     }
 
-    .viewer-section{
+
+    /* ---------- Группы ---------- */
+
+    .viewer-info-group{
+        margin-top:14px;
+    }
+
+    .viewer-info-label,
+    .viewer-detail-label{
+        font-size:11px;
+    }
+
+    .viewer-detail-section{
         margin-top:16px;
-    }
-
-    .viewer-section-title{
-        gap:8px;
-
-        font-size:12px;
-    }
-
-    .viewer-section-title::before,
-    .viewer-section-title::after{
-        min-width:10px;
+        padding-top:12px;
     }
 
     .viewer-collection{
@@ -1168,6 +1221,9 @@ body.viewer-open{
     .viewer-collection-icon{
         width:23px;
         height:23px;
+
+        max-width:23px;
+        max-height:23px;
     }
 
     .viewer-rarity{
@@ -1185,11 +1241,17 @@ body.viewer-open{
     .viewer-currency-icon{
         width:19px;
         height:19px;
+
+        max-width:19px;
+        max-height:19px;
     }
 
     .viewer-release-date strong{
         font-size:15px;
     }
+
+
+    /* ---------- Стрелки ---------- */
 
     .viewer-navigation{
         width:35px;
