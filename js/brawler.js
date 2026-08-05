@@ -203,7 +203,15 @@ fetch("data/brawlers.json")
 function createSkinCard(skin, index) {
 
     const collection = skin.collection || {};
-    const rarityClass = skin.rarityClass || "unknown";
+    const cardRarity = skin.secondaryRarity
+    ? {
+        name: skin.secondaryRarity.name,
+        class: skin.secondaryRarity.class || "unknown"
+      }
+    : {
+        name: skin.rarity || "Редкость неизвестна",
+        class: skin.rarityClass || "unknown"
+      };
     const releaseYear = skin.releaseYear || "—";
 
     return `
@@ -236,8 +244,8 @@ function createSkinCard(skin, index) {
                 ${createCollectionMarkup(collection)}
 
 
-                <div class="skin-rarity skin-rarity-${rarityClass}">
-                    ${skin.rarity || "Редкость неизвестна"}
+                <div class="skin-rarity skin-rarity-${cardRarity.class}">
+                    ${cardRarity.name}
                 </div>
 
 
