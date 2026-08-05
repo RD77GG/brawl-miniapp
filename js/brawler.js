@@ -88,6 +88,7 @@ fetch("data/brawlers.json")
 
                     </p>
 
+
                     <p>
 
                         <strong>⚔️ Класс:</strong>
@@ -111,6 +112,7 @@ fetch("data/brawlers.json")
                         🎨 Скины
 
                     </button>
+
 
                     <button
                         type="button"
@@ -212,6 +214,15 @@ function createSkinCard(skin, index) {
     const collection = skin.collection || {};
     const releaseYear = skin.releaseYear || "—";
 
+    /*
+       Если есть дополнительная редкость,
+       она показывается в маленькой карточке.
+
+       Например:
+       Редкий + Эксклюзивный
+       В маленькой карточке: Эксклюзивный
+    */
+
     const cardRarity = skin.secondaryRarity
         ? {
             name:
@@ -281,6 +292,7 @@ function createSkinCard(skin, index) {
                         ${createSourceMarkup(skin)}
 
                     </div>
+
 
                     <span class="skin-year">
                         ${releaseYear}
@@ -838,10 +850,10 @@ function renderViewerSkin(index, direction = "") {
                 </div>
 
 
-                <section class="viewer-section">
+                <div class="viewer-info-group">
 
-                    <div class="viewer-section-title">
-                        <span>Коллекции</span>
+                    <div class="viewer-info-label">
+                        Коллекции
                     </div>
 
                     <div class="viewer-collections">
@@ -857,13 +869,13 @@ function renderViewerSkin(index, direction = "") {
 
                     </div>
 
-                </section>
+                </div>
 
 
-                <section class="viewer-section">
+                <div class="viewer-info-group">
 
-                    <div class="viewer-section-title">
-                        <span>Редкость</span>
+                    <div class="viewer-info-label">
+                        Редкость
                     </div>
 
                     <div class="viewer-rarities">
@@ -884,13 +896,13 @@ function renderViewerSkin(index, direction = "") {
 
                     </div>
 
-                </section>
+                </div>
 
 
-                <section class="viewer-section">
+                <div class="viewer-info-group">
 
-                    <div class="viewer-section-title">
-                        <span>Получение</span>
+                    <div class="viewer-info-label">
+                        Получение
                     </div>
 
                     <div class="viewer-source">
@@ -902,13 +914,13 @@ function renderViewerSkin(index, direction = "") {
 
                     </div>
 
-                </section>
+                </div>
 
 
-                <section class="viewer-section">
+                <div class="viewer-detail-section">
 
-                    <div class="viewer-section-title">
-                        <span>Дата выхода</span>
+                    <div class="viewer-detail-label">
+                        Дата выхода
                     </div>
 
                     <div class="viewer-release-date">
@@ -921,16 +933,16 @@ function renderViewerSkin(index, direction = "") {
 
                     </div>
 
-                </section>
+                </div>
 
 
                 ${skin.description
                     ? `
 
-                        <section class="viewer-section">
+                        <div class="viewer-detail-section">
 
-                            <div class="viewer-section-title">
-                                <span>Описание</span>
+                            <div class="viewer-detail-label">
+                                Описание
                             </div>
 
                             <div class="viewer-description">
@@ -941,7 +953,7 @@ function renderViewerSkin(index, direction = "") {
 
                             </div>
 
-                        </section>
+                        </div>
 
                     `
                     : ""}
@@ -1182,7 +1194,7 @@ function closeSkinViewer() {
 
 
 /* ==================================================
-   Дата
+   Форматирование даты
    ================================================== */
 
 function formatReleaseDate(dateString) {
@@ -1233,7 +1245,7 @@ function formatReleaseDate(dateString) {
 
 
 /* ==================================================
-   Необязательные изображения
+   Скрытие сломанных необязательных иконок
    ================================================== */
 
 function hideBrokenOptionalIcons() {
@@ -1459,7 +1471,7 @@ document.addEventListener(
 
 
 /* ==================================================
-   Запрет прокрутки фона
+   Запрет прокрутки за просмотрщиком
    ================================================== */
 
 document.addEventListener(
