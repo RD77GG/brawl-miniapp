@@ -69,7 +69,8 @@ fetch("data/brawlers.json")
                 <img
                     src="${brawler.image}"
                     class="main-image"
-                    alt="${brawler.displayName}">
+                    alt="${brawler.displayName}"
+                    draggable="false">
 
                 <h1 class="brawler-name">
                     ${brawler.displayName}
@@ -214,6 +215,17 @@ function createSkinCard(skin, index) {
     const collection = skin.collection || {};
     const releaseYear = skin.releaseYear || "—";
 
+    /*
+       В маленькой карточке дополнительная редкость
+       имеет приоритет.
+
+       Например:
+       Сверхредкий + Эксклюзивный
+
+       На маленькой карточке:
+       Эксклюзивный
+    */
+
     const cardRarity = skin.secondaryRarity
         ? {
             name:
@@ -235,10 +247,26 @@ function createSkinCard(skin, index) {
         };
 
 
+    /*
+       Свечение при удержании зависит от основной
+       редкости скина.
+
+       Например, у Принцессы Шелли:
+       основная редкость — superrare,
+       поэтому свечение будет синим.
+    */
+
+    const glowClass =
+        skin.rarityClass || "unknown";
+
+
     return `
 
         <article
-            class="skin-card"
+            class="
+                skin-card
+                skin-glow-${glowClass}
+            "
             data-skin-index="${index}"
             tabindex="0"
             role="button"
@@ -280,7 +308,10 @@ function createSkinCard(skin, index) {
 
                     <div class="skin-source">
 
-                        ${createSourceMarkup(skin, false)}
+                        ${createSourceMarkup(
+                            skin,
+                            false
+                        )}
 
                     </div>
 
@@ -314,7 +345,8 @@ function createCollectionMarkup(collection) {
             <img
                 src="${collection.icon}"
                 class="collection-icon optional-icon"
-                alt="">
+                alt=""
+                draggable="false">
         `
         : "";
 
@@ -362,12 +394,17 @@ function createSourceMarkup(skin, viewer = false) {
 
 
     /*
-       В маленькой карточке используется shortName.
+       Маленькая карточка использует shortName.
 
-       В полном просмотре используется name.
+       Полноэкранный просмотр использует name.
 
-       Если shortName не указан, будет использовано
-       обычное поле name.
+       Пример:
+
+       Маленькая карточка:
+       Brawl Pass
+
+       Полноэкранная карточка:
+       Brawl Pass · 8-й сезон
     */
 
     const displayedSourceName = viewer
@@ -433,7 +470,8 @@ function createSourceMarkup(skin, viewer = false) {
                     <img
                         src="assets/currencies/gems.WEBP"
                         class="${iconClass}"
-                        alt="Гемы">
+                        alt="Гемы"
+                        draggable="false">
 
                     <span>
                         ${price.gems}
@@ -458,7 +496,8 @@ function createSourceMarkup(skin, viewer = false) {
                     <img
                         src="assets/currencies/blings.WEBP"
                         class="${iconClass}"
-                        alt="Блинги">
+                        alt="Блинги"
+                        draggable="false">
 
                     <span>
                         ${price.blings}
@@ -483,7 +522,8 @@ function createSourceMarkup(skin, viewer = false) {
                     <img
                         src="assets/currencies/coins.WEBP"
                         class="${iconClass}"
-                        alt="Монеты">
+                        alt="Монеты"
+                        draggable="false">
 
                     <span>
                         ${price.coins}
@@ -553,7 +593,8 @@ function createSpecialSourceMarkup(
             <img
                 src="${icon}"
                 class="${iconClass} optional-icon"
-                alt="">
+                alt=""
+                draggable="false">
 
             <span>
                 ${sourceName}
@@ -572,8 +613,11 @@ function createSpecialSourceMarkup(
 
 function setupTabs() {
 
-    const skinsTab = document.getElementById("skinsTab");
-    const infoTab = document.getElementById("infoTab");
+    const skinsTab =
+        document.getElementById("skinsTab");
+
+    const infoTab =
+        document.getElementById("infoTab");
 
     const skinsContent =
         document.getElementById("skinsContent");
@@ -664,7 +708,7 @@ function setupSkinCards() {
 
 
 /* ==================================================
-   Открытие просмотрщика
+   Открытие полноэкранного просмотрщика
    ================================================== */
 
 function openSkinViewer(index) {
@@ -677,9 +721,10 @@ function openSkinViewer(index) {
         return;
     }
 
-    const skins = Array.isArray(currentBrawler.skins)
-        ? currentBrawler.skins
-        : [];
+    const skins =
+        Array.isArray(currentBrawler.skins)
+            ? currentBrawler.skins
+            : [];
 
     if (!skins[index]) {
         return;
@@ -753,9 +798,10 @@ function renderViewerSkin(index, direction = "") {
         return;
     }
 
-    const skins = Array.isArray(currentBrawler.skins)
-        ? currentBrawler.skins
-        : [];
+    const skins =
+        Array.isArray(currentBrawler.skins)
+            ? currentBrawler.skins
+            : [];
 
     const skin = skins[index];
 
@@ -996,7 +1042,8 @@ function createViewerCollectionMarkup(
                     viewer-collection-icon
                     optional-icon
                 "
-                alt="">
+                alt=""
+                draggable="false">
         `
         : "";
 
@@ -1070,9 +1117,10 @@ function changeViewerSkin(step) {
         return;
     }
 
-    const skins = Array.isArray(currentBrawler.skins)
-        ? currentBrawler.skins
-        : [];
+    const skins =
+        Array.isArray(currentBrawler.skins)
+            ? currentBrawler.skins
+            : [];
 
     const newIndex =
         currentSkinIndex + step;
@@ -1108,7 +1156,7 @@ function changeViewerSkin(step) {
 
 
 /* ==================================================
-   Свайп
+   Обработка свайпа
    ================================================== */
 
 function handleViewerSwipe() {
@@ -1296,7 +1344,7 @@ function hideBrokenOptionalIcons() {
 
 
 /* ==================================================
-   Кнопки стрелок
+   Нажатие на стрелки
    ================================================== */
 
 if (skinViewerContent) {
@@ -1364,7 +1412,7 @@ if (skinViewerContent) {
 
         },
         {
-            passive: true
+            passive:true
         }
     );
 
@@ -1386,7 +1434,7 @@ if (skinViewerContent) {
 
         },
         {
-            passive: true
+            passive:true
         }
     );
 
@@ -1410,7 +1458,7 @@ if (skinViewerContent) {
 
 
 /* ==================================================
-   Закрытие
+   Закрытие по кнопке и затемнённому фону
    ================================================== */
 
 if (skinViewerClose) {
@@ -1434,7 +1482,7 @@ if (skinViewerOverlay) {
 
 
 /* ==================================================
-   Клавиатура
+   Управление клавиатурой
    ================================================== */
 
 document.addEventListener(
@@ -1503,6 +1551,55 @@ document.addEventListener(
 
     },
     {
-        passive: false
+        passive:false
+    }
+);
+
+
+/* ==================================================
+   Запрет меню сохранения, копирования и перетаскивания
+   ================================================== */
+
+document.addEventListener(
+    "contextmenu",
+    event => {
+
+        if (
+            event.target.closest(".skin-card") ||
+            event.target.closest(".skin-viewer-card")
+        ) {
+            event.preventDefault();
+        }
+
+    }
+);
+
+
+document.addEventListener(
+    "selectstart",
+    event => {
+
+        if (
+            event.target.closest(".skin-card") ||
+            event.target.closest(".skin-viewer-card")
+        ) {
+            event.preventDefault();
+        }
+
+    }
+);
+
+
+document.addEventListener(
+    "dragstart",
+    event => {
+
+        if (
+            event.target.closest(".skin-card") ||
+            event.target.closest(".skin-viewer-card")
+        ) {
+            event.preventDefault();
+        }
+
     }
 );
