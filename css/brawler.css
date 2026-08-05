@@ -14,14 +14,15 @@
 .main-image{
     width:260px;
     height:260px;
+
     object-fit:contain;
+
+    padding:15px;
+    margin-bottom:4px;
 
     background:#2b2b45;
     border:3px solid #454565;
     border-radius:25px;
-
-    padding:15px;
-    margin-bottom:4px;
 }
 
 
@@ -71,8 +72,8 @@
 /* ---------- Блок со скинами ---------- */
 
 #skinsContent{
-    margin-left:-14px;
     margin-right:-14px;
+    margin-left:-14px;
 }
 
 
@@ -87,14 +88,15 @@
 }
 
 
-/* ---------- Карточка скина ---------- */
+/* ---------- Маленькая карточка скина ---------- */
 
 .skin-card{
     min-width:0;
 
+    overflow:hidden;
+
     background:#2b2b45;
     border-radius:18px;
-    overflow:hidden;
 
     text-align:left;
     cursor:pointer;
@@ -109,7 +111,7 @@
 
 .skin-card:hover{
     transform:translateY(-2px);
-    box-shadow:0 8px 18px rgba(0,0,0,.30);
+    box-shadow:0 8px 18px rgba(0,0,0,.3);
 }
 
 .skin-card:active{
@@ -179,6 +181,7 @@
 
     min-height:23px;
     margin-bottom:7px;
+
     gap:4px;
 
     color:#c7c7d4;
@@ -261,8 +264,8 @@
 .skin-year{
     position:absolute;
 
-    right:0;
     top:50%;
+    right:0;
 
     transform:translateY(-50%);
 
@@ -282,6 +285,7 @@
     align-items:center;
 
     gap:7px;
+
     white-space:nowrap;
 }
 
@@ -317,6 +321,7 @@
     align-items:center;
 
     min-width:0;
+
     gap:5px;
 
     color:white;
@@ -439,9 +444,10 @@
 
     margin:18px 20px;
 
+    overflow:hidden;
+
     background:#2b2b45;
     border-radius:16px;
-    overflow:hidden;
 }
 
 .tab{
@@ -496,26 +502,27 @@ body.viewer-open{
 
 .skin-viewer{
     position:fixed;
-
     inset:0;
+
+    z-index:1000;
+
     width:100%;
     height:100vh;
     height:100dvh;
-
-    z-index:1000;
 
     display:none;
     align-items:center;
     justify-content:center;
 
     overflow:hidden;
-    overscroll-behavior:none;
-    touch-action:none;
 
     padding:
         max(16px, env(safe-area-inset-top))
         16px
         max(16px, env(safe-area-inset-bottom));
+
+    overscroll-behavior:none;
+    touch-action:auto;
 }
 
 .skin-viewer.open{
@@ -523,7 +530,7 @@ body.viewer-open{
 }
 
 
-/* ---------- Затемнение фона ---------- */
+/* ---------- Затемнённый фон ---------- */
 
 .skin-viewer-overlay{
     position:absolute;
@@ -549,15 +556,12 @@ body.viewer-open{
     z-index:1;
 
     width:min(92vw, 460px);
+
     max-height:90vh;
     max-height:90dvh;
 
     overflow-x:hidden;
     overflow-y:auto;
-
-    overscroll-behavior:contain;
-    touch-action:pan-y;
-    -webkit-overflow-scrolling:touch;
 
     background:linear-gradient(
         180deg,
@@ -570,6 +574,10 @@ body.viewer-open{
     border-radius:26px;
 
     box-shadow:0 24px 70px rgba(0,0,0,.55);
+
+    overscroll-behavior:contain;
+    touch-action:pan-y;
+    -webkit-overflow-scrolling:touch;
 
     animation:skinViewerOpen .25s ease;
 }
@@ -597,7 +605,7 @@ body.viewer-open{
     top:12px;
     right:12px;
 
-    z-index:5;
+    z-index:10;
 
     width:38px;
     height:38px;
@@ -640,6 +648,8 @@ body.viewer-open{
 /* ---------- Большое изображение скина ---------- */
 
 .viewer-image-box{
+    position:relative;
+
     width:100%;
     height:320px;
 
@@ -658,6 +668,9 @@ body.viewer-open{
             rgba(67,184,255,.04) 43%,
             transparent 72%
         );
+
+    user-select:none;
+    -webkit-user-select:none;
 }
 
 .viewer-skin-image{
@@ -671,8 +684,13 @@ body.viewer-open{
 
     object-fit:contain;
 
+    pointer-events:none;
+
+    user-select:none;
+    -webkit-user-select:none;
+
     filter:drop-shadow(
-        0 16px 18px rgba(0,0,0,.30)
+        0 16px 18px rgba(0,0,0,.3)
     );
 }
 
@@ -684,8 +702,21 @@ body.viewer-open{
     text-align:left;
 }
 
+
+/* ---------- Название и счётчик ---------- */
+
+.viewer-title-row{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+
+    gap:12px;
+}
+
 .viewer-skin-name{
-    margin:0 45px 12px 0;
+    flex:1;
+
+    margin:0 0 12px;
 
     color:white;
 
@@ -694,20 +725,45 @@ body.viewer-open{
     line-height:1.1;
 }
 
+.viewer-skin-counter{
+    flex-shrink:0;
 
-/* ---------- Коллекция в просмотрщике ---------- */
+    padding-top:3px;
+
+    color:#9999ad;
+
+    font-size:13px;
+    font-weight:700;
+    line-height:1.2;
+}
+
+
+/* ---------- Несколько коллекций ---------- */
+
+.viewer-collections{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+
+    gap:5px;
+    margin-bottom:12px;
+}
 
 .viewer-collection{
     display:flex;
     align-items:center;
 
     gap:4px;
-    margin-bottom:12px;
+    margin:0;
 
     color:#cacada;
 
     font-size:15px;
     font-weight:600;
+}
+
+.viewer-secondary-collection{
+    opacity:.9;
 }
 
 .viewer-collection-icon{
@@ -724,14 +780,27 @@ body.viewer-open{
 }
 
 
-/* ---------- Редкость в просмотрщике ---------- */
+/* ---------- Несколько редкостей ---------- */
+
+.viewer-rarities{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+
+    gap:5px;
+    margin-bottom:14px;
+}
 
 .viewer-rarity{
-    margin-bottom:14px;
+    margin:0;
 
     font-size:17px;
     font-weight:800;
     line-height:1.2;
+}
+
+.viewer-secondary-rarity{
+    font-size:16px;
 }
 
 
@@ -739,17 +808,16 @@ body.viewer-open{
 
 .viewer-source{
     min-height:30px;
+    margin-bottom:18px;
 
     display:flex;
     align-items:center;
-
-    margin-bottom:18px;
 }
 
 .viewer-price{
     display:flex;
-    align-items:center;
     flex-wrap:wrap;
+    align-items:center;
 
     gap:16px;
 }
@@ -863,188 +931,9 @@ body.viewer-open{
 }
 
 
-/* ---------- Телефоны с узким экраном ---------- */
-
-@media (max-width:380px){
-
-    .brawler-main{
-        padding:14px;
-    }
-
-    .main-image{
-        width:240px;
-        height:240px;
-    }
-
-    .brawler-name{
-        font-size:38px;
-    }
-
-    #skinsContent{
-        margin-left:-10px;
-        margin-right:-10px;
-    }
-
-    .skins{
-        gap:10px;
-        padding:12px 4px 18px;
-    }
-
-    .skin-image-box{
-        height:145px;
-        padding:7px;
-    }
-
-    .skin-card-content{
-        min-height:128px;
-        padding:9px 10px 6px;
-    }
-
-    .skin-name{
-        margin-bottom:5px;
-        font-size:15px;
-    }
-
-    .skin-collection{
-        min-height:21px;
-        margin-bottom:6px;
-        gap:3px;
-
-        font-size:12px;
-    }
-
-    .collection-icon{
-        width:20px;
-        height:20px;
-    }
-
-    .skin-rarity{
-        margin-bottom:7px;
-        font-size:13px;
-    }
-
-    .skin-card-footer{
-        min-height:20px;
-        padding-right:31px;
-    }
-
-    .skin-price{
-        gap:5px;
-    }
-
-    .currency-icon{
-        width:15px;
-        height:15px;
-    }
-
-    .price-item{
-        gap:2px;
-        font-size:12px;
-    }
-
-    .special-source,
-    .source-text{
-        font-size:12px;
-    }
-
-    .source-icon{
-        width:20px;
-        height:20px;
-    }
-
-    .skin-year{
-        font-size:11px;
-    }
-
-
-    /* ---------- Просмотрщик на узких телефонах ---------- */
-
-    .skin-viewer{
-        padding:
-            max(10px, env(safe-area-inset-top))
-            10px
-            max(10px, env(safe-area-inset-bottom));
-    }
-
-    .skin-viewer-card{
-        width:96vw;
-
-        max-height:92vh;
-        max-height:92dvh;
-
-        border-radius:22px;
-    }
-
-    .viewer-image-box{
-        height:280px;
-        padding:20px 14px 8px;
-    }
-
-    .viewer-skin-image{
-        max-width:300px;
-        max-height:260px;
-    }
-
-    .viewer-information{
-        padding:7px 17px 20px;
-    }
-
-    .viewer-skin-name{
-        margin-right:42px;
-        font-size:24px;
-    }
-
-    .viewer-collection{
-        font-size:14px;
-    }
-
-    .viewer-collection-icon{
-        width:23px;
-        height:23px;
-
-        max-width:23px;
-        max-height:23px;
-    }
-
-    .viewer-rarity{
-        font-size:15px;
-    }
-
-    .viewer-price-item{
-        font-size:16px;
-    }
-
-    .viewer-currency-icon{
-        width:19px;
-        height:19px;
-
-        max-width:19px;
-        max-height:19px;
-    }
-
-    .viewer-release-date strong{
-        font-size:15px;
-    }
-
-}
 /* ==================================================
-   Переключение скинов
+   Стрелки переключения
    ================================================== */
-
-.viewer-image-box{
-    position:relative;
-    user-select:none;
-    -webkit-user-select:none;
-}
-
-.viewer-skin-image{
-    pointer-events:none;
-    user-select:none;
-    -webkit-user-select:none;
-}
-
-
-/* ---------- Стрелки ---------- */
 
 .viewer-navigation{
     position:absolute;
@@ -1103,32 +992,9 @@ body.viewer-open{
 }
 
 
-/* ---------- Название и счётчик ---------- */
-
-.viewer-title-row{
-    display:flex;
-    align-items:flex-start;
-    justify-content:space-between;
-    gap:12px;
-}
-
-.viewer-title-row .viewer-skin-name{
-    flex:1;
-    margin-right:0;
-}
-
-.viewer-skin-counter{
-    flex-shrink:0;
-
-    color:#9999ad;
-
-    font-size:13px;
-    font-weight:700;
-    line-height:1.2;
-}
-
-
-/* ---------- Анимация смены ---------- */
+/* ==================================================
+   Анимация смены скина
+   ================================================== */
 
 .viewer-swipe-content{
     animation-duration:.22s;
@@ -1172,13 +1038,198 @@ body.viewer-open{
 }
 
 
+/* ==================================================
+   Телефоны с узким экраном
+   ================================================== */
+
 @media (max-width:380px){
+
+    .brawler-main{
+        padding:14px;
+    }
+
+    .main-image{
+        width:240px;
+        height:240px;
+    }
+
+    .brawler-name{
+        font-size:38px;
+    }
+
+    #skinsContent{
+        margin-right:-10px;
+        margin-left:-10px;
+    }
+
+    .skins{
+        gap:10px;
+        padding:12px 4px 18px;
+    }
+
+    .skin-image-box{
+        height:145px;
+        padding:7px;
+    }
+
+    .skin-card-content{
+        min-height:128px;
+        padding:9px 10px 6px;
+    }
+
+    .skin-name{
+        margin-bottom:5px;
+        font-size:15px;
+    }
+
+    .skin-collection{
+        min-height:21px;
+        margin-bottom:6px;
+
+        gap:3px;
+
+        font-size:12px;
+    }
+
+    .collection-icon{
+        width:20px;
+        height:20px;
+    }
+
+    .skin-rarity{
+        margin-bottom:7px;
+        font-size:13px;
+    }
+
+    .skin-card-footer{
+        min-height:20px;
+        padding-right:31px;
+    }
+
+    .skin-price{
+        gap:5px;
+    }
+
+    .currency-icon{
+        width:15px;
+        height:15px;
+    }
+
+    .price-item{
+        gap:2px;
+        font-size:12px;
+    }
+
+    .special-source,
+    .source-text{
+        font-size:12px;
+    }
+
+    .source-icon{
+        width:20px;
+        height:20px;
+    }
+
+    .skin-year{
+        font-size:11px;
+    }
+
+
+    /* ---------- Просмотрщик ---------- */
+
+    .skin-viewer{
+        padding:
+            max(10px, env(safe-area-inset-top))
+            10px
+            max(10px, env(safe-area-inset-bottom));
+    }
+
+    .skin-viewer-card{
+        width:96vw;
+
+        max-height:92vh;
+        max-height:92dvh;
+
+        border-radius:22px;
+    }
+
+    .skin-viewer-close{
+        top:10px;
+        right:10px;
+
+        width:36px;
+        height:36px;
+
+        font-size:27px;
+    }
+
+    .viewer-image-box{
+        height:280px;
+        padding:20px 14px 8px;
+    }
+
+    .viewer-skin-image{
+        max-width:300px;
+        max-height:260px;
+    }
+
+    .viewer-information{
+        padding:7px 17px 20px;
+    }
+
+    .viewer-skin-name{
+        font-size:24px;
+    }
+
+    .viewer-skin-counter{
+        font-size:12px;
+    }
+
+    .viewer-collection{
+        font-size:14px;
+    }
+
+    .viewer-collection-icon{
+        width:23px;
+        height:23px;
+
+        max-width:23px;
+        max-height:23px;
+    }
+
+    .viewer-rarity{
+        font-size:15px;
+    }
+
+    .viewer-secondary-rarity{
+        font-size:14px;
+    }
+
+    .viewer-price-item{
+        font-size:16px;
+    }
+
+    .viewer-currency-icon{
+        width:19px;
+        height:19px;
+
+        max-width:19px;
+        max-height:19px;
+    }
+
+    .viewer-release-date strong{
+        font-size:15px;
+    }
+
+
+    /* ---------- Стрелки ---------- */
 
     .viewer-navigation{
         width:35px;
         height:48px;
 
         border-radius:13px;
+
         font-size:34px;
     }
 
@@ -1188,10 +1239,6 @@ body.viewer-open{
 
     .viewer-navigation-right{
         right:6px;
-    }
-
-    .viewer-skin-counter{
-        font-size:12px;
     }
 
 }
