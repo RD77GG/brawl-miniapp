@@ -23,14 +23,16 @@ const swipeDistance = 45;
 
 
 /* ==================================================
-   Загрузка данных 
+   Загрузка данных
    ================================================== */
 
 fetch("data/brawlers.json")
     .then(response => {
 
         if (!response.ok) {
-            throw new Error(`Ошибка загрузки JSON: ${response.status}`);
+            throw new Error(
+                `Ошибка загрузки JSON: ${response.status}`
+            );
         }
 
         return response.json();
@@ -38,7 +40,9 @@ fetch("data/brawlers.json")
     })
     .then(brawlers => {
 
-        const brawler = brawlers.find(item => item.name === name);
+        const brawler = brawlers.find(
+            item => item.name === name
+        );
 
         if (!brawler) {
 
@@ -83,8 +87,11 @@ fetch("data/brawlers.json")
 
                         <strong>⭐ Редкость:</strong>
 
-                        <span class="rarity ${brawler.rarityClass}">
-                            ${brawler.rarity}
+                        <span class="
+                            rarity
+                            ${brawler.rarityClass || ""}
+                        ">
+                            ${brawler.rarity || "Неизвестно"}
                         </span>
 
                     </p>
@@ -94,8 +101,11 @@ fetch("data/brawlers.json")
 
                         <strong>⚔️ Класс:</strong>
 
-                        <span class="class-tag ${brawler.classClass}">
-                            ${brawler.class}
+                        <span class="
+                            class-tag
+                            ${brawler.classClass || ""}
+                        ">
+                            ${brawler.class || "Неизвестно"}
                         </span>
 
                     </p>
@@ -152,21 +162,24 @@ fetch("data/brawlers.json")
 
                         <h2>🏆 Титулы</h2>
 
-                        ${titles
-                            .map(title => `
+                        ${titles.length
+                            ? titles
+                                .map(title => `
 
-                                <p class="${title.style || ""}">
+                                    <p class="${title.style || ""}">
 
-                                    <strong>
-                                        ${title.prime} Прайм:
-                                    </strong>
+                                        <strong>
+                                            ${title.prime} Прайм:
+                                        </strong>
 
-                                    ${title.name}
+                                        ${title.name}
 
-                                </p>
+                                    </p>
 
-                            `)
-                            .join("")}
+                                `)
+                                .join("")
+                            : "<p>Титулы пока не добавлены</p>"
+                        }
 
                     </div>
 
@@ -215,6 +228,21 @@ function createSkinCard(skin, index) {
     const collection = skin.collection || {};
     const releaseYear = skin.releaseYear || "—";
 
+    /*
+       Дополнительная редкость имеет приоритет
+       только в маленькой карточке.
+
+       Например:
+       Сверхредкий + Эксклюзивный
+
+       Маленькая карточка:
+       Эксклюзивный
+
+       Полный просмотр:
+       Сверхредкий
+       Эксклюзивный
+    */
+
     const cardRarity = skin.secondaryRarity
         ? {
             name:
@@ -235,10 +263,9 @@ function createSkinCard(skin, index) {
                 "unknown"
         };
 
-
     /*
-       Свечение маленькой карточки зависит
-       от основной редкости скина.
+       Свечение зависит от основной редкости,
+       а не от дополнительной.
     */
 
     const glowClass =
@@ -379,9 +406,17 @@ function createSourceMarkup(skin, viewer = false) {
 
 
     /*
-       Маленькая карточка использует shortName.
+       В маленькой карточке используется shortName.
 
-       Полноэкранный режим использует name.
+       В полном просмотре используется name.
+
+       Например:
+
+       Маленькая карточка:
+       Brawl Pass
+
+       Полный просмотр:
+       Brawl Pass · 8-й сезон
     */
 
     const displayedSourceName = viewer
@@ -638,7 +673,7 @@ function setupTabs() {
 
 
 /* ==================================================
-   Нажатие на карточки
+   Нажатия на маленькие карточки
    ================================================== */
 
 function setupSkinCards() {
@@ -729,6 +764,7 @@ function openSkinViewer(index) {
 
 
     document.body.style.position = "fixed";
+
     document.body.style.top =
         `-${savedScrollPosition}px`;
 
@@ -758,6 +794,60 @@ function openSkinViewer(index) {
     if (skinViewerClose) {
         skinViewerClose.focus();
     }
+
+}
+
+
+/* ==================================================
+   Установка свечения внешней карточки
+   ================================================== */
+
+function setViewerCardGlow(rarityClass) {
+
+    if (!skinViewer) {
+        return;
+    }
+
+    const viewerCard =
+        skinViewer.querySelector(
+            ".skin-viewer-card"
+        );
+
+    if (!viewerCard) {
+        return;
+    }
+
+
+    viewerCard.classList.remove(
+        "viewer-card-glow-rare",
+        "viewer-card-glow-superrare",
+        "viewer-card-glow-epic",
+        "viewer-card-glow-mythic",
+        "viewer-card-glow-legendary",
+        "viewer-card-glow-exclusive",
+        "viewer-card-glow-unknown"
+    );
+
+
+    const allowedGlowClasses = [
+        "rare",
+        "superrare",
+        "epic",
+        "mythic",
+        "legendary",
+        "exclusive"
+    ];
+
+
+    const safeRarityClass =
+        allowedGlowClasses.includes(rarityClass)
+            ? rarityClass
+            : "unknown";
+
+
+    viewerCard.classList.add(
+        `viewer-card-glow-${safeRarityClass}`
+    );
 
 }
 
@@ -806,15 +896,22 @@ function renderViewerSkin(index, direction = "") {
         ? `viewer-swipe-${direction}`
         : "";
 
-    const viewerGlowClass =
-        skin.rarityClass || "unknown";
+
+    /*
+       Свечение назначается внешней карточке,
+       поэтому оно не прокручивается вместе
+       с содержимым.
+    */
+
+    setViewerCardGlow(
+        skin.rarityClass || "unknown"
+    );
 
 
     skinViewerContent.innerHTML = `
 
         <div class="
             viewer-swipe-content
-            viewer-glow-${viewerGlowClass}
             ${animationClass}
         ">
 
@@ -1244,6 +1341,7 @@ function formatReleaseDate(dateString) {
         return dateString;
     }
 
+
     const year =
         Number(parts[0]);
 
@@ -1325,7 +1423,7 @@ function hideBrokenOptionalIcons() {
 
 
 /* ==================================================
-   Нажатие на стрелки
+   Нажатия на стрелки
    ================================================== */
 
 if (skinViewerContent) {
@@ -1393,7 +1491,7 @@ if (skinViewerContent) {
 
         },
         {
-            passive: true
+            passive:true
         }
     );
 
@@ -1415,7 +1513,7 @@ if (skinViewerContent) {
 
         },
         {
-            passive: true
+            passive:true
         }
     );
 
@@ -1428,7 +1526,6 @@ if (skinViewerContent) {
 
             touchStartX = 0;
             touchStartY = 0;
-
             touchEndX = 0;
             touchEndY = 0;
 
@@ -1439,7 +1536,7 @@ if (skinViewerContent) {
 
 
 /* ==================================================
-   Закрытие по кнопке и затемнённому фону
+   Закрытие по кнопке и фону
    ================================================== */
 
 if (skinViewerClose) {
@@ -1532,13 +1629,14 @@ document.addEventListener(
 
     },
     {
-        passive: false
+        passive:false
     }
 );
 
 
 /* ==================================================
-   Запрет меню сохранения, копирования и перетаскивания
+   Запрет меню сохранения, копирования
+   и перетаскивания
    ================================================== */
 
 document.addEventListener(
