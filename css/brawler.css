@@ -10,7 +10,7 @@
 
 
 /* ==================================================
-   Основная картинка бойца 
+   Основная картинка бойца
    ================================================== */
 
 .main-image{
@@ -141,7 +141,7 @@
 }
 
 
-/* ---------- Запрет копирования внутри карточек ---------- */
+/* ---------- Запрет системных действий ---------- */
 
 .skin-card *,
 .skin-viewer-card *{
@@ -161,17 +161,12 @@
    Подсветка маленькой карточки при удержании
    ================================================== */
 
-/* ---------- Редкий — зелёный ---------- */
-
 .skin-card.skin-glow-rare:active{
     box-shadow:
         0 0 0 1px rgba(69,216,120,.46),
         0 0 15px rgba(69,216,120,.52),
         0 7px 18px rgba(0,0,0,.32);
 }
-
-
-/* ---------- Сверхредкий — синий ---------- */
 
 .skin-card.skin-glow-superrare:active{
     box-shadow:
@@ -180,18 +175,12 @@
         0 7px 18px rgba(0,0,0,.32);
 }
 
-
-/* ---------- Эпический — фиолетовый ---------- */
-
 .skin-card.skin-glow-epic:active{
     box-shadow:
         0 0 0 1px rgba(194,120,255,.5),
         0 0 16px rgba(194,120,255,.58),
         0 7px 18px rgba(0,0,0,.32);
 }
-
-
-/* ---------- Мифический — красный ---------- */
 
 .skin-card.skin-glow-mythic:active{
     box-shadow:
@@ -200,9 +189,6 @@
         0 7px 18px rgba(0,0,0,.32);
 }
 
-
-/* ---------- Легендарный — золотой ---------- */
-
 .skin-card.skin-glow-legendary:active{
     box-shadow:
         0 0 0 1px rgba(255,216,77,.55),
@@ -210,18 +196,12 @@
         0 7px 18px rgba(0,0,0,.32);
 }
 
-
-/* ---------- Эксклюзивный — розовый ---------- */
-
 .skin-card.skin-glow-exclusive:active{
     box-shadow:
         0 0 0 1px rgba(255,158,216,.5),
         0 0 17px rgba(255,100,190,.58),
         0 7px 18px rgba(0,0,0,.32);
 }
-
-
-/* ---------- Неизвестная редкость ---------- */
 
 .skin-card.skin-glow-unknown:active{
     box-shadow:
@@ -232,7 +212,7 @@
 
 
 /* ==================================================
-   Изображение скина 
+   Изображение скина
    ================================================== */
 
 .skin-image-box{
@@ -363,7 +343,7 @@
 
 
 /* ==================================================
-   Низ карточки
+   Низ маленькой карточки
    ================================================== */
 
 .skin-card-footer{
@@ -412,7 +392,6 @@
     align-items:center;
 
     gap:7px;
-
     white-space:nowrap;
 }
 
@@ -496,9 +475,6 @@
     font-weight:bold;
 }
 
-
-/* ---------- Редкости бойцов ---------- */
-
 .starter{
     background:#43b8ff;
 }
@@ -528,9 +504,6 @@
     background:#111;
     border:2px solid #666;
 }
-
-
-/* ---------- Классы бойцов ---------- */
 
 .damage{
     background:#ff8c00;
@@ -599,7 +572,6 @@
     font-weight:bold;
 
     cursor:pointer;
-
     transition:.2s;
 }
 
@@ -629,9 +601,6 @@ body.viewer-open{
     overflow:hidden;
     overscroll-behavior:none;
 }
-
-
-/* ---------- Контейнер просмотрщика ---------- */
 
 .skin-viewer{
     position:fixed;
@@ -682,7 +651,7 @@ body.viewer-open{
 }
 
 
-/* ---------- Окно просмотра ---------- */
+/* ---------- Внешняя карточка ---------- */
 
 .skin-viewer-card{
     position:relative;
@@ -706,11 +675,16 @@ body.viewer-open{
     border:1px solid rgba(255,255,255,.08);
     border-radius:26px;
 
-    box-shadow:0 24px 70px rgba(0,0,0,.55);
+    box-shadow:
+        0 24px 70px rgba(0,0,0,.55);
 
     overscroll-behavior:contain;
     touch-action:pan-y;
     -webkit-overflow-scrolling:touch;
+
+    transition:
+        border-color .25s ease,
+        box-shadow .25s ease;
 
     animation:skinViewerOpen .25s ease;
 }
@@ -730,7 +704,77 @@ body.viewer-open{
 }
 
 
-/* ---------- Кнопка закрытия ---------- */
+/* ==================================================
+   Постоянная подсветка внешней карточки
+   ================================================== */
+
+.skin-viewer-card.viewer-card-glow-rare{
+    border-color:rgba(69,216,120,.48);
+
+    box-shadow:
+        0 0 0 1px rgba(69,216,120,.24),
+        0 0 24px rgba(69,216,120,.31),
+        0 24px 70px rgba(0,0,0,.55);
+}
+
+.skin-viewer-card.viewer-card-glow-superrare{
+    border-color:rgba(71,167,255,.56);
+
+    box-shadow:
+        0 0 0 1px rgba(71,167,255,.29),
+        0 0 28px rgba(71,167,255,.38),
+        0 24px 70px rgba(0,0,0,.55);
+}
+
+.skin-viewer-card.viewer-card-glow-epic{
+    border-color:rgba(194,120,255,.56);
+
+    box-shadow:
+        0 0 0 1px rgba(194,120,255,.29),
+        0 0 28px rgba(194,120,255,.38),
+        0 24px 70px rgba(0,0,0,.55);
+}
+
+.skin-viewer-card.viewer-card-glow-mythic{
+    border-color:rgba(255,102,102,.58);
+
+    box-shadow:
+        0 0 0 1px rgba(255,102,102,.3),
+        0 0 29px rgba(255,80,105,.4),
+        0 24px 70px rgba(0,0,0,.55);
+}
+
+.skin-viewer-card.viewer-card-glow-legendary{
+    border-color:rgba(255,216,77,.62);
+
+    box-shadow:
+        0 0 0 1px rgba(255,216,77,.32),
+        0 0 30px rgba(255,216,77,.42),
+        0 24px 70px rgba(0,0,0,.55);
+}
+
+.skin-viewer-card.viewer-card-glow-exclusive{
+    border-color:rgba(255,158,216,.58);
+
+    box-shadow:
+        0 0 0 1px rgba(255,158,216,.3),
+        0 0 29px rgba(255,100,190,.39),
+        0 24px 70px rgba(0,0,0,.55);
+}
+
+.skin-viewer-card.viewer-card-glow-unknown{
+    border-color:rgba(184,184,197,.28);
+
+    box-shadow:
+        0 0 0 1px rgba(184,184,197,.14),
+        0 0 18px rgba(184,184,197,.18),
+        0 24px 70px rgba(0,0,0,.55);
+}
+
+
+/* ==================================================
+   Кнопка закрытия
+   ================================================== */
 
 .skin-viewer-close{
     position:absolute;
@@ -761,7 +805,8 @@ body.viewer-open{
 
     cursor:pointer;
 
-    box-shadow:0 3px 10px rgba(0,0,0,.25);
+    box-shadow:
+        0 3px 10px rgba(0,0,0,.25);
 
     transition:
         background .2s,
@@ -778,7 +823,9 @@ body.viewer-open{
 }
 
 
-/* ---------- Большая картинка ---------- */
+/* ==================================================
+   Большая картинка
+   ================================================== */
 
 .viewer-image-box{
     position:relative;
@@ -822,21 +869,21 @@ body.viewer-open{
     user-select:none;
     -webkit-user-select:none;
 
-    filter:drop-shadow(
-        0 16px 18px rgba(0,0,0,.3)
-    );
+    filter:
+        drop-shadow(
+            0 16px 18px rgba(0,0,0,.3)
+        );
 }
 
 
-/* ---------- Информация ---------- */
+/* ==================================================
+   Информация
+   ================================================== */
 
 .viewer-information{
     padding:8px 22px 24px;
     text-align:left;
 }
-
-
-/* ---------- Название и счётчик ---------- */
 
 .viewer-title-row{
     display:flex;
@@ -872,7 +919,7 @@ body.viewer-open{
 
 
 /* ==================================================
-   Коллекции, редкость и получение без линий
+   Разделы без линий
    ================================================== */
 
 .viewer-info-group{
@@ -882,9 +929,6 @@ body.viewer-open{
 .viewer-title-row + .viewer-info-group{
     margin-top:14px;
 }
-
-
-/* ---------- Заголовки разделов ---------- */
 
 .viewer-info-label,
 .viewer-detail-label{
@@ -901,7 +945,9 @@ body.viewer-open{
 }
 
 
-/* ---------- Коллекции ---------- */
+/* ==================================================
+   Коллекции
+   ================================================== */
 
 .viewer-collections{
     display:flex;
@@ -942,7 +988,9 @@ body.viewer-open{
 }
 
 
-/* ---------- Редкости ---------- */
+/* ==================================================
+   Редкости
+   ================================================== */
 
 .viewer-rarities{
     display:flex;
@@ -965,7 +1013,9 @@ body.viewer-open{
 }
 
 
-/* ---------- Получение ---------- */
+/* ==================================================
+   Получение
+   ================================================== */
 
 .viewer-source{
     min-height:28px;
@@ -1049,11 +1099,9 @@ body.viewer-open{
     margin-top:18px;
     padding-top:14px;
 
-    border-top:1px solid rgba(255,255,255,.08);
+    border-top:
+        1px solid rgba(255,255,255,.08);
 }
-
-
-/* ---------- Дата выхода ---------- */
 
 .viewer-release-date{
     display:flex;
@@ -1073,9 +1121,6 @@ body.viewer-open{
     line-height:1.35;
 }
 
-
-/* ---------- Описание ---------- */
-
 .viewer-description{
     margin:0;
     padding:0;
@@ -1090,103 +1135,6 @@ body.viewer-open{
 
     font-size:15px;
     line-height:1.45;
-}
-
-
-/* ==================================================
-   Лёгкая подсветка полноэкранной карточки
-   ================================================== */
-
-.viewer-swipe-content{
-    position:relative;
-
-    min-height:100%;
-    overflow:hidden;
-
-    border-radius:26px;
-
-    isolation:isolate;
-}
-
-
-/*
-   Подсветка идёт через отдельный слой.
-   Благодаря этому она не перекрывает текст,
-   кнопки и изображение.
-*/
-
-.viewer-swipe-content::before{
-    content:"";
-
-    position:absolute;
-    inset:0;
-
-    z-index:-1;
-
-    border-radius:inherit;
-    pointer-events:none;
-}
-
-
-/* ---------- Редкий — зелёный ---------- */
-
-.viewer-swipe-content.viewer-glow-rare::before{
-    box-shadow:
-        inset 0 0 38px rgba(69,216,120,.09),
-        inset 0 0 10px rgba(69,216,120,.07);
-}
-
-
-/* ---------- Сверхредкий — синий ---------- */
-
-.viewer-swipe-content.viewer-glow-superrare::before{
-    box-shadow:
-        inset 0 0 40px rgba(71,167,255,.11),
-        inset 0 0 11px rgba(71,167,255,.08);
-}
-
-
-/* ---------- Эпический — фиолетовый ---------- */
-
-.viewer-swipe-content.viewer-glow-epic::before{
-    box-shadow:
-        inset 0 0 40px rgba(194,120,255,.11),
-        inset 0 0 11px rgba(194,120,255,.08);
-}
-
-
-/* ---------- Мифический — красный ---------- */
-
-.viewer-swipe-content.viewer-glow-mythic::before{
-    box-shadow:
-        inset 0 0 42px rgba(255,80,105,.11),
-        inset 0 0 12px rgba(255,80,105,.08);
-}
-
-
-/* ---------- Легендарный — золотой ---------- */
-
-.viewer-swipe-content.viewer-glow-legendary::before{
-    box-shadow:
-        inset 0 0 42px rgba(255,216,77,.12),
-        inset 0 0 12px rgba(255,216,77,.09);
-}
-
-
-/* ---------- Эксклюзивный — розовый ---------- */
-
-.viewer-swipe-content.viewer-glow-exclusive::before{
-    box-shadow:
-        inset 0 0 42px rgba(255,158,216,.11),
-        inset 0 0 12px rgba(255,158,216,.08);
-}
-
-
-/* ---------- Неизвестная редкость ---------- */
-
-.viewer-swipe-content.viewer-glow-unknown::before{
-    box-shadow:
-        inset 0 0 34px rgba(184,184,197,.06);
 }
 
 
@@ -1242,7 +1190,9 @@ body.viewer-open{
 }
 
 .viewer-navigation:active{
-    transform:translateY(-50%) scale(.92);
+    transform:
+        translateY(-50%)
+        scale(.92);
 }
 
 .viewer-navigation:disabled{
@@ -1256,6 +1206,8 @@ body.viewer-open{
    ================================================== */
 
 .viewer-swipe-content{
+    min-height:100%;
+
     animation-duration:.22s;
     animation-timing-function:ease;
 }
@@ -1508,13 +1460,6 @@ body.viewer-open{
     }
 
 
-    /* ---------- Подсветка просмотрщика ---------- */
-
-    .viewer-swipe-content{
-        border-radius:22px;
-    }
-
-
     /* ---------- Стрелки ---------- */
 
     .viewer-navigation{
@@ -1522,7 +1467,6 @@ body.viewer-open{
         height:48px;
 
         border-radius:13px;
-
         font-size:34px;
     }
 
