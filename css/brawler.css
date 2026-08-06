@@ -153,13 +153,12 @@
 .skin-card img,
 .skin-viewer-card img{
     -webkit-user-drag:none;
-
     pointer-events:none;
 }
 
 
 /* ==================================================
-   Подсветка карточки по редкости
+   Подсветка маленькой карточки при удержании
    ================================================== */
 
 /* ---------- Редкий — зелёный ---------- */
@@ -1095,6 +1094,103 @@ body.viewer-open{
 
 
 /* ==================================================
+   Лёгкая подсветка полноэкранной карточки
+   ================================================== */
+
+.viewer-swipe-content{
+    position:relative;
+
+    min-height:100%;
+    overflow:hidden;
+
+    border-radius:26px;
+
+    isolation:isolate;
+}
+
+
+/*
+   Подсветка идёт через отдельный слой.
+   Благодаря этому она не перекрывает текст,
+   кнопки и изображение.
+*/
+
+.viewer-swipe-content::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    z-index:-1;
+
+    border-radius:inherit;
+    pointer-events:none;
+}
+
+
+/* ---------- Редкий — зелёный ---------- */
+
+.viewer-swipe-content.viewer-glow-rare::before{
+    box-shadow:
+        inset 0 0 38px rgba(69,216,120,.09),
+        inset 0 0 10px rgba(69,216,120,.07);
+}
+
+
+/* ---------- Сверхредкий — синий ---------- */
+
+.viewer-swipe-content.viewer-glow-superrare::before{
+    box-shadow:
+        inset 0 0 40px rgba(71,167,255,.11),
+        inset 0 0 11px rgba(71,167,255,.08);
+}
+
+
+/* ---------- Эпический — фиолетовый ---------- */
+
+.viewer-swipe-content.viewer-glow-epic::before{
+    box-shadow:
+        inset 0 0 40px rgba(194,120,255,.11),
+        inset 0 0 11px rgba(194,120,255,.08);
+}
+
+
+/* ---------- Мифический — красный ---------- */
+
+.viewer-swipe-content.viewer-glow-mythic::before{
+    box-shadow:
+        inset 0 0 42px rgba(255,80,105,.11),
+        inset 0 0 12px rgba(255,80,105,.08);
+}
+
+
+/* ---------- Легендарный — золотой ---------- */
+
+.viewer-swipe-content.viewer-glow-legendary::before{
+    box-shadow:
+        inset 0 0 42px rgba(255,216,77,.12),
+        inset 0 0 12px rgba(255,216,77,.09);
+}
+
+
+/* ---------- Эксклюзивный — розовый ---------- */
+
+.viewer-swipe-content.viewer-glow-exclusive::before{
+    box-shadow:
+        inset 0 0 42px rgba(255,158,216,.11),
+        inset 0 0 12px rgba(255,158,216,.08);
+}
+
+
+/* ---------- Неизвестная редкость ---------- */
+
+.viewer-swipe-content.viewer-glow-unknown::before{
+    box-shadow:
+        inset 0 0 34px rgba(184,184,197,.06);
+}
+
+
+/* ==================================================
    Стрелки
    ================================================== */
 
@@ -1409,6 +1505,13 @@ body.viewer-open{
 
     .viewer-release-date strong{
         font-size:15px;
+    }
+
+
+    /* ---------- Подсветка просмотрщика ---------- */
+
+    .viewer-swipe-content{
+        border-radius:22px;
     }
 
 
