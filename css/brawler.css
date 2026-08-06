@@ -1,1 +1,1537 @@
+.brawler-main{
+    padding:20px;
+    text-align:center;
+}
 
+.page-message{
+    padding:100px 20px 30px;
+    text-align:center;
+}
+
+
+/* ==================================================
+   Основная картинка бойца 
+   ================================================== */
+
+.main-image{
+    width:260px;
+    height:260px;
+
+    padding:15px;
+    margin-bottom:4px;
+
+    object-fit:contain;
+
+    background:#2b2b45;
+    border:3px solid #454565;
+    border-radius:25px;
+}
+
+
+/* ==================================================
+   Имя бойца
+   ================================================== */
+
+.brawler-name{
+    margin:6px 0 18px;
+
+    font-size:42px;
+    font-weight:700;
+    line-height:1.1;
+}
+
+
+/* ==================================================
+   Карточки информации
+   ================================================== */
+
+.info-card,
+.titles-card{
+    margin:20px;
+    padding:18px;
+
+    background:#2b2b45;
+    border-radius:18px;
+}
+
+.info-card h2,
+.titles-card h2{
+    margin-bottom:15px;
+}
+
+.info-card p,
+.titles-card p{
+    margin:10px 0;
+
+    font-size:18px;
+    line-height:1.5;
+}
+
+
+/* ==================================================
+   Заголовок раздела
+   ================================================== */
+
+.section-title{
+    margin:20px 0 2px;
+}
+
+
+/* ==================================================
+   Блок со скинами
+   ================================================== */
+
+#skinsContent{
+    margin-right:-14px;
+    margin-left:-14px;
+}
+
+
+/* ==================================================
+   Сетка скинов
+   ================================================== */
+
+.skins{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+
+    gap:15px;
+    padding:16px 6px 20px;
+}
+
+
+/* ==================================================
+   Маленькая карточка скина
+   ================================================== */
+
+.skin-card{
+    min-width:0;
+
+    overflow:hidden;
+
+    background:#2b2b45;
+    border-radius:18px;
+
+    text-align:left;
+    cursor:pointer;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.22);
+
+    -webkit-touch-callout:none;
+    -webkit-user-select:none;
+    user-select:none;
+
+    -webkit-tap-highlight-color:transparent;
+
+    transition:
+        transform .18s ease,
+        box-shadow .18s ease,
+        background .18s ease;
+}
+
+.skin-card:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 8px 18px rgba(0,0,0,.3);
+}
+
+.skin-card:active{
+    transform:scale(.97);
+}
+
+
+/* ---------- Запрет копирования внутри карточек ---------- */
+
+.skin-card *,
+.skin-viewer-card *{
+    -webkit-touch-callout:none;
+    -webkit-user-select:none;
+    user-select:none;
+}
+
+.skin-card img,
+.skin-viewer-card img{
+    -webkit-user-drag:none;
+    pointer-events:none;
+}
+
+
+/* ==================================================
+   Подсветка маленькой карточки при удержании
+   ================================================== */
+
+/* ---------- Редкий — зелёный ---------- */
+
+.skin-card.skin-glow-rare:active{
+    box-shadow:
+        0 0 0 1px rgba(69,216,120,.46),
+        0 0 15px rgba(69,216,120,.52),
+        0 7px 18px rgba(0,0,0,.32);
+}
+
+
+/* ---------- Сверхредкий — синий ---------- */
+
+.skin-card.skin-glow-superrare:active{
+    box-shadow:
+        0 0 0 1px rgba(71,167,255,.5),
+        0 0 16px rgba(71,167,255,.58),
+        0 7px 18px rgba(0,0,0,.32);
+}
+
+
+/* ---------- Эпический — фиолетовый ---------- */
+
+.skin-card.skin-glow-epic:active{
+    box-shadow:
+        0 0 0 1px rgba(194,120,255,.5),
+        0 0 16px rgba(194,120,255,.58),
+        0 7px 18px rgba(0,0,0,.32);
+}
+
+
+/* ---------- Мифический — красный ---------- */
+
+.skin-card.skin-glow-mythic:active{
+    box-shadow:
+        0 0 0 1px rgba(255,102,102,.5),
+        0 0 17px rgba(255,80,105,.6),
+        0 7px 18px rgba(0,0,0,.32);
+}
+
+
+/* ---------- Легендарный — золотой ---------- */
+
+.skin-card.skin-glow-legendary:active{
+    box-shadow:
+        0 0 0 1px rgba(255,216,77,.55),
+        0 0 18px rgba(255,216,77,.62),
+        0 7px 18px rgba(0,0,0,.32);
+}
+
+
+/* ---------- Эксклюзивный — розовый ---------- */
+
+.skin-card.skin-glow-exclusive:active{
+    box-shadow:
+        0 0 0 1px rgba(255,158,216,.5),
+        0 0 17px rgba(255,100,190,.58),
+        0 7px 18px rgba(0,0,0,.32);
+}
+
+
+/* ---------- Неизвестная редкость ---------- */
+
+.skin-card.skin-glow-unknown:active{
+    box-shadow:
+        0 0 0 1px rgba(184,184,197,.35),
+        0 0 14px rgba(184,184,197,.35),
+        0 7px 18px rgba(0,0,0,.32);
+}
+
+
+/* ==================================================
+   Изображение скина 
+   ================================================== */
+
+.skin-image-box{
+    width:100%;
+    height:160px;
+
+    padding:8px;
+
+    background:linear-gradient(
+        180deg,
+        #30304b 0%,
+        #24243b 100%
+    );
+
+    border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+.skin-image{
+    display:block;
+
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+    border-radius:12px;
+}
+
+
+/* ==================================================
+   Содержимое карточки
+   ================================================== */
+
+.skin-card-content{
+    position:relative;
+
+    min-height:132px;
+    padding:10px 12px 6px;
+
+    display:flex;
+    flex-direction:column;
+}
+
+
+/* ==================================================
+   Название скина
+   ================================================== */
+
+.skin-name{
+    margin:0 0 6px;
+
+    color:white;
+
+    font-size:17px;
+    font-weight:700;
+    line-height:1.2;
+}
+
+
+/* ==================================================
+   Коллекция
+   ================================================== */
+
+.skin-collection{
+    display:flex;
+    align-items:center;
+
+    min-height:23px;
+    margin-bottom:7px;
+
+    gap:4px;
+
+    color:#c7c7d4;
+
+    font-size:13px;
+    line-height:1.2;
+}
+
+.collection-icon{
+    display:block;
+
+    width:22px;
+    height:22px;
+
+    object-fit:contain;
+    flex-shrink:0;
+}
+
+
+/* ==================================================
+   Редкость скина
+   ================================================== */
+
+.skin-rarity{
+    margin:0 0 7px;
+
+    font-size:14px;
+    font-weight:bold;
+    line-height:1.2;
+}
+
+.skin-rarity-rare{
+    color:#45d878;
+}
+
+.skin-rarity-superrare{
+    color:#47a7ff;
+}
+
+.skin-rarity-epic{
+    color:#c278ff;
+}
+
+.skin-rarity-mythic{
+    color:#ff6666;
+}
+
+.skin-rarity-legendary{
+    color:#ffd84d;
+}
+
+.skin-rarity-exclusive{
+    color:#ff9ed8;
+}
+
+.skin-rarity-unknown{
+    color:#b8b8c5;
+}
+
+
+/* ==================================================
+   Низ карточки
+   ================================================== */
+
+.skin-card-footer{
+    position:relative;
+
+    min-height:22px;
+    padding-right:36px;
+
+    display:flex;
+    align-items:center;
+}
+
+.skin-source{
+    width:100%;
+    min-width:0;
+}
+
+
+/* ==================================================
+   Год выхода
+   ================================================== */
+
+.skin-year{
+    position:absolute;
+
+    top:50%;
+    right:0;
+
+    transform:translateY(-50%);
+
+    color:#b7b7c7;
+
+    font-size:13px;
+    font-weight:500;
+    line-height:1;
+}
+
+
+/* ==================================================
+   Цена
+   ================================================== */
+
+.skin-price{
+    display:flex;
+    flex-wrap:nowrap;
+    align-items:center;
+
+    gap:7px;
+
+    white-space:nowrap;
+}
+
+.price-item{
+    display:inline-flex;
+    align-items:center;
+
+    gap:2px;
+
+    color:white;
+
+    font-size:14px;
+    font-weight:bold;
+    line-height:1;
+    white-space:nowrap;
+}
+
+.currency-icon{
+    display:block;
+
+    width:17px;
+    height:17px;
+
+    object-fit:contain;
+    flex-shrink:0;
+}
+
+
+/* ==================================================
+   Brawl Pass и Pro Pass
+   ================================================== */
+
+.special-source{
+    display:flex;
+    align-items:center;
+
+    min-width:0;
+
+    gap:5px;
+
+    color:white;
+
+    font-size:13px;
+    font-weight:bold;
+    line-height:1;
+}
+
+.source-icon{
+    display:block;
+
+    width:23px;
+    height:23px;
+
+    object-fit:contain;
+    flex-shrink:0;
+}
+
+.source-text{
+    color:#d5d5df;
+
+    font-size:13px;
+    font-weight:bold;
+    line-height:1;
+}
+
+
+/* ==================================================
+   Редкость и класс бойца
+   ================================================== */
+
+.rarity,
+.class-tag{
+    display:inline-block;
+
+    padding:6px 14px;
+    margin-left:8px;
+
+    border-radius:12px;
+
+    color:white;
+    font-weight:bold;
+}
+
+
+/* ---------- Редкости бойцов ---------- */
+
+.starter{
+    background:#43b8ff;
+}
+
+.rare{
+    background:#2ecc71;
+}
+
+.superrare{
+    background:#1f6fff;
+}
+
+.epic{
+    background:#a84cff;
+}
+
+.mythic{
+    background:#ff4b4b;
+}
+
+.legendary{
+    background:#ffd43b;
+    color:#222;
+}
+
+.ultralegendary{
+    background:#111;
+    border:2px solid #666;
+}
+
+
+/* ---------- Классы бойцов ---------- */
+
+.damage{
+    background:#ff8c00;
+}
+
+.tank{
+    background:#e53935;
+}
+
+.assassin{
+    background:#8e24aa;
+}
+
+.controller{
+    background:#1e88e5;
+}
+
+.support{
+    background:#43a047;
+}
+
+.artillery{
+    background:#fb8c00;
+}
+
+
+/* ==================================================
+   Титулы
+   ================================================== */
+
+.gold{
+    color:#ffd700;
+}
+
+.neon{
+    color:#00eaff;
+}
+
+
+/* ==================================================
+   Вкладки
+   ================================================== */
+
+.tabs{
+    display:flex;
+
+    margin:18px 20px;
+
+    overflow:hidden;
+
+    background:#2b2b45;
+    border-radius:16px;
+}
+
+.tab{
+    flex:1;
+
+    padding:9px 14px;
+
+    border:none;
+
+    background:transparent;
+    color:white;
+
+    font-size:16px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.tab:hover{
+    background:#3a3a60;
+}
+
+.tab.active{
+    background:#43b8ff;
+    color:#111;
+}
+
+.tab.active:hover{
+    background:#43b8ff;
+}
+
+
+/* ==================================================
+   Полноэкранный просмотр
+   ================================================== */
+
+html.viewer-open,
+body.viewer-open{
+    width:100%;
+    height:100%;
+
+    overflow:hidden;
+    overscroll-behavior:none;
+}
+
+
+/* ---------- Контейнер просмотрщика ---------- */
+
+.skin-viewer{
+    position:fixed;
+    inset:0;
+
+    z-index:1000;
+
+    width:100%;
+    height:100vh;
+    height:100dvh;
+
+    display:none;
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
+
+    padding:
+        max(16px, env(safe-area-inset-top))
+        16px
+        max(16px, env(safe-area-inset-bottom));
+
+    overscroll-behavior:none;
+    touch-action:auto;
+}
+
+.skin-viewer.open{
+    display:flex;
+}
+
+
+/* ---------- Затемнённый фон ---------- */
+
+.skin-viewer-overlay{
+    position:absolute;
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    background:rgba(8,8,18,.82);
+
+    backdrop-filter:blur(5px);
+    -webkit-backdrop-filter:blur(5px);
+
+    overscroll-behavior:none;
+    touch-action:none;
+}
+
+
+/* ---------- Окно просмотра ---------- */
+
+.skin-viewer-card{
+    position:relative;
+    z-index:1;
+
+    width:min(92vw, 460px);
+
+    max-height:90vh;
+    max-height:90dvh;
+
+    overflow-x:hidden;
+    overflow-y:auto;
+
+    background:linear-gradient(
+        180deg,
+        #343453 0%,
+        #24243b 45%,
+        #202035 100%
+    );
+
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:26px;
+
+    box-shadow:0 24px 70px rgba(0,0,0,.55);
+
+    overscroll-behavior:contain;
+    touch-action:pan-y;
+    -webkit-overflow-scrolling:touch;
+
+    animation:skinViewerOpen .25s ease;
+}
+
+@keyframes skinViewerOpen{
+
+    from{
+        opacity:0;
+        transform:scale(.9) translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1) translateY(0);
+    }
+
+}
+
+
+/* ---------- Кнопка закрытия ---------- */
+
+.skin-viewer-close{
+    position:absolute;
+
+    top:12px;
+    right:12px;
+
+    z-index:10;
+
+    width:38px;
+    height:38px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:0;
+
+    border:none;
+    border-radius:50%;
+
+    background:rgba(15,15,28,.78);
+    color:white;
+
+    font-size:29px;
+    font-weight:300;
+    line-height:1;
+
+    cursor:pointer;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.25);
+
+    transition:
+        background .2s,
+        transform .2s;
+}
+
+.skin-viewer-close:hover{
+    background:rgba(60,60,90,.95);
+    transform:scale(1.06);
+}
+
+.skin-viewer-close:active{
+    transform:scale(.94);
+}
+
+
+/* ---------- Большая картинка ---------- */
+
+.viewer-image-box{
+    position:relative;
+
+    width:100%;
+    height:320px;
+
+    padding:24px 20px 10px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(67,184,255,.14) 0%,
+            rgba(67,184,255,.04) 43%,
+            transparent 72%
+        );
+
+    user-select:none;
+    -webkit-user-select:none;
+}
+
+.viewer-skin-image{
+    display:block;
+
+    width:100%;
+    height:100%;
+
+    max-width:340px;
+    max-height:300px;
+
+    object-fit:contain;
+
+    pointer-events:none;
+
+    user-select:none;
+    -webkit-user-select:none;
+
+    filter:drop-shadow(
+        0 16px 18px rgba(0,0,0,.3)
+    );
+}
+
+
+/* ---------- Информация ---------- */
+
+.viewer-information{
+    padding:8px 22px 24px;
+    text-align:left;
+}
+
+
+/* ---------- Название и счётчик ---------- */
+
+.viewer-title-row{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+
+    gap:12px;
+}
+
+.viewer-skin-name{
+    flex:1;
+
+    margin:0 0 10px;
+
+    color:white;
+
+    font-size:28px;
+    font-weight:800;
+    line-height:1.1;
+}
+
+.viewer-skin-counter{
+    flex-shrink:0;
+
+    padding-top:3px;
+
+    color:#9999ad;
+
+    font-size:13px;
+    font-weight:700;
+    line-height:1.2;
+}
+
+
+/* ==================================================
+   Коллекции, редкость и получение без линий
+   ================================================== */
+
+.viewer-info-group{
+    margin-top:20px;
+}
+
+.viewer-title-row + .viewer-info-group{
+    margin-top:14px;
+}
+
+
+/* ---------- Заголовки разделов ---------- */
+
+.viewer-info-label,
+.viewer-detail-label{
+    margin:0 0 9px;
+
+    color:#9999ad;
+
+    font-size:13px;
+    font-weight:600;
+    line-height:1;
+
+    text-transform:uppercase;
+    letter-spacing:.04em;
+}
+
+
+/* ---------- Коллекции ---------- */
+
+.viewer-collections{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+
+    gap:5px;
+}
+
+.viewer-collection{
+    display:flex;
+    align-items:center;
+
+    gap:4px;
+
+    color:#cacada;
+
+    font-size:15px;
+    font-weight:600;
+    line-height:1.2;
+}
+
+.viewer-secondary-collection{
+    opacity:.9;
+}
+
+.viewer-collection-icon{
+    display:block;
+
+    width:26px;
+    height:26px;
+
+    max-width:26px;
+    max-height:26px;
+
+    object-fit:contain;
+    flex-shrink:0;
+}
+
+
+/* ---------- Редкости ---------- */
+
+.viewer-rarities{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+
+    gap:4px;
+}
+
+.viewer-rarity{
+    margin:0;
+
+    font-size:17px;
+    font-weight:800;
+    line-height:1.2;
+}
+
+.viewer-secondary-rarity{
+    font-size:16px;
+}
+
+
+/* ---------- Получение ---------- */
+
+.viewer-source{
+    min-height:28px;
+
+    display:flex;
+    align-items:center;
+}
+
+.viewer-price{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+
+    gap:16px;
+}
+
+.viewer-price-item{
+    display:inline-flex;
+    align-items:center;
+
+    gap:4px;
+
+    color:white;
+
+    font-size:18px;
+    font-weight:800;
+    line-height:1;
+}
+
+.viewer-currency-icon{
+    display:block;
+
+    width:21px;
+    height:21px;
+
+    max-width:21px;
+    max-height:21px;
+
+    object-fit:contain;
+    flex-shrink:0;
+}
+
+.viewer-special-source{
+    display:flex;
+    align-items:center;
+
+    gap:7px;
+
+    color:white;
+
+    font-size:16px;
+    font-weight:800;
+}
+
+.viewer-source-icon{
+    display:block;
+
+    width:28px;
+    height:28px;
+
+    max-width:28px;
+    max-height:28px;
+
+    object-fit:contain;
+    flex-shrink:0;
+}
+
+.viewer-source-text{
+    color:white;
+
+    font-size:16px;
+    font-weight:800;
+}
+
+
+/* ==================================================
+   Дата и описание с линиями
+   ================================================== */
+
+.viewer-detail-section{
+    margin-top:18px;
+    padding-top:14px;
+
+    border-top:1px solid rgba(255,255,255,.08);
+}
+
+
+/* ---------- Дата выхода ---------- */
+
+.viewer-release-date{
+    display:flex;
+    flex-direction:column;
+
+    gap:5px;
+    margin:0;
+    padding:0;
+
+    border:none;
+}
+
+.viewer-release-date strong{
+    color:white;
+
+    font-size:17px;
+    line-height:1.35;
+}
+
+
+/* ---------- Описание ---------- */
+
+.viewer-description{
+    margin:0;
+    padding:0;
+
+    border:none;
+}
+
+.viewer-description p{
+    margin:0;
+
+    color:#d4d4df;
+
+    font-size:15px;
+    line-height:1.45;
+}
+
+
+/* ==================================================
+   Лёгкая подсветка полноэкранной карточки
+   ================================================== */
+
+.viewer-swipe-content{
+    position:relative;
+
+    min-height:100%;
+    overflow:hidden;
+
+    border-radius:26px;
+
+    isolation:isolate;
+}
+
+
+/*
+   Подсветка идёт через отдельный слой.
+   Благодаря этому она не перекрывает текст,
+   кнопки и изображение.
+*/
+
+.viewer-swipe-content::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    z-index:-1;
+
+    border-radius:inherit;
+    pointer-events:none;
+}
+
+
+/* ---------- Редкий — зелёный ---------- */
+
+.viewer-swipe-content.viewer-glow-rare::before{
+    box-shadow:
+        inset 0 0 38px rgba(69,216,120,.09),
+        inset 0 0 10px rgba(69,216,120,.07);
+}
+
+
+/* ---------- Сверхредкий — синий ---------- */
+
+.viewer-swipe-content.viewer-glow-superrare::before{
+    box-shadow:
+        inset 0 0 40px rgba(71,167,255,.11),
+        inset 0 0 11px rgba(71,167,255,.08);
+}
+
+
+/* ---------- Эпический — фиолетовый ---------- */
+
+.viewer-swipe-content.viewer-glow-epic::before{
+    box-shadow:
+        inset 0 0 40px rgba(194,120,255,.11),
+        inset 0 0 11px rgba(194,120,255,.08);
+}
+
+
+/* ---------- Мифический — красный ---------- */
+
+.viewer-swipe-content.viewer-glow-mythic::before{
+    box-shadow:
+        inset 0 0 42px rgba(255,80,105,.11),
+        inset 0 0 12px rgba(255,80,105,.08);
+}
+
+
+/* ---------- Легендарный — золотой ---------- */
+
+.viewer-swipe-content.viewer-glow-legendary::before{
+    box-shadow:
+        inset 0 0 42px rgba(255,216,77,.12),
+        inset 0 0 12px rgba(255,216,77,.09);
+}
+
+
+/* ---------- Эксклюзивный — розовый ---------- */
+
+.viewer-swipe-content.viewer-glow-exclusive::before{
+    box-shadow:
+        inset 0 0 42px rgba(255,158,216,.11),
+        inset 0 0 12px rgba(255,158,216,.08);
+}
+
+
+/* ---------- Неизвестная редкость ---------- */
+
+.viewer-swipe-content.viewer-glow-unknown::before{
+    box-shadow:
+        inset 0 0 34px rgba(184,184,197,.06);
+}
+
+
+/* ==================================================
+   Стрелки
+   ================================================== */
+
+.viewer-navigation{
+    position:absolute;
+    top:50%;
+
+    z-index:2;
+
+    width:38px;
+    height:50px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:0;
+
+    border:none;
+    border-radius:14px;
+
+    background:rgba(15,15,28,.58);
+    color:white;
+
+    font-size:36px;
+    font-weight:300;
+    line-height:1;
+
+    cursor:pointer;
+
+    transform:translateY(-50%);
+
+    transition:
+        background .2s,
+        opacity .2s,
+        transform .2s;
+}
+
+.viewer-navigation-left{
+    left:12px;
+}
+
+.viewer-navigation-right{
+    right:12px;
+}
+
+.viewer-navigation:hover{
+    background:rgba(55,55,85,.9);
+}
+
+.viewer-navigation:active{
+    transform:translateY(-50%) scale(.92);
+}
+
+.viewer-navigation:disabled{
+    opacity:.16;
+    pointer-events:none;
+}
+
+
+/* ==================================================
+   Анимация свайпа
+   ================================================== */
+
+.viewer-swipe-content{
+    animation-duration:.22s;
+    animation-timing-function:ease;
+}
+
+.viewer-swipe-right{
+    animation-name:viewerSwipeRight;
+}
+
+.viewer-swipe-left{
+    animation-name:viewerSwipeLeft;
+}
+
+@keyframes viewerSwipeRight{
+
+    from{
+        opacity:0;
+        transform:translateX(35px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+
+}
+
+@keyframes viewerSwipeLeft{
+
+    from{
+        opacity:0;
+        transform:translateX(-35px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+
+}
+
+
+/* ==================================================
+   Узкие телефоны
+   ================================================== */
+
+@media (max-width:380px){
+
+    .brawler-main{
+        padding:14px;
+    }
+
+    .main-image{
+        width:240px;
+        height:240px;
+    }
+
+    .brawler-name{
+        font-size:38px;
+    }
+
+    #skinsContent{
+        margin-right:-10px;
+        margin-left:-10px;
+    }
+
+    .skins{
+        gap:10px;
+        padding:12px 4px 18px;
+    }
+
+    .skin-image-box{
+        height:145px;
+        padding:7px;
+    }
+
+    .skin-card-content{
+        min-height:128px;
+        padding:9px 10px 6px;
+    }
+
+    .skin-name{
+        margin-bottom:5px;
+        font-size:15px;
+    }
+
+    .skin-collection{
+        min-height:21px;
+        margin-bottom:6px;
+
+        gap:3px;
+
+        font-size:12px;
+    }
+
+    .collection-icon{
+        width:20px;
+        height:20px;
+    }
+
+    .skin-rarity{
+        margin-bottom:7px;
+        font-size:13px;
+    }
+
+    .skin-card-footer{
+        min-height:20px;
+        padding-right:31px;
+    }
+
+    .skin-price{
+        gap:5px;
+    }
+
+    .currency-icon{
+        width:15px;
+        height:15px;
+    }
+
+    .price-item{
+        gap:2px;
+        font-size:12px;
+    }
+
+    .special-source,
+    .source-text{
+        font-size:12px;
+    }
+
+    .source-icon{
+        width:20px;
+        height:20px;
+    }
+
+    .skin-year{
+        font-size:11px;
+    }
+
+
+    /* ---------- Просмотрщик ---------- */
+
+    .skin-viewer{
+        padding:
+            max(10px, env(safe-area-inset-top))
+            10px
+            max(10px, env(safe-area-inset-bottom));
+    }
+
+    .skin-viewer-card{
+        width:96vw;
+
+        max-height:92vh;
+        max-height:92dvh;
+
+        border-radius:22px;
+    }
+
+    .skin-viewer-close{
+        top:10px;
+        right:10px;
+
+        width:36px;
+        height:36px;
+
+        font-size:27px;
+    }
+
+    .viewer-image-box{
+        height:280px;
+        padding:20px 14px 8px;
+    }
+
+    .viewer-skin-image{
+        max-width:300px;
+        max-height:260px;
+    }
+
+    .viewer-information{
+        padding:7px 17px 20px;
+    }
+
+    .viewer-skin-name{
+        font-size:24px;
+    }
+
+    .viewer-skin-counter{
+        font-size:12px;
+    }
+
+
+    /* ---------- Группы ---------- */
+
+    .viewer-info-group{
+        margin-top:17px;
+    }
+
+    .viewer-title-row + .viewer-info-group{
+        margin-top:12px;
+    }
+
+    .viewer-info-label,
+    .viewer-detail-label{
+        margin-bottom:8px;
+
+        font-size:12px;
+        font-weight:600;
+    }
+
+    .viewer-detail-section{
+        margin-top:16px;
+        padding-top:12px;
+    }
+
+
+    /* ---------- Содержимое ---------- */
+
+    .viewer-collection{
+        font-size:14px;
+    }
+
+    .viewer-collection-icon{
+        width:23px;
+        height:23px;
+
+        max-width:23px;
+        max-height:23px;
+    }
+
+    .viewer-rarity{
+        font-size:15px;
+    }
+
+    .viewer-secondary-rarity{
+        font-size:14px;
+    }
+
+    .viewer-price-item{
+        font-size:16px;
+    }
+
+    .viewer-currency-icon{
+        width:19px;
+        height:19px;
+
+        max-width:19px;
+        max-height:19px;
+    }
+
+    .viewer-release-date strong{
+        font-size:15px;
+    }
+
+
+    /* ---------- Подсветка просмотрщика ---------- */
+
+    .viewer-swipe-content{
+        border-radius:22px;
+    }
+
+
+    /* ---------- Стрелки ---------- */
+
+    .viewer-navigation{
+        width:35px;
+        height:48px;
+
+        border-radius:13px;
+
+        font-size:34px;
+    }
+
+    .viewer-navigation-left{
+        left:6px;
+    }
+
+    .viewer-navigation-right{
+        right:6px;
+    }
+
+}
