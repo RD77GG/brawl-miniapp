@@ -215,17 +215,6 @@ function createSkinCard(skin, index) {
     const collection = skin.collection || {};
     const releaseYear = skin.releaseYear || "—";
 
-    /*
-       В маленькой карточке дополнительная редкость
-       имеет приоритет.
-
-       Например:
-       Сверхредкий + Эксклюзивный
-
-       На маленькой карточке:
-       Эксклюзивный
-    */
-
     const cardRarity = skin.secondaryRarity
         ? {
             name:
@@ -248,12 +237,8 @@ function createSkinCard(skin, index) {
 
 
     /*
-       Свечение при удержании зависит от основной
-       редкости скина.
-
-       Например, у Принцессы Шелли:
-       основная редкость — superrare,
-       поэтому свечение будет синим.
+       Свечение маленькой карточки зависит
+       от основной редкости скина.
     */
 
     const glowClass =
@@ -396,15 +381,7 @@ function createSourceMarkup(skin, viewer = false) {
     /*
        Маленькая карточка использует shortName.
 
-       Полноэкранный просмотр использует name.
-
-       Пример:
-
-       Маленькая карточка:
-       Brawl Pass
-
-       Полноэкранная карточка:
-       Brawl Pass · 8-й сезон
+       Полноэкранный режим использует name.
     */
 
     const displayedSourceName = viewer
@@ -829,11 +806,15 @@ function renderViewerSkin(index, direction = "") {
         ? `viewer-swipe-${direction}`
         : "";
 
+    const viewerGlowClass =
+        skin.rarityClass || "unknown";
+
 
     skinViewerContent.innerHTML = `
 
         <div class="
             viewer-swipe-content
+            viewer-glow-${viewerGlowClass}
             ${animationClass}
         ">
 
@@ -1412,7 +1393,7 @@ if (skinViewerContent) {
 
         },
         {
-            passive:true
+            passive: true
         }
     );
 
@@ -1434,7 +1415,7 @@ if (skinViewerContent) {
 
         },
         {
-            passive:true
+            passive: true
         }
     );
 
@@ -1551,7 +1532,7 @@ document.addEventListener(
 
     },
     {
-        passive:false
+        passive: false
     }
 );
 
