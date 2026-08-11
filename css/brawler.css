@@ -2942,3 +2942,484 @@ body.viewer-open{
     }
 
 }
+/* ==================================================
+   НОВЫЙ БЛОК РЕДКОСТЬ / КЛАСС
+   ================================================== */
+
+.brawler-name + .info-card{
+    width:calc(100% - 12px);
+    max-width:520px;
+
+    margin:18px auto 22px;
+    padding:0;
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+
+    gap:10px;
+
+    background:transparent;
+    border:none;
+    border-radius:0;
+
+    box-shadow:none;
+
+    overflow:visible;
+
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+}
+
+
+/* Убираем старый блик */
+
+.brawler-name + .info-card::before{
+    display:none;
+}
+
+
+/* ==================================================
+   ДВЕ ОТДЕЛЬНЫЕ КАРТОЧКИ
+   ================================================== */
+
+.brawler-name + .info-card p{
+    position:relative;
+
+    min-width:0;
+    min-height:92px;
+
+    margin:0;
+    padding:14px 12px;
+
+    display:flex;
+    flex-direction:column;
+
+    align-items:center;
+    justify-content:center;
+
+    gap:9px;
+
+    overflow:hidden;
+
+    border:1px solid rgba(255,255,255,.13);
+    border-radius:21px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.10),
+            rgba(255,255,255,.035)
+        );
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.16),
+        0 8px 24px rgba(0,0,0,.18);
+
+    backdrop-filter:
+        blur(20px)
+        saturate(150%);
+
+    -webkit-backdrop-filter:
+        blur(20px)
+        saturate(150%);
+
+    text-align:center;
+}
+
+
+/* Лёгкий блик */
+
+.brawler-name + .info-card p::before{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+        radial-gradient(
+            circle at 25% 0%,
+            rgba(255,255,255,.13),
+            transparent 48%
+        );
+}
+
+
+/* ==================================================
+   ЗАГОЛОВОК
+   ================================================== */
+
+.brawler-name + .info-card p strong{
+    position:relative;
+    z-index:1;
+
+    display:block;
+
+    color:rgba(255,255,255,.65);
+
+    font-size:13px;
+    font-weight:700;
+
+    line-height:1.1;
+
+    letter-spacing:.01em;
+}
+
+
+/* ==================================================
+   ЗНАЧЕНИЕ
+   ================================================== */
+
+.brawler-name + .info-card .rarity,
+.brawler-name + .info-card .class-tag{
+    position:relative;
+    z-index:1;
+
+    display:block;
+
+    margin:0;
+    padding:0;
+
+    border:none;
+    border-radius:0;
+
+    background:none;
+
+    box-shadow:none;
+
+    font-size:19px;
+    font-weight:850;
+
+    line-height:1.15;
+
+    white-space:normal;
+
+    text-align:center;
+}
+
+
+/* ==================================================
+   РЕДКОСТИ
+   ================================================== */
+
+
+/* Начальный */
+
+.brawler-name + .info-card .rarity.starter{
+    color:#67caff;
+
+    background:none;
+
+    text-shadow:
+        0 0 14px rgba(67,184,255,.35);
+}
+
+
+/* Редкий */
+
+.brawler-name + .info-card .rarity.rare{
+    color:#5de890;
+
+    background:none;
+
+    text-shadow:
+        0 0 14px rgba(69,216,120,.35);
+}
+
+
+/* Сверхредкий */
+
+.brawler-name + .info-card .rarity.superrare{
+    color:#65b8ff;
+
+    background:none;
+
+    text-shadow:
+        0 0 14px rgba(71,167,255,.38);
+}
+
+
+/* Эпический */
+
+.brawler-name + .info-card .rarity.epic{
+    color:#cd8cff;
+
+    background:none;
+
+    text-shadow:
+        0 0 14px rgba(194,120,255,.38);
+}
+
+
+/* Мифический */
+
+.brawler-name + .info-card .rarity.mythic{
+    color:#ff7885;
+
+    background:none;
+
+    text-shadow:
+        0 0 14px rgba(255,80,105,.36);
+}
+
+
+/* Легендарный */
+
+.brawler-name + .info-card .rarity.legendary{
+    color:#ffe16a;
+
+    background:none;
+
+    text-shadow:
+        0 0 14px rgba(255,216,77,.40);
+}
+
+
+/* Ультра-легендарный */
+
+.brawler-name + .info-card .rarity.ultralegendary{
+    color:#eeeeff;
+
+    background:none;
+    border:none;
+
+    text-shadow:
+        0 0 14px rgba(210,210,255,.32);
+}
+
+
+/* ==================================================
+   КЛАССЫ
+   ================================================== */
+
+
+/* Урон */
+
+.brawler-name + .info-card .class-tag.damage{
+    color:#ffb35d;
+
+    background:none;
+
+    text-shadow:
+        0 0 14px rgba(255,140,0,.34);
+}
+
+
+/* Танк */
+
+.brawler-name + .info-card .class-tag.tank{
+    color:#ff7777;
+
+    background:none;
+
+    text-shadow:
+        0 0 14px rgba(229,57,53,.34);
+}
+
+
+/* Убийца */
+
+.brawler-name + .info-card .class-tag.assassin{
+    color:#d08aeb;
+
+    background:none;
+
+    text-shadow:
+        0 0 14px rgba(142,36,170,.34);
+}
+
+
+/* Контроль */
+
+.brawler-name + .info-card .class-tag.controller{
+    color:#70bdff;
+
+    background:none;
+
+    text-shadow:
+        0 0 14px rgba(30,136,229,.34);
+}
+
+
+/* Поддержка */
+
+.brawler-name + .info-card .class-tag.support{
+    color:#73df80;
+
+    background:none;
+
+    text-shadow:
+        0 0 14px rgba(67,160,71,.34);
+}
+
+
+/* Артиллерия */
+
+.brawler-name + .info-card .class-tag.artillery{
+    color:#ffb65f;
+
+    background:none;
+
+    text-shadow:
+        0 0 14px rgba(251,140,0,.34);
+}
+
+
+/* ==================================================
+   ЦВЕТНОЕ СВЕЧЕНИЕ САМИХ КАРТОЧЕК
+   ================================================== */
+
+
+/* Карточка редкости */
+
+.brawler-name + .info-card p:first-child{
+    border-color:rgba(67,184,255,.24);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.16),
+        inset 0 0 22px rgba(67,184,255,.045),
+        0 8px 24px rgba(0,0,0,.18),
+        0 0 18px rgba(67,184,255,.07);
+}
+
+
+/* Карточка класса */
+
+.brawler-name + .info-card p:last-child{
+    border-color:rgba(255,160,65,.20);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.16),
+        inset 0 0 22px rgba(255,140,0,.04),
+        0 8px 24px rgba(0,0,0,.18),
+        0 0 18px rgba(255,140,0,.055);
+}
+
+
+/* ==================================================
+   ПК
+   ================================================== */
+
+@media (min-width:768px){
+
+    .brawler-name + .info-card{
+        width:100%;
+        max-width:680px;
+
+        gap:14px;
+
+        margin-top:20px;
+        margin-bottom:24px;
+    }
+
+
+    .brawler-name + .info-card p{
+        min-height:110px;
+
+        padding:18px 20px;
+
+        gap:11px;
+
+        border-radius:24px;
+    }
+
+
+    .brawler-name + .info-card p strong{
+        font-size:14px;
+    }
+
+
+    .brawler-name + .info-card .rarity,
+    .brawler-name + .info-card .class-tag{
+        font-size:23px;
+    }
+
+}
+
+
+/* ==================================================
+   НАВЕДЕНИЕ НА ПК
+   ================================================== */
+
+@media (hover:hover) and (pointer:fine){
+
+    .brawler-name + .info-card p{
+        transition:
+            transform .20s ease,
+            border-color .25s ease,
+            box-shadow .25s ease;
+    }
+
+
+    .brawler-name + .info-card p:hover{
+        transform:translateY(-2px);
+    }
+
+
+    .brawler-name + .info-card p:first-child:hover{
+        border-color:rgba(67,184,255,.38);
+
+        box-shadow:
+            inset 0 1px 0 rgba(255,255,255,.18),
+            inset 0 0 28px rgba(67,184,255,.07),
+            0 10px 28px rgba(0,0,0,.22),
+            0 0 22px rgba(67,184,255,.13);
+    }
+
+
+    .brawler-name + .info-card p:last-child:hover{
+        border-color:rgba(255,160,65,.34);
+
+        box-shadow:
+            inset 0 1px 0 rgba(255,255,255,.18),
+            inset 0 0 28px rgba(255,140,0,.065),
+            0 10px 28px rgba(0,0,0,.22),
+            0 0 22px rgba(255,140,0,.11);
+    }
+
+}
+
+
+/* ==================================================
+   ТЕЛЕФОН
+   ================================================== */
+
+@media (max-width:480px){
+
+    .brawler-name + .info-card{
+        width:100%;
+
+        max-width:none;
+
+        gap:8px;
+
+        margin-top:16px;
+        margin-bottom:19px;
+    }
+
+
+    .brawler-name + .info-card p{
+        min-height:88px;
+
+        padding:12px 7px;
+
+        gap:8px;
+
+        border-radius:19px;
+    }
+
+
+    .brawler-name + .info-card p strong{
+        font-size:12px;
+
+        color:rgba(255,255,255,.69);
+    }
+
+
+    .brawler-name + .info-card .rarity,
+    .brawler-name + .info-card .class-tag{
+        font-size:17px;
+    }
+
+}
