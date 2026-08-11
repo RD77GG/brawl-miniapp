@@ -2968,3 +2968,341 @@ body.viewer-open{
     }
 
 }
+/* ==================================================
+   РЕДКОСТЬ / КЛАСС
+   ФОН В СТИЛЕ ОСТАЛЬНОГО САЙТА
+   ================================================== */
+
+.brawler-name + .info-card p{
+    background:
+        linear-gradient(
+            145deg,
+            rgba(48,48,75,.96),
+            rgba(39,39,62,.96)
+        ) !important;
+
+    border:
+        1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.07),
+        0 5px 16px rgba(0,0,0,.17);
+
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+}
+
+
+/* ==================================================
+   ЛЁГКИЙ БЛИК
+   ================================================== */
+
+.brawler-name + .info-card p::before{
+    background:
+        radial-gradient(
+            circle at 25% -15%,
+            rgba(255,255,255,.07),
+            transparent 48%
+        );
+}
+
+
+/* ==================================================
+   НАЧАЛЬНЫЙ
+   ================================================== */
+
+.brawler-name + .info-card p:has(.rarity.starter){
+    background:
+        linear-gradient(
+            145deg,
+            #30304b,
+            #27273e
+        ) !important;
+
+    border-color:
+        rgba(67,184,255,.16);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.07),
+        inset 0 0 18px rgba(67,184,255,.018),
+        0 5px 16px rgba(0,0,0,.17),
+        0 0 10px rgba(67,184,255,.035);
+}
+
+
+/* ==================================================
+   РЕДКИЙ
+   ================================================== */
+
+.brawler-name + .info-card p:has(.rarity.rare){
+    background:
+        linear-gradient(
+            145deg,
+            #30304b,
+            #27273e
+        ) !important;
+
+    border-color:
+        rgba(69,216,120,.14);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.07),
+        0 5px 16px rgba(0,0,0,.17),
+        0 0 10px rgba(69,216,120,.03);
+}
+
+
+/* ==================================================
+   СВЕРХРЕДКИЙ
+   ================================================== */
+
+.brawler-name + .info-card p:has(.rarity.superrare){
+    background:
+        linear-gradient(
+            145deg,
+            #30304b,
+            #27273e
+        ) !important;
+
+    border-color:
+        rgba(71,167,255,.16);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.07),
+        0 5px 16px rgba(0,0,0,.17),
+        0 0 10px rgba(71,167,255,.035);
+}
+
+
+/* ==================================================
+   ЭПИЧЕСКИЙ
+   ================================================== */
+
+.brawler-name + .info-card p:has(.rarity.epic){
+    background:
+        linear-gradient(
+            145deg,
+            #30304b,
+            #27273e
+        ) !important;
+
+    border-color:
+        rgba(194,120,255,.16);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.07),
+        0 5px 16px rgba(0,0,0,.17),
+        0 0 10px rgba(194,120,255,.035);
+}
+
+
+/* ==================================================
+   МИФИЧЕСКИЙ
+   ================================================== */
+
+.brawler-name + .info-card p:has(.rarity.mythic){
+    background:
+        linear-gradient(
+            145deg,
+            #30304b,
+            #27273e
+        ) !important;
+
+    border-color:
+        rgba(255,80,105,.16);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.07),
+        0 5px 16px rgba(0,0,0,.17),
+        0 0 10px rgba(255,80,105,.035);
+}
+
+
+/* ==================================================
+   ЛЕГЕНДАРНЫЙ
+   ================================================== */
+
+.brawler-name + .info-card p:has(.rarity.legendary){
+    background:
+        linear-gradient(
+            145deg,
+            #30304b,
+            #27273e
+        ) !important;
+
+    border-color:
+        rgba(255,216,77,.17);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.07),
+        0 5px 16px rgba(0,0,0,.17),
+        0 0 10px rgba(255,216,77,.035);
+}
+
+
+/* ==================================================
+   УЛЬТРА-ЛЕГЕНДАРНЫЙ
+   ================================================== */
+
+.brawler-name + .info-card p:has(.rarity.ultralegendary){
+    background:
+        linear-gradient(
+            145deg,
+            #30304b,
+            #27273e
+        ) !important;
+
+    border-color:
+        rgba(210,210,235,.14);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.07),
+        0 5px 16px rgba(0,0,0,.17);
+}
+
+
+/* ==================================================
+   КЛАСС — УРОН
+   ================================================== */
+
+.brawler-name + .info-card p:has(.class-tag.damage){
+    background:
+        linear-gradient(
+            145deg,
+            #30304b,
+            #27273e
+        ) !important;
+
+    border-color:
+        rgba(255,140,0,.14);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.07),
+        0 5px 16px rgba(0,0,0,.17),
+        0 0 10px rgba(255,140,0,.03);
+}
+
+
+/* ==================================================
+   КЛАСС — ТАНК
+   ================================================== */
+
+.brawler-name + .info-card p:has(.class-tag.tank){
+    background:
+        linear-gradient(
+            145deg,
+            #30304b,
+            #27273e
+        ) !important;
+
+    border-color:
+        rgba(229,57,53,.14);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.07),
+        0 5px 16px rgba(0,0,0,.17),
+        0 0 10px rgba(229,57,53,.03);
+}
+
+
+/* ==================================================
+   КЛАСС — УБИЙЦА
+   ================================================== */
+
+.brawler-name + .info-card p:has(.class-tag.assassin){
+    background:
+        linear-gradient(
+            145deg,
+            #30304b,
+            #27273e
+        ) !important;
+
+    border-color:
+        rgba(142,36,170,.15);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.07),
+        0 5px 16px rgba(0,0,0,.17),
+        0 0 10px rgba(142,36,170,.03);
+}
+
+
+/* ==================================================
+   КЛАСС — КОНТРОЛЬ
+   ================================================== */
+
+.brawler-name + .info-card p:has(.class-tag.controller){
+    background:
+        linear-gradient(
+            145deg,
+            #30304b,
+            #27273e
+        ) !important;
+
+    border-color:
+        rgba(30,136,229,.15);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.07),
+        0 5px 16px rgba(0,0,0,.17),
+        0 0 10px rgba(30,136,229,.03);
+}
+
+
+/* ==================================================
+   КЛАСС — ПОДДЕРЖКА
+   ================================================== */
+
+.brawler-name + .info-card p:has(.class-tag.support){
+    background:
+        linear-gradient(
+            145deg,
+            #30304b,
+            #27273e
+        ) !important;
+
+    border-color:
+        rgba(67,160,71,.15);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.07),
+        0 5px 16px rgba(0,0,0,.17),
+        0 0 10px rgba(67,160,71,.03);
+}
+
+
+/* ==================================================
+   КЛАСС — АРТИЛЛЕРИЯ
+   ================================================== */
+
+.brawler-name + .info-card p:has(.class-tag.artillery){
+    background:
+        linear-gradient(
+            145deg,
+            #30304b,
+            #27273e
+        ) !important;
+
+    border-color:
+        rgba(251,140,0,.14);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.07),
+        0 5px 16px rgba(0,0,0,.17),
+        0 0 10px rgba(251,140,0,.03);
+}
+
+
+/* ==================================================
+   НАВЕДЕНИЕ НА ПК
+   ================================================== */
+
+@media (hover:hover) and (pointer:fine){
+
+    .brawler-name + .info-card p:hover{
+        transform:translateY(-2px);
+
+        filter:brightness(1.06);
+    }
+
+}
