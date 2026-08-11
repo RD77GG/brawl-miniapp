@@ -1479,4 +1479,149 @@ body.viewer-open{
     }
 
 }
- 
+/* ==================================================
+   Оптимизация страницы скинов для ПК
+   ================================================== */
+
+@media (min-width:768px){
+
+    /* Блок со скинами больше не растягивается бесконечно */
+
+    #skinsContent{
+        max-width:1100px;
+
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+
+    /* Карточки имеют нормальную ширину,
+       а не растягиваются на половину экрана */
+
+    .skins{
+        grid-template-columns:
+            repeat(auto-fit, minmax(220px, 250px));
+
+        justify-content:center;
+
+        gap:20px;
+
+        padding:20px;
+    }
+
+
+    .skin-card{
+        width:100%;
+        border-radius:20px;
+    }
+
+
+    /* Картинка увеличивается вместе с карточкой */
+
+    .skin-image-box{
+        height:195px;
+        padding:10px;
+    }
+
+
+    /* Нижняя часть тоже немного крупнее */
+
+    .skin-card-content{
+        min-height:145px;
+        padding:12px 14px 9px;
+    }
+
+
+    .skin-name{
+        margin-bottom:7px;
+
+        font-size:18px;
+    }
+
+
+    .skin-collection{
+        min-height:25px;
+        margin-bottom:8px;
+
+        font-size:14px;
+    }
+
+
+    .collection-icon{
+        width:24px;
+        height:24px;
+    }
+
+
+    .skin-rarity{
+        margin-bottom:8px;
+
+        font-size:15px;
+    }
+
+
+    .price-item{
+        font-size:15px;
+    }
+
+
+    .currency-icon{
+        width:18px;
+        height:18px;
+    }
+
+
+    .special-source,
+    .source-text{
+        font-size:14px;
+    }
+
+
+    .source-icon{
+        width:24px;
+        height:24px;
+    }
+
+
+    .skin-year{
+        font-size:12px;
+    }
+
+}
+
+
+/* ==================================================
+   Большие мониторы
+   ================================================== */
+
+@media (min-width:1200px){
+
+    #skinsContent{
+        max-width:1250px;
+    }
+
+
+    .skins{
+        grid-template-columns:
+            repeat(auto-fit, minmax(240px, 270px));
+
+        gap:24px;
+    }
+
+
+    .skin-image-box{
+        height:210px;
+    }
+
+
+    .skin-card-content{
+        min-height:150px;
+        padding:13px 15px 10px;
+    }
+
+
+    .skin-name{
+        font-size:19px;
+    }
+
+}
