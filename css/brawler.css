@@ -10,7 +10,7 @@
 
 
 /* ==================================================
-   Основная картинка бойца 
+   Основная картинка бойца
    ================================================== */
 
 .main-image{
@@ -115,7 +115,8 @@
     text-align:left;
     cursor:pointer;
 
-    box-shadow:0 4px 12px rgba(0,0,0,.22);
+    box-shadow:
+        0 4px 12px rgba(0,0,0,.22);
 
     -webkit-touch-callout:none;
     -webkit-user-select:none;
@@ -129,19 +130,24 @@
         background .18s ease;
 }
 
+
+/* ---------- Наведение ---------- */
+
 .skin-card:hover{
     transform:translateY(-2px);
-
-    box-shadow:
-        0 8px 18px rgba(0,0,0,.3);
 }
+
+
+/* ---------- Нажатие ---------- */
 
 .skin-card:active{
     transform:scale(.97);
 }
 
 
-/* ---------- Запрет системных действий ---------- */
+/* ==================================================
+   Запрет системных действий
+   ================================================== */
 
 .skin-card *,
 .skin-viewer-card *{
@@ -158,8 +164,11 @@
 
 
 /* ==================================================
-   Подсветка маленькой карточки при удержании
+   Подсветка маленькой карточки при нажатии
    ================================================== */
+
+
+/* ---------- Редкий ---------- */
 
 .skin-card.skin-glow-rare:active{
     box-shadow:
@@ -168,26 +177,38 @@
         0 7px 18px rgba(0,0,0,.32);
 }
 
+
+/* ---------- Сверхредкий ---------- */
+
 .skin-card.skin-glow-superrare:active{
     box-shadow:
-        0 0 0 1px rgba(71,167,255,.5),
+        0 0 0 1px rgba(71,167,255,.50),
         0 0 16px rgba(71,167,255,.58),
         0 7px 18px rgba(0,0,0,.32);
 }
 
+
+/* ---------- Эпический ---------- */
+
 .skin-card.skin-glow-epic:active{
     box-shadow:
-        0 0 0 1px rgba(194,120,255,.5),
+        0 0 0 1px rgba(194,120,255,.50),
         0 0 16px rgba(194,120,255,.58),
         0 7px 18px rgba(0,0,0,.32);
 }
 
+
+/* ---------- Мифический ---------- */
+
 .skin-card.skin-glow-mythic:active{
     box-shadow:
-        0 0 0 1px rgba(255,102,102,.5),
-        0 0 17px rgba(255,80,105,.6),
+        0 0 0 1px rgba(255,102,102,.50),
+        0 0 17px rgba(255,80,105,.60),
         0 7px 18px rgba(0,0,0,.32);
 }
+
+
+/* ---------- Легендарный ---------- */
 
 .skin-card.skin-glow-legendary:active{
     box-shadow:
@@ -196,18 +217,89 @@
         0 7px 18px rgba(0,0,0,.32);
 }
 
+
+/* ---------- Эксклюзивный ---------- */
+
 .skin-card.skin-glow-exclusive:active{
     box-shadow:
-        0 0 0 1px rgba(255,158,216,.5),
+        0 0 0 1px rgba(255,158,216,.50),
         0 0 17px rgba(255,100,190,.58),
         0 7px 18px rgba(0,0,0,.32);
 }
+
+
+/* ---------- Неизвестная ---------- */
 
 .skin-card.skin-glow-unknown:active{
     box-shadow:
         0 0 0 1px rgba(184,184,197,.35),
         0 0 14px rgba(184,184,197,.35),
         0 7px 18px rgba(0,0,0,.32);
+}
+
+
+/* ==================================================
+   Подсветка при наведении мыши
+   Только ПК / устройства с мышью
+   ================================================== */
+
+@media (hover:hover) and (pointer:fine){
+
+    .skin-card.skin-glow-rare:hover{
+        box-shadow:
+            0 0 0 1px rgba(69,216,120,.46),
+            0 0 17px rgba(69,216,120,.52),
+            0 9px 20px rgba(0,0,0,.32);
+    }
+
+
+    .skin-card.skin-glow-superrare:hover{
+        box-shadow:
+            0 0 0 1px rgba(71,167,255,.50),
+            0 0 18px rgba(71,167,255,.58),
+            0 9px 20px rgba(0,0,0,.32);
+    }
+
+
+    .skin-card.skin-glow-epic:hover{
+        box-shadow:
+            0 0 0 1px rgba(194,120,255,.50),
+            0 0 18px rgba(194,120,255,.58),
+            0 9px 20px rgba(0,0,0,.32);
+    }
+
+
+    .skin-card.skin-glow-mythic:hover{
+        box-shadow:
+            0 0 0 1px rgba(255,102,102,.50),
+            0 0 19px rgba(255,80,105,.60),
+            0 9px 20px rgba(0,0,0,.32);
+    }
+
+
+    .skin-card.skin-glow-legendary:hover{
+        box-shadow:
+            0 0 0 1px rgba(255,216,77,.55),
+            0 0 20px rgba(255,216,77,.62),
+            0 9px 20px rgba(0,0,0,.32);
+    }
+
+
+    .skin-card.skin-glow-exclusive:hover{
+        box-shadow:
+            0 0 0 1px rgba(255,158,216,.50),
+            0 0 19px rgba(255,100,190,.58),
+            0 9px 20px rgba(0,0,0,.32);
+    }
+
+
+    .skin-card.skin-glow-unknown:hover{
+        box-shadow:
+            0 0 0 1px rgba(184,184,197,.35),
+            0 0 16px rgba(184,184,197,.35),
+            0 9px 20px rgba(0,0,0,.32);
+    }
+
 }
 
 
@@ -227,7 +319,8 @@
         #24243b 100%
     );
 
-    border-bottom:1px solid rgba(255,255,255,.05);
+    border-bottom:
+        1px solid rgba(255,255,255,.05);
 }
 
 .skin-image{
@@ -237,6 +330,7 @@
     height:100%;
 
     object-fit:contain;
+
     border-radius:12px;
 }
 
@@ -249,7 +343,11 @@
     position:relative;
 
     min-height:132px;
-    padding:10px 12px 6px;
+
+    padding:
+        10px
+        12px
+        6px;
 
     display:flex;
     flex-direction:column;
@@ -280,6 +378,7 @@
     align-items:center;
 
     min-height:23px;
+
     margin-bottom:7px;
 
     gap:4px;
@@ -313,29 +412,50 @@
     line-height:1.2;
 }
 
+
+/* ---------- Редкий ---------- */
+
 .skin-rarity-rare{
     color:#45d878;
 }
+
+
+/* ---------- Сверхредкий ---------- */
 
 .skin-rarity-superrare{
     color:#47a7ff;
 }
 
+
+/* ---------- Эпический ---------- */
+
 .skin-rarity-epic{
     color:#c278ff;
 }
+
+
+/* ---------- Мифический ---------- */
 
 .skin-rarity-mythic{
     color:#ff6666;
 }
 
+
+/* ---------- Легендарный ---------- */
+
 .skin-rarity-legendary{
     color:#ffd84d;
 }
 
+
+/* ---------- Эксклюзивный ---------- */
+
 .skin-rarity-exclusive{
     color:#ff9ed8;
 }
+
+
+/* ---------- Неизвестная ---------- */
 
 .skin-rarity-unknown{
     color:#b8b8c5;
@@ -350,6 +470,7 @@
     position:relative;
 
     min-height:22px;
+
     padding-right:36px;
 
     display:flex;
@@ -372,7 +493,8 @@
     top:50%;
     right:0;
 
-    transform:translateY(-50%);
+    transform:
+        translateY(-50%);
 
     color:#b7b7c7;
 
@@ -392,6 +514,7 @@
     align-items:center;
 
     gap:7px;
+
     white-space:nowrap;
 }
 
@@ -406,6 +529,7 @@
     font-size:14px;
     font-weight:bold;
     line-height:1;
+
     white-space:nowrap;
 }
 
@@ -466,14 +590,21 @@
 .class-tag{
     display:inline-block;
 
-    padding:6px 14px;
+    padding:
+        6px
+        14px;
+
     margin-left:8px;
 
     border-radius:12px;
 
     color:white;
+
     font-weight:bold;
 }
+
+
+/* ---------- Редкости бойцов ---------- */
 
 .starter{
     background:#43b8ff;
@@ -502,8 +633,13 @@
 
 .ultralegendary{
     background:#111;
-    border:2px solid #666;
+
+    border:
+        2px solid #666;
 }
+
+
+/* ---------- Классы бойцов ---------- */
 
 .damage{
     background:#ff8c00;
@@ -550,18 +686,23 @@
 .tabs{
     display:flex;
 
-    margin:18px 20px;
+    margin:
+        18px
+        20px;
 
     overflow:hidden;
 
     background:#2b2b45;
+
     border-radius:16px;
 }
 
 .tab{
     flex:1;
 
-    padding:9px 14px;
+    padding:
+        9px
+        14px;
 
     border:none;
 
@@ -572,6 +713,7 @@
     font-weight:bold;
 
     cursor:pointer;
+
     transition:.2s;
 }
 
@@ -599,8 +741,14 @@ body.viewer-open{
     height:100%;
 
     overflow:hidden;
+
     overscroll-behavior:none;
 }
+
+
+/* ==================================================
+   Контейнер просмотрщика
+   ================================================== */
 
 .skin-viewer{
     position:fixed;
@@ -609,6 +757,7 @@ body.viewer-open{
     z-index:1000;
 
     width:100%;
+
     height:100vh;
     height:100dvh;
 
@@ -624,6 +773,7 @@ body.viewer-open{
         max(16px, env(safe-area-inset-bottom));
 
     overscroll-behavior:none;
+
     touch-action:auto;
 }
 
@@ -632,7 +782,9 @@ body.viewer-open{
 }
 
 
-/* ---------- Затемнённый фон ---------- */
+/* ==================================================
+   Затемнённый фон
+   ================================================== */
 
 .skin-viewer-overlay{
     position:absolute;
@@ -641,23 +793,31 @@ body.viewer-open{
     width:100%;
     height:100%;
 
-    background:rgba(8,8,18,.82);
+    background:
+        rgba(8,8,18,.82);
 
-    backdrop-filter:blur(5px);
-    -webkit-backdrop-filter:blur(5px);
+    backdrop-filter:
+        blur(5px);
+
+    -webkit-backdrop-filter:
+        blur(5px);
 
     overscroll-behavior:none;
+
     touch-action:none;
 }
 
 
-/* ---------- Внешняя карточка ---------- */
+/* ==================================================
+   Внешняя полноэкранная карточка
+   ================================================== */
 
 .skin-viewer-card{
     position:relative;
     z-index:1;
 
-    width:min(92vw, 460px);
+    width:
+        min(92vw, 460px);
 
     max-height:90vh;
     max-height:90dvh;
@@ -665,51 +825,68 @@ body.viewer-open{
     overflow-x:hidden;
     overflow-y:auto;
 
-    background:linear-gradient(
-        180deg,
-        #343453 0%,
-        #24243b 45%,
-        #202035 100%
-    );
+    background:
+        linear-gradient(
+            180deg,
+            #343453 0%,
+            #24243b 45%,
+            #202035 100%
+        );
 
-    border:1px solid rgba(255,255,255,.08);
+    border:
+        1px solid rgba(255,255,255,.08);
+
     border-radius:26px;
 
     box-shadow:
         0 24px 70px rgba(0,0,0,.55);
 
     overscroll-behavior:contain;
+
     touch-action:pan-y;
+
     -webkit-overflow-scrolling:touch;
 
     transition:
         border-color .25s ease,
         box-shadow .25s ease;
 
-    animation:skinViewerOpen .25s ease;
+    animation:
+        skinViewerOpen .25s ease;
 }
+
 
 @keyframes skinViewerOpen{
 
     from{
         opacity:0;
-        transform:scale(.9) translateY(20px);
+
+        transform:
+            scale(.9)
+            translateY(20px);
     }
 
     to{
         opacity:1;
-        transform:scale(1) translateY(0);
+
+        transform:
+            scale(1)
+            translateY(0);
     }
 
 }
 
 
 /* ==================================================
-   Постоянная подсветка внешней карточки
+   Постоянная подсветка полноэкранной карточки
    ================================================== */
 
+
+/* ---------- Редкий ---------- */
+
 .skin-viewer-card.viewer-card-glow-rare{
-    border-color:rgba(69,216,120,.48);
+    border-color:
+        rgba(69,216,120,.48);
 
     box-shadow:
         0 0 0 1px rgba(69,216,120,.24),
@@ -717,8 +894,12 @@ body.viewer-open{
         0 24px 70px rgba(0,0,0,.55);
 }
 
+
+/* ---------- Сверхредкий ---------- */
+
 .skin-viewer-card.viewer-card-glow-superrare{
-    border-color:rgba(71,167,255,.56);
+    border-color:
+        rgba(71,167,255,.56);
 
     box-shadow:
         0 0 0 1px rgba(71,167,255,.29),
@@ -726,8 +907,12 @@ body.viewer-open{
         0 24px 70px rgba(0,0,0,.55);
 }
 
+
+/* ---------- Эпический ---------- */
+
 .skin-viewer-card.viewer-card-glow-epic{
-    border-color:rgba(194,120,255,.56);
+    border-color:
+        rgba(194,120,255,.56);
 
     box-shadow:
         0 0 0 1px rgba(194,120,255,.29),
@@ -735,17 +920,25 @@ body.viewer-open{
         0 24px 70px rgba(0,0,0,.55);
 }
 
+
+/* ---------- Мифический ---------- */
+
 .skin-viewer-card.viewer-card-glow-mythic{
-    border-color:rgba(255,102,102,.58);
+    border-color:
+        rgba(255,102,102,.58);
 
     box-shadow:
-        0 0 0 1px rgba(255,102,102,.3),
-        0 0 29px rgba(255,80,105,.4),
+        0 0 0 1px rgba(255,102,102,.30),
+        0 0 29px rgba(255,80,105,.40),
         0 24px 70px rgba(0,0,0,.55);
 }
 
+
+/* ---------- Легендарный ---------- */
+
 .skin-viewer-card.viewer-card-glow-legendary{
-    border-color:rgba(255,216,77,.62);
+    border-color:
+        rgba(255,216,77,.62);
 
     box-shadow:
         0 0 0 1px rgba(255,216,77,.32),
@@ -753,17 +946,25 @@ body.viewer-open{
         0 24px 70px rgba(0,0,0,.55);
 }
 
+
+/* ---------- Эксклюзивный ---------- */
+
 .skin-viewer-card.viewer-card-glow-exclusive{
-    border-color:rgba(255,158,216,.58);
+    border-color:
+        rgba(255,158,216,.58);
 
     box-shadow:
-        0 0 0 1px rgba(255,158,216,.3),
+        0 0 0 1px rgba(255,158,216,.30),
         0 0 29px rgba(255,100,190,.39),
         0 24px 70px rgba(0,0,0,.55);
 }
 
+
+/* ---------- Неизвестная ---------- */
+
 .skin-viewer-card.viewer-card-glow-unknown{
-    border-color:rgba(184,184,197,.28);
+    border-color:
+        rgba(184,184,197,.28);
 
     box-shadow:
         0 0 0 1px rgba(184,184,197,.14),
@@ -796,7 +997,9 @@ body.viewer-open{
     border:none;
     border-radius:50%;
 
-    background:rgba(15,15,28,.78);
+    background:
+        rgba(15,15,28,.78);
+
     color:white;
 
     font-size:29px;
@@ -814,17 +1017,21 @@ body.viewer-open{
 }
 
 .skin-viewer-close:hover{
-    background:rgba(60,60,90,.95);
-    transform:scale(1.06);
+    background:
+        rgba(60,60,90,.95);
+
+    transform:
+        scale(1.06);
 }
 
 .skin-viewer-close:active{
-    transform:scale(.94);
+    transform:
+        scale(.94);
 }
 
 
 /* ==================================================
-   Большая картинка
+   Большая картинка скина
    ================================================== */
 
 .viewer-image-box{
@@ -833,7 +1040,10 @@ body.viewer-open{
     width:100%;
     height:320px;
 
-    padding:24px 20px 10px;
+    padding:
+        24px
+        20px
+        10px;
 
     display:flex;
     align-items:center;
@@ -871,7 +1081,7 @@ body.viewer-open{
 
     filter:
         drop-shadow(
-            0 16px 18px rgba(0,0,0,.3)
+            0 16px 18px rgba(0,0,0,.30)
         );
 }
 
@@ -881,12 +1091,22 @@ body.viewer-open{
    ================================================== */
 
 .viewer-information{
-    padding:8px 22px 24px;
+    padding:
+        8px
+        22px
+        24px;
+
     text-align:left;
 }
 
+
+/* ==================================================
+   Название и счётчик
+   ================================================== */
+
 .viewer-title-row{
     display:flex;
+
     align-items:flex-start;
     justify-content:space-between;
 
@@ -896,7 +1116,10 @@ body.viewer-open{
 .viewer-skin-name{
     flex:1;
 
-    margin:0 0 10px;
+    margin:
+        0
+        0
+        10px;
 
     color:white;
 
@@ -930,9 +1153,17 @@ body.viewer-open{
     margin-top:14px;
 }
 
+
+/* ==================================================
+   Названия разделов
+   ================================================== */
+
 .viewer-info-label,
 .viewer-detail-label{
-    margin:0 0 9px;
+    margin:
+        0
+        0
+        9px;
 
     color:#9999ad;
 
@@ -941,6 +1172,7 @@ body.viewer-open{
     line-height:1;
 
     text-transform:uppercase;
+
     letter-spacing:.04em;
 }
 
@@ -1026,6 +1258,7 @@ body.viewer-open{
 
 .viewer-price{
     display:flex;
+
     flex-wrap:wrap;
     align-items:center;
 
@@ -1097,17 +1330,24 @@ body.viewer-open{
 
 .viewer-detail-section{
     margin-top:18px;
+
     padding-top:14px;
 
     border-top:
         1px solid rgba(255,255,255,.08);
 }
 
+
+/* ==================================================
+   Дата выхода
+   ================================================== */
+
 .viewer-release-date{
     display:flex;
     flex-direction:column;
 
     gap:5px;
+
     margin:0;
     padding:0;
 
@@ -1120,6 +1360,11 @@ body.viewer-open{
     font-size:17px;
     line-height:1.35;
 }
+
+
+/* ==================================================
+   Описание
+   ================================================== */
 
 .viewer-description{
     margin:0;
@@ -1144,6 +1389,7 @@ body.viewer-open{
 
 .viewer-navigation{
     position:absolute;
+
     top:50%;
 
     z-index:2;
@@ -1160,7 +1406,9 @@ body.viewer-open{
     border:none;
     border-radius:14px;
 
-    background:rgba(15,15,28,.58);
+    background:
+        rgba(15,15,28,.58);
+
     color:white;
 
     font-size:36px;
@@ -1169,7 +1417,8 @@ body.viewer-open{
 
     cursor:pointer;
 
-    transform:translateY(-50%);
+    transform:
+        translateY(-50%);
 
     transition:
         background .2s,
@@ -1186,7 +1435,8 @@ body.viewer-open{
 }
 
 .viewer-navigation:hover{
-    background:rgba(55,55,85,.9);
+    background:
+        rgba(55,55,85,.9);
 }
 
 .viewer-navigation:active{
@@ -1197,6 +1447,7 @@ body.viewer-open{
 
 .viewer-navigation:disabled{
     opacity:.16;
+
     pointer-events:none;
 }
 
@@ -1213,37 +1464,49 @@ body.viewer-open{
 }
 
 .viewer-swipe-right{
-    animation-name:viewerSwipeRight;
+    animation-name:
+        viewerSwipeRight;
 }
 
 .viewer-swipe-left{
-    animation-name:viewerSwipeLeft;
+    animation-name:
+        viewerSwipeLeft;
 }
+
 
 @keyframes viewerSwipeRight{
 
     from{
         opacity:0;
-        transform:translateX(35px);
+
+        transform:
+            translateX(35px);
     }
 
     to{
         opacity:1;
-        transform:translateX(0);
+
+        transform:
+            translateX(0);
     }
 
 }
+
 
 @keyframes viewerSwipeLeft{
 
     from{
         opacity:0;
-        transform:translateX(-35px);
+
+        transform:
+            translateX(-35px);
     }
 
     to{
         opacity:1;
-        transform:translateX(0);
+
+        transform:
+            translateX(0);
     }
 
 }
@@ -1259,42 +1522,61 @@ body.viewer-open{
         padding:14px;
     }
 
+
     .main-image{
         width:240px;
         height:240px;
     }
 
+
     .brawler-name{
         font-size:38px;
     }
+
 
     #skinsContent{
         margin-right:-10px;
         margin-left:-10px;
     }
 
+
     .skins{
         gap:10px;
-        padding:12px 4px 18px;
+
+        padding:
+            12px
+            4px
+            18px;
     }
+
 
     .skin-image-box{
         height:145px;
+
         padding:7px;
     }
 
+
     .skin-card-content{
         min-height:128px;
-        padding:9px 10px 6px;
+
+        padding:
+            9px
+            10px
+            6px;
     }
+
 
     .skin-name{
         margin-bottom:5px;
+
         font-size:15px;
     }
 
+
     .skin-collection{
         min-height:21px;
+
         margin-bottom:6px;
 
         gap:3px;
@@ -1302,44 +1584,56 @@ body.viewer-open{
         font-size:12px;
     }
 
+
     .collection-icon{
         width:20px;
         height:20px;
     }
 
+
     .skin-rarity{
         margin-bottom:7px;
+
         font-size:13px;
     }
 
+
     .skin-card-footer{
         min-height:20px;
+
         padding-right:31px;
     }
+
 
     .skin-price{
         gap:5px;
     }
+
 
     .currency-icon{
         width:15px;
         height:15px;
     }
 
+
     .price-item{
         gap:2px;
+
         font-size:12px;
     }
+
 
     .special-source,
     .source-text{
         font-size:12px;
     }
 
+
     .source-icon{
         width:20px;
         height:20px;
     }
+
 
     .skin-year{
         font-size:11px;
@@ -1355,6 +1649,7 @@ body.viewer-open{
             max(10px, env(safe-area-inset-bottom));
     }
 
+
     .skin-viewer-card{
         width:96vw;
 
@@ -1363,6 +1658,7 @@ body.viewer-open{
 
         border-radius:22px;
     }
+
 
     .skin-viewer-close{
         top:10px;
@@ -1374,23 +1670,35 @@ body.viewer-open{
         font-size:27px;
     }
 
+
     .viewer-image-box{
         height:280px;
-        padding:20px 14px 8px;
+
+        padding:
+            20px
+            14px
+            8px;
     }
+
 
     .viewer-skin-image{
         max-width:300px;
         max-height:260px;
     }
 
+
     .viewer-information{
-        padding:7px 17px 20px;
+        padding:
+            7px
+            17px
+            20px;
     }
+
 
     .viewer-skin-name{
         font-size:24px;
     }
+
 
     .viewer-skin-counter{
         font-size:12px;
@@ -1403,9 +1711,11 @@ body.viewer-open{
         margin-top:17px;
     }
 
+
     .viewer-title-row + .viewer-info-group{
         margin-top:12px;
     }
+
 
     .viewer-info-label,
     .viewer-detail-label{
@@ -1415,8 +1725,10 @@ body.viewer-open{
         font-weight:600;
     }
 
+
     .viewer-detail-section{
         margin-top:16px;
+
         padding-top:12px;
     }
 
@@ -1427,6 +1739,7 @@ body.viewer-open{
         font-size:14px;
     }
 
+
     .viewer-collection-icon{
         width:23px;
         height:23px;
@@ -1435,17 +1748,21 @@ body.viewer-open{
         max-height:23px;
     }
 
+
     .viewer-rarity{
         font-size:15px;
     }
+
 
     .viewer-secondary-rarity{
         font-size:14px;
     }
 
+
     .viewer-price-item{
         font-size:16px;
     }
+
 
     .viewer-currency-icon{
         width:19px;
@@ -1454,6 +1771,7 @@ body.viewer-open{
         max-width:19px;
         max-height:19px;
     }
+
 
     .viewer-release-date strong{
         font-size:15px;
@@ -1467,25 +1785,34 @@ body.viewer-open{
         height:48px;
 
         border-radius:13px;
+
         font-size:34px;
     }
+
 
     .viewer-navigation-left{
         left:6px;
     }
+
 
     .viewer-navigation-right{
         right:6px;
     }
 
 }
+
+
 /* ==================================================
-   Оптимизация страницы скинов для ПК
+   Планшеты и ПК
    ================================================== */
 
 @media (min-width:768px){
 
-    /* Блок со скинами больше не растягивается бесконечно */
+    /*
+       Блок ограничен по ширине.
+       Поэтому карточки не растягиваются
+       на половину огромного экрана.
+    */
 
     #skinsContent{
         max-width:1100px;
@@ -1495,12 +1822,17 @@ body.viewer-open{
     }
 
 
-    /* Карточки имеют нормальную ширину,
-       а не растягиваются на половину экрана */
+    /*
+       Карточки сохраняют нормальные пропорции.
+       При наличии места появляется больше колонок.
+    */
 
     .skins{
         grid-template-columns:
-            repeat(auto-fit, minmax(220px, 250px));
+            repeat(
+                auto-fit,
+                minmax(220px, 250px)
+            );
 
         justify-content:center;
 
@@ -1512,23 +1844,25 @@ body.viewer-open{
 
     .skin-card{
         width:100%;
+
         border-radius:20px;
     }
 
 
-    /* Картинка увеличивается вместе с карточкой */
-
     .skin-image-box{
         height:195px;
+
         padding:10px;
     }
 
 
-    /* Нижняя часть тоже немного крупнее */
-
     .skin-card-content{
         min-height:145px;
-        padding:12px 14px 9px;
+
+        padding:
+            12px
+            14px
+            9px;
     }
 
 
@@ -1541,6 +1875,7 @@ body.viewer-open{
 
     .skin-collection{
         min-height:25px;
+
         margin-bottom:8px;
 
         font-size:14px;
@@ -1603,7 +1938,10 @@ body.viewer-open{
 
     .skins{
         grid-template-columns:
-            repeat(auto-fit, minmax(240px, 270px));
+            repeat(
+                auto-fit,
+                minmax(240px, 270px)
+            );
 
         gap:24px;
     }
@@ -1616,7 +1954,11 @@ body.viewer-open{
 
     .skin-card-content{
         min-height:150px;
-        padding:13px 15px 10px;
+
+        padding:
+            13px
+            15px
+            10px;
     }
 
 
@@ -1625,4 +1967,3 @@ body.viewer-open{
     }
 
 }
- 
