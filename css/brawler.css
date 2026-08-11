@@ -23,6 +23,7 @@
     object-fit:contain;
 
     background:#2b2b45;
+
     border:3px solid #454565;
     border-radius:25px;
 }
@@ -51,6 +52,7 @@
     padding:18px;
 
     background:#2b2b45;
+
     border-radius:18px;
 }
 
@@ -93,10 +95,16 @@
 
 .skins{
     display:grid;
-    grid-template-columns:repeat(2, minmax(0, 1fr));
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
 
     gap:15px;
-    padding:16px 6px 20px;
+
+    padding:
+        16px
+        6px
+        20px;
 }
 
 
@@ -110,15 +118,18 @@
     overflow:hidden;
 
     background:#2b2b45;
+
     border-radius:18px;
 
     text-align:left;
+
     cursor:pointer;
 
     box-shadow:
         0 4px 12px rgba(0,0,0,.22);
 
     -webkit-touch-callout:none;
+
     -webkit-user-select:none;
     user-select:none;
 
@@ -152,6 +163,7 @@
 .skin-card *,
 .skin-viewer-card *{
     -webkit-touch-callout:none;
+
     -webkit-user-select:none;
     user-select:none;
 }
@@ -159,12 +171,13 @@
 .skin-card img,
 .skin-viewer-card img{
     -webkit-user-drag:none;
+
     pointer-events:none;
 }
 
 
 /* ==================================================
-   Подсветка маленькой карточки при нажатии
+   Подсветка маленьких карточек при нажатии
    ================================================== */
 
 
@@ -240,7 +253,6 @@
 
 /* ==================================================
    Подсветка при наведении мыши
-   Только ПК / устройства с мышью
    ================================================== */
 
 @media (hover:hover) and (pointer:fine){
@@ -313,11 +325,12 @@
 
     padding:8px;
 
-    background:linear-gradient(
-        180deg,
-        #30304b 0%,
-        #24243b 100%
-    );
+    background:
+        linear-gradient(
+            180deg,
+            #30304b 0%,
+            #24243b 100%
+        );
 
     border-bottom:
         1px solid rgba(255,255,255,.05);
@@ -350,6 +363,7 @@
         6px;
 
     display:flex;
+
     flex-direction:column;
 }
 
@@ -365,6 +379,7 @@
 
     font-size:17px;
     font-weight:700;
+
     line-height:1.2;
 }
 
@@ -375,6 +390,7 @@
 
 .skin-collection{
     display:flex;
+
     align-items:center;
 
     min-height:23px;
@@ -396,6 +412,7 @@
     height:22px;
 
     object-fit:contain;
+
     flex-shrink:0;
 }
 
@@ -408,54 +425,42 @@
     margin:0 0 7px;
 
     font-size:14px;
+
     font-weight:bold;
+
     line-height:1.2;
 }
 
-
-/* ---------- Редкий ---------- */
 
 .skin-rarity-rare{
     color:#45d878;
 }
 
 
-/* ---------- Сверхредкий ---------- */
-
 .skin-rarity-superrare{
     color:#47a7ff;
 }
 
-
-/* ---------- Эпический ---------- */
 
 .skin-rarity-epic{
     color:#c278ff;
 }
 
 
-/* ---------- Мифический ---------- */
-
 .skin-rarity-mythic{
     color:#ff6666;
 }
 
-
-/* ---------- Легендарный ---------- */
 
 .skin-rarity-legendary{
     color:#ffd84d;
 }
 
 
-/* ---------- Эксклюзивный ---------- */
-
 .skin-rarity-exclusive{
     color:#ff9ed8;
 }
 
-
-/* ---------- Неизвестная ---------- */
 
 .skin-rarity-unknown{
     color:#b8b8c5;
@@ -474,11 +479,13 @@
     padding-right:36px;
 
     display:flex;
+
     align-items:center;
 }
 
 .skin-source{
     width:100%;
+
     min-width:0;
 }
 
@@ -493,13 +500,13 @@
     top:50%;
     right:0;
 
-    transform:
-        translateY(-50%);
+    transform:translateY(-50%);
 
     color:#b7b7c7;
 
     font-size:13px;
     font-weight:500;
+
     line-height:1;
 }
 
@@ -510,6 +517,7 @@
 
 .skin-price{
     display:flex;
+
     flex-wrap:nowrap;
     align-items:center;
 
@@ -520,6 +528,7 @@
 
 .price-item{
     display:inline-flex;
+
     align-items:center;
 
     gap:2px;
@@ -528,6 +537,7 @@
 
     font-size:14px;
     font-weight:bold;
+
     line-height:1;
 
     white-space:nowrap;
@@ -540,6 +550,7 @@
     height:17px;
 
     object-fit:contain;
+
     flex-shrink:0;
 }
 
@@ -550,6 +561,7 @@
 
 .special-source{
     display:flex;
+
     align-items:center;
 
     min-width:0;
@@ -560,6 +572,7 @@
 
     font-size:13px;
     font-weight:bold;
+
     line-height:1;
 }
 
@@ -570,6 +583,7 @@
     height:23px;
 
     object-fit:contain;
+
     flex-shrink:0;
 }
 
@@ -578,6 +592,7 @@
 
     font-size:13px;
     font-weight:bold;
+
     line-height:1;
 }
 
@@ -628,14 +643,14 @@
 
 .legendary{
     background:#ffd43b;
+
     color:#222;
 }
 
 .ultralegendary{
     background:#111;
 
-    border:
-        2px solid #666;
+    border:2px solid #666;
 }
 
 
@@ -680,54 +695,236 @@
 
 
 /* ==================================================
-   Вкладки
+   LIQUID GLASS ПЕРЕКЛЮЧАТЕЛЬ ВКЛАДОК
    ================================================== */
 
 .tabs{
-    display:flex;
+    position:relative;
+
+    display:grid;
+
+    grid-template-columns:
+        1fr
+        1fr;
+
+    width:
+        calc(100% - 40px);
+
+    max-width:430px;
 
     margin:
         18px
-        20px;
+        auto;
+
+    padding:5px;
 
     overflow:hidden;
 
-    background:#2b2b45;
+    isolation:isolate;
 
-    border-radius:16px;
+    border:
+        1px solid rgba(255,255,255,.14);
+
+    border-radius:22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.10),
+            rgba(255,255,255,.035)
+        );
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.13),
+        inset 0 -1px 0 rgba(255,255,255,.035),
+        0 8px 28px rgba(0,0,0,.20);
+
+    backdrop-filter:
+        blur(22px)
+        saturate(160%);
+
+    -webkit-backdrop-filter:
+        blur(22px)
+        saturate(160%);
 }
 
+
+/* ==================================================
+   Блик на стекле
+   ================================================== */
+
+.tabs::after{
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:-2;
+
+    pointer-events:none;
+
+    background:
+        radial-gradient(
+            circle at 20% 0%,
+            rgba(255,255,255,.13),
+            transparent 45%
+        );
+}
+
+
+/* ==================================================
+   Активная стеклянная плашка
+   ================================================== */
+
+.tabs::before{
+    content:"";
+
+    position:absolute;
+
+    top:5px;
+    bottom:5px;
+
+    left:5px;
+
+    width:
+        calc(50% - 5px);
+
+    z-index:-1;
+
+    pointer-events:none;
+
+    border:
+        1px solid rgba(255,255,255,.22);
+
+    border-radius:17px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(125,205,255,.32),
+            rgba(85,135,255,.18)
+        );
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.28),
+        inset 0 -1px 0 rgba(255,255,255,.06),
+        0 4px 14px rgba(37,118,255,.18),
+        0 0 18px rgba(67,184,255,.11);
+
+    transition:
+        transform .38s
+        cubic-bezier(.22,.75,.25,1),
+        background .35s ease,
+        box-shadow .35s ease;
+}
+
+
+/* ==================================================
+   Плашка переезжает на "Информация"
+   ================================================== */
+
+.tabs:has(#infoTab.active)::before{
+    transform:translateX(100%);
+}
+
+
+/* ==================================================
+   Кнопка вкладки
+   ================================================== */
+
 .tab{
-    flex:1;
+    position:relative;
+
+    z-index:1;
+
+    min-width:0;
 
     padding:
-        9px
-        14px;
+        10px
+        12px;
 
     border:none;
 
-    background:transparent;
-    color:white;
+    border-radius:17px;
 
-    font-size:16px;
-    font-weight:bold;
+    outline:none;
+
+    background:transparent;
+
+    color:
+        rgba(255,255,255,.62);
+
+    font-size:15px;
+    font-weight:700;
+
+    line-height:1.2;
 
     cursor:pointer;
 
-    transition:.2s;
+    -webkit-tap-highlight-color:transparent;
+
+    transition:
+        color .28s ease,
+        transform .18s ease,
+        text-shadow .28s ease,
+        opacity .28s ease;
 }
 
-.tab:hover{
-    background:#3a3a60;
-}
+
+/* ==================================================
+   Активная вкладка
+   ================================================== */
 
 .tab.active{
-    background:#43b8ff;
-    color:#111;
+    background:transparent;
+
+    color:#ffffff;
+
+    text-shadow:
+        0 1px 9px rgba(255,255,255,.16);
 }
 
-.tab.active:hover{
-    background:#43b8ff;
+
+/* ==================================================
+   Наведение на вкладки — ПК
+   ================================================== */
+
+@media (hover:hover) and (pointer:fine){
+
+    .tab:hover{
+        background:transparent;
+    }
+
+    .tab:not(.active):hover{
+        color:
+            rgba(255,255,255,.90);
+
+        text-shadow:
+            0 0 9px rgba(255,255,255,.10);
+    }
+
+}
+
+
+/* ==================================================
+   Нажатие на вкладку
+   ================================================== */
+
+.tab:active{
+    transform:scale(.97);
+}
+
+
+/* ==================================================
+   Фокус с клавиатуры
+   ================================================== */
+
+.tab:focus-visible{
+    outline:
+        2px solid rgba(120,195,255,.60);
+
+    outline-offset:-2px;
 }
 
 
@@ -752,6 +949,7 @@ body.viewer-open{
 
 .skin-viewer{
     position:fixed;
+
     inset:0;
 
     z-index:1000;
@@ -762,15 +960,22 @@ body.viewer-open{
     height:100dvh;
 
     display:none;
+
     align-items:center;
     justify-content:center;
 
     overflow:hidden;
 
     padding:
-        max(16px, env(safe-area-inset-top))
+        max(
+            16px,
+            env(safe-area-inset-top)
+        )
         16px
-        max(16px, env(safe-area-inset-bottom));
+        max(
+            16px,
+            env(safe-area-inset-bottom)
+        );
 
     overscroll-behavior:none;
 
@@ -788,6 +993,7 @@ body.viewer-open{
 
 .skin-viewer-overlay{
     position:absolute;
+
     inset:0;
 
     width:100%;
@@ -814,6 +1020,7 @@ body.viewer-open{
 
 .skin-viewer-card{
     position:relative;
+
     z-index:1;
 
     width:
@@ -855,6 +1062,10 @@ body.viewer-open{
         skinViewerOpen .25s ease;
 }
 
+
+/* ==================================================
+   Анимация открытия просмотрщика
+   ================================================== */
 
 @keyframes skinViewerOpen{
 
@@ -989,6 +1200,7 @@ body.viewer-open{
     height:38px;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
@@ -1004,6 +1216,7 @@ body.viewer-open{
 
     font-size:29px;
     font-weight:300;
+
     line-height:1;
 
     cursor:pointer;
@@ -1020,13 +1233,11 @@ body.viewer-open{
     background:
         rgba(60,60,90,.95);
 
-    transform:
-        scale(1.06);
+    transform:scale(1.06);
 }
 
 .skin-viewer-close:active{
-    transform:
-        scale(.94);
+    transform:scale(.94);
 }
 
 
@@ -1046,6 +1257,7 @@ body.viewer-open{
         10px;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
@@ -1060,6 +1272,7 @@ body.viewer-open{
         );
 
     user-select:none;
+
     -webkit-user-select:none;
 }
 
@@ -1077,6 +1290,7 @@ body.viewer-open{
     pointer-events:none;
 
     user-select:none;
+
     -webkit-user-select:none;
 
     filter:
@@ -1108,7 +1322,9 @@ body.viewer-open{
     display:flex;
 
     align-items:flex-start;
-    justify-content:space-between;
+
+    justify-content:
+        space-between;
 
     gap:12px;
 }
@@ -1116,15 +1332,13 @@ body.viewer-open{
 .viewer-skin-name{
     flex:1;
 
-    margin:
-        0
-        0
-        10px;
+    margin:0 0 10px;
 
     color:white;
 
     font-size:28px;
     font-weight:800;
+
     line-height:1.1;
 }
 
@@ -1137,6 +1351,7 @@ body.viewer-open{
 
     font-size:13px;
     font-weight:700;
+
     line-height:1.2;
 }
 
@@ -1160,15 +1375,13 @@ body.viewer-open{
 
 .viewer-info-label,
 .viewer-detail-label{
-    margin:
-        0
-        0
-        9px;
+    margin:0 0 9px;
 
     color:#9999ad;
 
     font-size:13px;
     font-weight:600;
+
     line-height:1;
 
     text-transform:uppercase;
@@ -1183,7 +1396,9 @@ body.viewer-open{
 
 .viewer-collections{
     display:flex;
+
     flex-direction:column;
+
     align-items:flex-start;
 
     gap:5px;
@@ -1191,6 +1406,7 @@ body.viewer-open{
 
 .viewer-collection{
     display:flex;
+
     align-items:center;
 
     gap:4px;
@@ -1199,6 +1415,7 @@ body.viewer-open{
 
     font-size:15px;
     font-weight:600;
+
     line-height:1.2;
 }
 
@@ -1216,6 +1433,7 @@ body.viewer-open{
     max-height:26px;
 
     object-fit:contain;
+
     flex-shrink:0;
 }
 
@@ -1226,7 +1444,9 @@ body.viewer-open{
 
 .viewer-rarities{
     display:flex;
+
     flex-direction:column;
+
     align-items:flex-start;
 
     gap:4px;
@@ -1236,7 +1456,9 @@ body.viewer-open{
     margin:0;
 
     font-size:17px;
+
     font-weight:800;
+
     line-height:1.2;
 }
 
@@ -1253,6 +1475,7 @@ body.viewer-open{
     min-height:28px;
 
     display:flex;
+
     align-items:center;
 }
 
@@ -1260,6 +1483,7 @@ body.viewer-open{
     display:flex;
 
     flex-wrap:wrap;
+
     align-items:center;
 
     gap:16px;
@@ -1267,6 +1491,7 @@ body.viewer-open{
 
 .viewer-price-item{
     display:inline-flex;
+
     align-items:center;
 
     gap:4px;
@@ -1275,6 +1500,7 @@ body.viewer-open{
 
     font-size:18px;
     font-weight:800;
+
     line-height:1;
 }
 
@@ -1288,11 +1514,13 @@ body.viewer-open{
     max-height:21px;
 
     object-fit:contain;
+
     flex-shrink:0;
 }
 
 .viewer-special-source{
     display:flex;
+
     align-items:center;
 
     gap:7px;
@@ -1313,6 +1541,7 @@ body.viewer-open{
     max-height:28px;
 
     object-fit:contain;
+
     flex-shrink:0;
 }
 
@@ -1344,6 +1573,7 @@ body.viewer-open{
 
 .viewer-release-date{
     display:flex;
+
     flex-direction:column;
 
     gap:5px;
@@ -1358,6 +1588,7 @@ body.viewer-open{
     color:white;
 
     font-size:17px;
+
     line-height:1.35;
 }
 
@@ -1379,6 +1610,7 @@ body.viewer-open{
     color:#d4d4df;
 
     font-size:15px;
+
     line-height:1.45;
 }
 
@@ -1398,12 +1630,14 @@ body.viewer-open{
     height:50px;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
     padding:0;
 
     border:none;
+
     border-radius:14px;
 
     background:
@@ -1413,6 +1647,7 @@ body.viewer-open{
 
     font-size:36px;
     font-weight:300;
+
     line-height:1;
 
     cursor:pointer;
@@ -1460,6 +1695,7 @@ body.viewer-open{
     min-height:100%;
 
     animation-duration:.22s;
+
     animation-timing-function:ease;
 }
 
@@ -1640,13 +1876,57 @@ body.viewer-open{
     }
 
 
+    /* ---------- Liquid Glass переключатель ---------- */
+
+    .tabs{
+        width:
+            calc(100% - 20px);
+
+        margin-top:16px;
+        margin-bottom:16px;
+
+        padding:4px;
+
+        border-radius:20px;
+    }
+
+
+    .tabs::before{
+        top:4px;
+        bottom:4px;
+        left:4px;
+
+        width:
+            calc(50% - 4px);
+
+        border-radius:16px;
+    }
+
+
+    .tab{
+        padding:
+            9px
+            7px;
+
+        border-radius:16px;
+
+        font-size:14px;
+    }
+
+
     /* ---------- Просмотрщик ---------- */
 
     .skin-viewer{
         padding:
-            max(10px, env(safe-area-inset-top))
+            max(
+                10px,
+                env(safe-area-inset-top)
+            )
             10px
-            max(10px, env(safe-area-inset-bottom));
+            max(
+                10px,
+                env(safe-area-inset-bottom)
+            );
     }
 
 
@@ -1705,8 +1985,6 @@ body.viewer-open{
     }
 
 
-    /* ---------- Группы ---------- */
-
     .viewer-info-group{
         margin-top:17px;
     }
@@ -1732,8 +2010,6 @@ body.viewer-open{
         padding-top:12px;
     }
 
-
-    /* ---------- Содержимое ---------- */
 
     .viewer-collection{
         font-size:14px;
@@ -1778,8 +2054,6 @@ body.viewer-open{
     }
 
 
-    /* ---------- Стрелки ---------- */
-
     .viewer-navigation{
         width:35px;
         height:48px;
@@ -1808,12 +2082,6 @@ body.viewer-open{
 
 @media (min-width:768px){
 
-    /*
-       Блок ограничен по ширине.
-       Поэтому карточки не растягиваются
-       на половину огромного экрана.
-    */
-
     #skinsContent{
         max-width:1100px;
 
@@ -1821,11 +2089,6 @@ body.viewer-open{
         margin-right:auto;
     }
 
-
-    /*
-       Карточки сохраняют нормальные пропорции.
-       При наличии места появляется больше колонок.
-    */
 
     .skins{
         grid-template-columns:
@@ -1920,6 +2183,40 @@ body.viewer-open{
 
     .skin-year{
         font-size:12px;
+    }
+
+
+    /* ---------- Переключатель на ПК ---------- */
+
+    .tabs{
+        max-width:470px;
+
+        padding:6px;
+
+        border-radius:24px;
+    }
+
+
+    .tabs::before{
+        top:6px;
+        bottom:6px;
+        left:6px;
+
+        width:
+            calc(50% - 6px);
+
+        border-radius:18px;
+    }
+
+
+    .tab{
+        padding:
+            11px
+            16px;
+
+        font-size:16px;
+
+        border-radius:18px;
     }
 
 }
